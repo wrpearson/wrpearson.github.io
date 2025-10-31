@@ -1,0 +1,61 @@
+# lalign36 -m 6 -m "F11 mchu.lav" /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa
+#:lav
+
+d {
+   "lalign36 -m 6 -m "F11 mchu.lav" /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa"
+}
+s {
+   "MCHU" 0 147 
+   "MCHU" 0 147
+}
+h {
+   "MCHU - Calmodulin - Human, rabbit, bovine, rat, a - 148 aa"
+   "MCHU - Calmodulin - Human, rabbit, bovine, rat, and ch"
+}
+a {
+  s 214 50.8
+  b 11 84
+  e 75 148
+  l 11 84 75 148 48
+}
+a {
+  s 214 50.8
+  b 84 11
+  e 148 75
+  l 84 11 148 75 48
+}
+a {
+  s 181 43.7
+  b 10 46
+  e 110 146
+  l 10 46 36 72 34
+  l 37 74 68 105 34
+  l 69 109 88 128 34
+  l 93 129 110 146 34
+}
+a {
+  s 181 43.7
+  b 46 10
+  e 146 110
+  l 46 10 72 36 34
+  l 74 37 105 68 34
+  l 109 69 128 88 34
+  l 129 93 146 110 34
+}
+a {
+  s 61 17.9
+  b 1 113
+  e 36 145
+  l 1 113 12 124 35
+  l 13 126 15 128 35
+  l 20 129 36 145 35
+}
+a {
+  s 61 17.9
+  b 113 1
+  e 145 36
+  l 113 1 124 12 35
+  l 126 13 128 15 35
+  l 129 20 145 36 35
+}
+

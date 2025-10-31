@@ -1,0 +1,89 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<title>
+BIMS6000 - Pymol for Dummies
+</title>
+</head>
+<body bgcolor=white onload="set_block()">
+<h1><a href="http://fasta.bioch.virginia.edu/bims6000/pymol.html">fasta.bioch.virginia.edu/bims6000/pymol.html</a></h1>
+<h2>
+BIMS6000 - Pymol for Dummies
+</h2>
+<p>
+<hr />
+<b>1.</b>  Searching for sequences with known structure:
+<p>
+Use the 
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select" target='fasta_win'>FASTA site [pgm]</a>  or <a href="http://fastademo.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select" target='fasta_win'>FASTADEMO site [pgm]</a> (possibly with <tt>SSEARCH</tt>) to search the protein structure database (PDB Structures - NCBI) using your SNP target sequence (<tt>NP_ ...</tt>).
+<ol type='a'>
+<li>
+Are there homologs with known structure to your protein?  What is the E()-value of the closest homolog?
+<p>
+<li>
+Do any of the structures align to the full length of your human protein?  How much of the protein is generally covered?<p>
+<li>
+(optional) What is the E()-value of the highest scoring protein that contains a different structural domain?
+</ol>
+<p>
+<hr />
+<b>2.</b> Look at the structural information:
+<p>
+Go to the PDB (Protein Databank) web site at <a href="http://pdb.org/"
+target='pdb_win'>pdb.org</a> and look up one of the homologous 
+protein structures you found.  To lookup/download a structure, you
+need the PDB accession, which is the first 4 characters of the NNCBI
+PDB|chain accession.  Thus, <tt>1DX0A</tt> is really <tt>1DX0</tt>.
+<p>
+Use the "Display files" option at the top-right hand of the page and display the PDB file header.
+<p>
+<ol type='a'>
+<li>
+What are the first 5 residues of the sequence based on the structure header?
+<p>
+<li>
+  Does the structure start at residue 1?
+<p>
+<li>
+ Do the numbers of the residues in the structural header match the number of the residues in the alignment? 
+<br />
+ If not, you will need to remember the offset when you mark your SNP sites with Pymol.
+  </ol>
+<hr />
+<b>3.</b> Viewing with <b>Pymol</b>, highlighting SNPs:
+<p>
+Open your downloaded Pymol program.
+<ol type='a'>
+<li>
+  Using the <tt>fetch</tt> command in the Pymol command line box, fetch your structure from the PDB.
+<br />
+  Notice that the name of your structure on the highlighting box to the right of the viewing window.
+<p>
+<li>
+  Use the <b>S</b> box to <b>S</b>how your structure as cartoons.  Note that the lines stay.
+<p>
+<li>
+  Use the <b>H</b> box to <b>H</b>ide the lines under the cartoons.
+<p>
+<li>
+  Use the <b>C</b> box to <b>C</b>olor your cartoon structure using secondary structure.
+<p>
+<li>
+  In the command line box, create a new selection of one of the amino acids:
+<pre>
+  select snp1, resi 45
+</pre>
+The comma after <tt>snp1</tt><b>,</b> is required. Use whatever amino-acid you like.)
+<br />
+You should see that some number of atoms have been selected.  Note that you have a new object called <tt>(snp1)</tt>.
+<p>
+<li>
+  Use the <tt>S</tt> box to Show those atoms as <tt>lines</tt>
+<p>
+<li>
+  Use the <tt>C</tt> box to Color those atoms by <tt>element</tt>
+</ol>
+<hr>
+</body>
+</html>

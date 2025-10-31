@@ -1,0 +1,83 @@
+# BLASTP 2.14.1+
+# Query: random_1 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+random_1	G3QXY5	29.907	107	60	3	525	616	214	320	8.5	34.7
+random_1	Q6YHU6	29.907	107	60	3	525	616	214	320	8.6	34.7
+# BLASTP 2.14.1+
+# Query: random_2 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+random_2	Q84TC2	48.485	33	12	2	401	431	231	260	7.2	34.7
+random_2	H3GKA9	31.111	45	31	0	234	278	437	481	8.0	35.0
+random_2	F1QID5	25.714	70	40	1	497	554	168	237	9.2	34.3
+# BLASTP 2.14.1+
+# Query: random_3 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+random_3	A9TKN5	27.857	140	87	6	305	437	225	357	1.7	36.6
+random_3	P47883	32.759	58	33	2	204	261	276	327	8.3	34.3
+# BLASTP 2.14.1+
+# Query: random_4 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 5 hits found
+random_4	P0AF90	30.137	73	48	2	170	239	36	108	2.2	34.7
+random_4	G3REH4	21.053	114	82	1	140	245	211	324	3.5	35.4
+random_4	Q9H410	21.053	114	82	1	140	245	220	333	4.2	35.4
+random_4	A2FEH0	26.136	88	48	3	358	443	265	337	4.6	35.0
+random_4	H2R8Z9	21.053	114	82	1	140	245	147	260	5.3	34.7
+# BLASTP 2.14.1+
+# Query: random_5 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+random_5	Q55470	27.350	117	74	4	134	250	441	546	0.37	38.9
+random_5	C3XZX6	30.986	71	44	2	630	695	30	100	1.7	37.0
+# BLASTP 2.14.1+
+# Query: random_6 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 6 hits found
+random_6	T1FRL9	27.068	133	81	7	473	599	34	156	0.74	38.1
+random_6	A7SSU9	32.895	76	45	2	23	96	13	84	2.4	36.2
+random_6	T1FMN1	19.187	443	282	15	220	632	12	408	4.7	35.4
+random_6	A7SHZ9	24.793	121	63	4	316	420	87	195	6.2	34.7
+random_6	Q75JH0	27.143	70	46	2	348	412	252	321	6.2	35.0
+random_6	P0A8Q6	32.099	81	39	5	13	79	23	101	7.2	32.7
+# BLASTP 2.14.1+
+# Query: random_7 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_8 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 5 hits found
+random_8	H2M4N8	31.944	72	43	3	52	121	668	735	1.2	37.4
+random_8	T1FK79	26.984	63	43	1	442	501	2	64	3.7	34.3
+random_8	A0CVW2	27.381	84	50	2	44	124	152	227	5.3	35.0
+random_8	H2MU97	25.510	98	58	3	316	412	345	428	5.4	35.4
+random_8	W5M0R9	30.000	60	39	1	579	635	858	917	9.0	34.7
+# BLASTP 2.14.1+
+# Query: random_9 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+random_9	Q5K9P4	33.929	56	34	2	573	625	322	377	2.4	36.6
+random_9	F4J0F6	33.333	39	26	0	371	409	183	221	6.0	35.0
+random_9	A7SC98	30.667	75	45	3	338	406	135	208	8.6	34.3
+# BLASTP 2.14.1+
+# Query: random_10 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 5 hits found
+random_10	A2A9H6	29.870	77	45	2	30	106	1755	1822	2.4	36.6
+random_10	Q0ULP0	20.325	123	79	2	592	702	284	399	2.7	36.6
+random_10	A8BJ20	27.551	98	65	2	495	586	276	373	2.9	35.8
+random_10	Q7NN77	29.310	58	40	1	277	333	75	132	5.1	34.7
+random_10	F1MJK2	29.213	89	60	3	29	115	1556	1643	5.6	35.4
+# BLAST processed 10 queries

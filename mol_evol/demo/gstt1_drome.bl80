@@ -1,0 +1,23 @@
+#Query: Name: sp|P20432|GTT1_DROME; Length: 209
+#Database: Name: "GP/9606.9558/RefSeq_protein"; Entries: 55972; Residues: 37140131
+#Parameters:   gapext: 1;   matrix: BLOSUM80;   expect: 5;   allowgaps: yes;   gapopen: 11; 
+#Hits:	ACC     	E()	bits	f_id	a_len	descr
+NP_000844	1e-14	76.3	0.290	152	glutathione S-transferase theta-1 isoform a [Homo sapiens]
+XP_005261647	1e-11	67.3	0.404	89	PREDICTED: glutathione S-transferase theta-2 isoform X1 [Homo sapiens]
+XP_005261772	1e-11	67.3	0.404	89	PREDICTED: glutathione S-transferase theta-2B isoform X1 [Homo sapiens]
+NP_000845	1e-11	67.3	0.404	89	glutathione S-transferase theta-2 [Homo sapiens]
+XP_005261644	2e-09	60.5	0.289	125	PREDICTED: glutathione S-transferase theta-1 isoform X1 [Homo sapiens]
+NP_001280742	4e-07	51.4	0.342	76	glutathione S-transferase theta-1 isoform d [Homo sapiens]
+NP_665877	4e-06	49.6	0.293	144	maleylacetoacetate isomerase isoform 1 [Homo sapiens]
+NP_001395	0.0002	44.6	0.247	143	elongation factor 1-gamma [Homo sapiens]
+NP_001504	0.006	39.2	0.303	128	maleylacetoacetate isomerase isoform 3 [Homo sapiens]
+XP_005249907	0.018	37.8	0.297	64	PREDICTED: aminoacyl tRNA synthase complex-interacting multifunctional protein 2 isoform X4 [Homo sapiens]
+XP_006715835	0.018	37.8	0.297	64	PREDICTED: aminoacyl tRNA synthase complex-interacting multifunctional protein 2 isoform X5 [Homo sapiens]
+XP_005249905	0.018	37.8	0.297	64	PREDICTED: aminoacyl tRNA synthase complex-interacting multifunctional protein 2 isoform X2 [Homo sapiens]
+XP_005249904	0.019	37.8	0.297	64	PREDICTED: aminoacyl tRNA synthase complex-interacting multifunctional protein 2 isoform X1 [Homo sapiens]
+NP_006294	0.019	37.8	0.297	64	aminoacyl tRNA synthase complex-interacting multifunctional protein 2 [Homo sapiens]
+NP_004271	0.03	36.9	0.388	47	eukaryotic translation elongation factor 1 epsilon-1 isoform 1 [Homo sapiens]
+NP_036270	0.51	33.3	0.308	78	protein AATF [Homo sapiens]
+NP_671488	1.3	31.9	0.318	44	blood vessel epicardial substance [Homo sapiens]
+NP_714543	2.2	31.0	0.338	74	glutathione S-transferase A5 [Homo sapiens]
+NP_665878	4	30.1	0.353	34	maleylacetoacetate isomerase isoform 2 [Homo sapiens]

@@ -1,0 +1,373 @@
+BLASTP 2.2.27+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro
+A. Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and
+David J. Lipman (1997), "Gapped BLAST and PSI-BLAST: a new
+generation of protein database search programs", Nucleic
+Acids Res. 25:3389-3402.
+
+
+RID: 834MYWRS014
+
+
+Database: Homo sapiens RefSeq protein
+           30,652 sequences; 17,552,041 total letters
+Query= GSTM1_HUMAN RecName: Full=Glutathione S-transferase Mu 1; EC=2.5.1.18;
+AltName: Full=GST HB subunit 4; AltName: Full=GST class-mu 1; AltName:
+Full=GSTM1-1; AltName: Full=GSTM1a-1a; AltName: Full=GSTM1b-1b;
+AltName: Full=GTH4;
+
+Length=218
+
+
+                                                                   Score     E
+Sequences producing significant alignments:                       (Bits)  Value
+
+ref|NP_000552.2|  glutathione S-transferase Mu 1 isoform 1 [Ho...    658   0.0   
+ref|NP_000841.1|  glutathione S-transferase Mu 4 isoform 1 [Ho...    572   0.0   
+ref|NP_000839.1|  glutathione S-transferase Mu 2 isoform 1 [Ho...    541   5e-177
+ref|NP_000842.2|  glutathione S-transferase Mu 5 [Homo sapiens]      537   2e-175
+ref|NP_666533.1|  glutathione S-transferase Mu 1 isoform 2 [Ho...    514   9e-169
+ref|NP_671489.1|  glutathione S-transferase Mu 4 isoform 2 [Ho...    498   8e-162
+ref|NP_001135840.1|  glutathione S-transferase Mu 2 isoform 2 ...    449   3e-143
+ref|NP_000840.2|  glutathione S-transferase Mu 3 [Homo sapiens]      421   3e-131
+ref|NP_000843.1|  glutathione S-transferase P [Homo sapiens]       39.2    0.004 
+ref|NP_000837.3|  glutathione S-transferase A2 [Homo sapiens]      31.2    1.2   
+ref|NP_001503.1|  glutathione S-transferase A4 [Homo sapiens]      30.8    1.7   
+ref|NP_665683.1|  glutathione S-transferase A1 [Homo sapiens]      30.3    2.2   
+ref|NP_714543.1|  glutathione S-transferase A5 [Homo sapiens]      30.3    2.2   
+ref|NP_000838.3|  glutathione S-transferase A3 [Homo sapiens]      30.3    2.2   
+ref|NP_031385.2|  protein CASC3 [Homo sapiens]                     30.3    2.4   
+ref|NP_001049.1|  substance-P receptor isoform long [Homo sapi...  29.9    3.2   
+ref|NP_444512.2|  SH2 domain-containing protein 1B [Homo sapiens]  29.5    3.7   
+
+ALIGNMENTS
+>ref|NP_000552.2| glutathione S-transferase Mu 1 isoform 1 [Homo sapiens]
+Length=218
+
+ Score =   658 bits (1544),  Expect = 0.0
+ Identities = 218/218 (100%), Positives = 218/218 (100%), Gaps = 0/218 (0%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNpef  120
+            PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNPEF
+Sbjct  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNPEF  120
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKPKYLEELPEKLKLYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN
+Sbjct  121  EKLKPKYLEELPEKLKLYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+
+Query  181  LKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK  218
+            LKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK
+Sbjct  181  LKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK  218
+
+
+>ref|NP_000841.1| glutathione S-transferase Mu 4 isoform 1 [Homo sapiens]
+Length=218
+
+ Score =   572 bits (1342),  Expect = 0.0
+ Identities = 190/220 (86%), Positives = 197/220 (90%), Gaps = 4/220 (2%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            M M LGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MSMTLGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMD--NHMQLGMICYNp  118
+            PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQ MD  N  QL  +CY P
+Sbjct  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQAMDVSN--QLARVCYSP  118
+
+Query  119  efeklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAF  178
+            +FEKLKP YLEELP  +  +S+FLGKRPWF G+KITFVDFL YDVLDLHRIFEP CLDAF
+Sbjct  119  DFEKLKPEYLEELPTMMQHFSQFLGKRPWFVGDKITFVDFLAYDVLDLHRIFEPNCLDAF  178
+
+Query  179  PNLKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK  218
+            PNLKDFISRFEGLEKISAYMKSSRFLP P +   AVWGNK
+Sbjct  179  PNLKDFISRFEGLEKISAYMKSSRFLPKPLYTRVAVWGNK  218
+
+
+>ref|NP_000839.1| glutathione S-transferase Mu 2 isoform 1 [Homo sapiens]
+Length=218
+
+ Score =   541 bits (1269),  Expect = 5e-177
+ Identities = 184/218 (84%), Positives = 192/218 (88%), Gaps = 0/218 (0%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            MPM LGYW+IRGLAH IRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MPMTLGYWNIRGLAHSIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNpef  120
+            PYLIDG HKITQSNAIL YIARKHNLCGE E E IR DILENQ MD  MQL   CY+P+F
+Sbjct  61   PYLIDGTHKITQSNAILRYIARKHNLCGESEKEQIREDILENQFMDSRMQLAKLCYDPDF  120
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKP YL+ LPE LKLYS+FLGK PWF G+KITFVDF  YDVL+   +FEP CLDAFPN
+Sbjct  121  EKLKPEYLQALPEMLKLYSQFLGKQPWFLGDKITFVDFIAYDVLERNQVFEPSCLDAFPN  180
+
+Query  181  LKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK  218
+            LKDFISRFEGLEKISAYMKSSRFLPRPVF KMAVWGNK
+Sbjct  181  LKDFISRFEGLEKISAYMKSSRFLPRPVFTKMAVWGNK  218
+
+
+>ref|NP_000842.2| glutathione S-transferase Mu 5 [Homo sapiens]
+Length=218
+
+ Score =   537 bits (1259),  Expect = 2e-175
+ Identities = 192/219 (88%), Positives = 198/219 (90%), Gaps = 2/219 (1%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            MPM LGYWDIRGLAHAIRLLLEYTDSSY EKKYT+GDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MPMTLGYWDIRGLAHAIRLLLEYTDSSYVEKKYTLGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNpef  120
+            PYLIDGAHKITQSNAIL YIARKHNLCGETEEEKIRVDILENQ MDNHM+L   CY+P+F
+Sbjct  61   PYLIDGAHKITQSNAILRYIARKHNLCGETEEEKIRVDILENQVMDNHMELVRLCYDPDF  120
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKPKYLEELPEKLKLYSEFLGKRPWFAG+KITFVDFL YDVLD+ RIFEPKCLDAF N
+Sbjct  121  EKLKPKYLEELPEKLKLYSEFLGKRPWFAGDKITFVDFLAYDVLDMKRIFEPKCLDAFLN  180
+
+Query  181  LKDFISRFEGLEKISAYMKSSRFLPRP-VFSKMAVWGNK  218
+            LKDFISRFEGL KISAYMKSS FL R   F K A W  K
+Sbjct  181  LKDFISRFEGLKKISAYMKSSQFL-RGLLFGKSATWNSK  218
+
+
+>ref|NP_666533.1| glutathione S-transferase Mu 1 isoform 2 [Homo sapiens]
+Length=181
+
+ Score =   514 bits (1206),  Expect = 9e-169
+ Identities = 181/218 (83%), Positives = 181/218 (83%), Gaps = 37/218 (17%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNpef  120
+            PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNPEF
+Sbjct  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNPEF  120
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKPKYLEELPEKLKLYSEFLGKRPWFAGNK                            
+Sbjct  121  EKLKPKYLEELPEKLKLYSEFLGKRPWFAGNK----------------------------  152
+
+Query  181  LKDFISRFEGLEKISAYMKSSRFLPRPVFSKMAVWGNK  218
+                     GLEKISAYMKSSRFLPRPVFSKMAVWGNK
+Sbjct  153  ---------GLEKISAYMKSSRFLPRPVFSKMAVWGNK  181
+
+
+>ref|NP_671489.1| glutathione S-transferase Mu 4 isoform 2 [Homo sapiens]
+Length=195
+
+ Score =   498 bits (1168),  Expect = 8e-162
+ Identities = 167/191 (87%), Positives = 173/191 (91%), Gaps = 4/191 (2%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            M M LGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MSMTLGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMD--NHMQLGMICYNp  118
+            PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQ MD  N  QL  +CY P
+Sbjct  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQAMDVSN--QLARVCYSP  118
+
+Query  119  efeklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAF  178
+            +FEKLKP YLEELP  +  +S+FLGKRPWF G+KITFVDFL YDVLDLHRIFEP CLDAF
+Sbjct  119  DFEKLKPEYLEELPTMMQHFSQFLGKRPWFVGDKITFVDFLAYDVLDLHRIFEPNCLDAF  178
+
+Query  179  PNLKDFISRFE  189
+            PNLKDFISRFE
+Sbjct  179  PNLKDFISRFE  189
+
+
+>ref|NP_001135840.1| glutathione S-transferase Mu 2 isoform 2 [Homo sapiens]
+Length=191
+
+ Score =   449 bits (1052),  Expect = 3e-143
+ Identities = 156/189 (83%), Positives = 164/189 (87%), Gaps = 0/189 (0%)
+
+Query  1    MPMILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+            MPM LGYW+IRGLAH IRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL
+Sbjct  1    MPMTLGYWNIRGLAHSIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNL  60
+
+Query  61   PYLIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMICYNpef  120
+            PYLIDG HKITQSNAIL YIARKHNLCGE E E IR DILENQ MD  MQL   CY+P+F
+Sbjct  61   PYLIDGTHKITQSNAILRYIARKHNLCGESEKEQIREDILENQFMDSRMQLAKLCYDPDF  120
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKP YL+ LPE LKLYS+FLGK PWF G+KITFVDF  YDVL+   +FEP CLDAFPN
+Sbjct  121  EKLKPEYLQALPEMLKLYSQFLGKQPWFLGDKITFVDFIAYDVLERNQVFEPSCLDAFPN  180
+
+Query  181  LKDFISRFE  189
+            LKDFISRFE
+Sbjct  181  LKDFISRFE  189
+
+
+>ref|NP_000840.2| glutathione S-transferase Mu 3 [Homo sapiens]
+Length=225
+
+ Score =   421 bits (987),  Expect = 3e-131
+ Identities = 159/220 (72%), Positives = 171/220 (78%), Gaps = 8/220 (4%)
+
+Query  3    MILGYWDIRGLAHAIRLLLEYTDSSYEEKKYTMGDAPDYDRSQWLNEKFKLGLDFPNLPY  62
+            M+LGYWDIRGLAHAIRLLLE+TD SYEEK YT G+APDYDRSQWL+ KFKL LDFPNLPY
+Sbjct  7    MVLGYWDIRGLAHAIRLLLEFTDTSYEEKRYTCGEAPDYDRSQWLDVKFKLDLDFPNLPY  66
+
+Query  63   LIDGAHKITQSNAILCYIARKHNLCGETEEEKIRVDILENQTMDNHMQLGMI--CYNpef  120
+            L DG  KITQSNAIL YIARKHN+CGETEEEKIRVDI ENQ MD   QL  I  CY  + 
+Sbjct  67   LLDGKNKITQSNAILRYIARKHNMCGETEEEKIRVDIIENQVMDFRTQL--IRLCYSSDH  124
+
+Query  121  eklkpkyleelpeklklYSEFLGKRPWFAGNKITFVDFLVYDVLDLHRIFEPKCLDAFPN  180
+            EKLKP YLEELP  LK +S FLGK  WFAG K TFVDFL YD+LD  RIF+PKCLD FPN
+Sbjct  125  EKLKPQYLEELPGQLKQFSMFLGKFSWFAGEKLTFVDFLTYDILDQNRIFDPKCLDEFPN  184
+
+Query  181  LKDFISRFEGLEKISAYMKSSRF--LPRPVFSKMAVWGNK  218
+            LK F  RFE LEKI AY+ S  F  +  P+  KMA WGNK
+Sbjct  185  LKAFMCRFEALEKIAAYLQSDQFCKM--PINNKMAQWGNK  222
+
+
+>ref|NP_000843.1| glutathione S-transferase P [Homo sapiens]
+Length=210
+
+ Score = 39.2 bits (85),  Expect = 0.004
+ Identities = 18/41 (44%), Positives = 23/41 (56%), Gaps = 6/41 (15%)
+
+Query  150  GNKITFVDFLVYDVLDL---HRIFEPKCLDAFPNLKDFISR  187
+            G+ I F D   Y+ LDL   H +  P CLDAFP L  ++ R
+Sbjct  146  GDQISFAD---YNLLDLLLIHEVLAPGCLDAFPLLSAYVGR  183
+
+
+>ref|NP_000837.3| glutathione S-transferase A2 [Homo sapiens]
+Length=222
+
+ Score = 31.2 bits (66),  Expect = 1.2
+ Identities = 36/101 (36%), Positives = 38/101 (38%), Gaps = 45/101 (45%)
+
+Query  7   YWDIRGLAHAIRLLL-----EYTDSSYEEK--KYTMGDAPDYDRSQWLNEKFKL---GLD  56
+           Y +IRG    IR LL     E+     EEK  K     A D D         KL   G  
+Sbjct  9   YSNIRGRMESIRWLLAAAGVEF-----EEKFIK----SAEDLD---------KLRNDG--  48
+
+Query  57  FPNLPYL---------IDGAHKITQSNAILCYIARKHNLCG  88
+                YL         IDG  K  Q  AIL YIA K NL G
+Sbjct  49  -----YLMFQQVPMVEIDGM-KLVQTRAILNYIASKYNLYG  83
+
+
+>ref|NP_001503.1| glutathione S-transferase A4 [Homo sapiens]
+Length=222
+
+ Score = 30.8 bits (65),  Expect = 1.7
+ Identities = 14/23 (61%), Positives = 14/23 (61%), Gaps = 1/23 (4%)
+
+Query  64  IDGAHKITQSNAILCYIARKHNL  86
+           IDG  K  Q   IL YIA KHNL
+Sbjct  60  IDGM-KLVQTRSILHYIADKHNL  81
+
+
+>ref|NP_665683.1| glutathione S-transferase A1 [Homo sapiens]
+Length=222
+
+ Score = 30.3 bits (64),  Expect = 2.2
+ Identities = 15/25 (60%), Positives = 15/25 (60%), Gaps = 1/25 (4%)
+
+Query  64  IDGAHKITQSNAILCYIARKHNLCG  88
+           IDG  K  Q  AIL YIA K NL G
+Sbjct  60  IDGM-KLVQTRAILNYIASKYNLYG  83
+
+
+>ref|NP_714543.1| glutathione S-transferase A5 [Homo sapiens]
+Length=222
+
+ Score = 30.3 bits (64),  Expect = 2.2
+ Identities = 15/25 (60%), Positives = 15/25 (60%), Gaps = 1/25 (4%)
+
+Query  64  IDGAHKITQSNAILCYIARKHNLCG  88
+           IDG  K  Q  AIL YIA K NL G
+Sbjct  60  IDGM-KLVQTRAILNYIASKYNLYG  83
+
+
+>ref|NP_000838.3| glutathione S-transferase A3 [Homo sapiens]
+Length=222
+
+ Score = 30.3 bits (64),  Expect = 2.2
+ Identities = 15/25 (60%), Positives = 15/25 (60%), Gaps = 1/25 (4%)
+
+Query  64  IDGAHKITQSNAILCYIARKHNLCG  88
+           IDG  K  Q  AIL YIA K NL G
+Sbjct  60  IDGM-KLVQTRAILNYIASKYNLYG  83
+
+
+>ref|NP_031385.2| protein CASC3 [Homo sapiens]
+Length=703
+
+ Score = 30.3 bits (64),  Expect = 2.4
+ Identities = 11/23 (48%), Positives = 15/23 (65%), Gaps = 5/23 (22%)
+
+Query  79   YIARK-----HNLCGETEEEKIR  96
+            YI RK     H+L G+T+EE +R
+Sbjct  181  YIPRKGLFFEHDLRGQTQEEEVR  203
+
+
+>ref|NP_001049.1| substance-P receptor isoform long [Homo sapiens]
+Length=407
+
+ Score = 29.9 bits (63),  Expect = 3.2
+ Identities = 12/23 (52%), Positives = 14/23 (61%), Gaps = 7/23 (30%)
+
+Query  184  FISR--FEGLEKISAYMKSSRFL  204
+            FIS   +EGLE     MKS R+L
+Sbjct  325  FISAGDYEGLE-----MKSTRYL  342
+
+
+>ref|NP_444512.2| SH2 domain-containing protein 1B [Homo sapiens]
+Length=132
+
+ Score = 29.5 bits (62),  Expect = 3.7
+ Identities = 14/36 (39%), Positives = 15/36 (42%), Gaps = 16/36 (44%)
+
+Query  168  RIF------------E--PKCLDAFPNLKDFISRFE  189
+            RIF            E  PK    FP LK+ IS FE
+Sbjct  54   RIFREKHGYYRIQTAEGSPK--QVFPSLKELISKFE  87
+
+
+  Database: Homo sapiens RefSeq protein
+    Posted date:  Oct 16, 2012  4:14 PM
+  Number of letters in database: 17,552,041
+  Number of sequences in database:  30,652
+
+Lambda      K        H
+   0.335    0.282     1.83 
+Gapped
+Lambda      K        H
+   0.294    0.110    0.610 
+Matrix: PAM30
+Gap Penalties: Existence: 9, Extension: 1
+Number of Sequences: 30652
+Number of Hits to DB: 347531
+Number of extensions: 21763
+Number of successful extensions: 36
+Number of sequences better than 5: 0
+Number of HSP's better than 5 without gapping: 0
+Number of HSP's gapped: 36
+Number of HSP's successfully gapped: 0
+Length of query: 218
+Length of database: 17552041
+Length adjustment: 26
+Effective length of query: 192
+Effective length of database: 16755089
+Effective search space: 3216977088
+Effective search space used: 3216977088
+T: 11
+A: 40
+X1: 15 (7.3 bits)
+X2: 35 (14.8 bits)
+X3: 58 (24.6 bits)
+S1: 41 (20.6 bits)
+S2: 62 (29.5 bits)
+ka-blk-alpha gapped: 0.48
+ka-blk-alpha ungapped: 0.1938
+ka-blk-alpha_v gapped: 2.46392
+ka-blk-alpha_v ungapped: 0.161818
+ka-blk-sigma gapped: 3.18615
+
+
+
+

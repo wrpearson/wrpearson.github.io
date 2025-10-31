@@ -1,0 +1,56 @@
+# fasta35_t -m 6 -H -f -12 -d 0 -q -S gstt1_drome.aa a
+<pre>
+FASTA searches a protein or DNA sequence data bank
+ version 35.04 Jul. 7, 2008
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+</pre>
+Query: gstt1_drome.aa
+<pre>
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18) (CLASS-THET - 209 aa
+Library: PIR1 Annotated (rel. 66)  5201128 residues in 13351 sequences
+
+5201128 residues in 13351 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 3.9617+/-0.000477; mu= 13.1702+/- 0.027
+ mean_var=54.0270+/-10.373, 0's: 6 Z-trim: 32  B-trim: 28 in 1/61
+ Lambda= 0.174489
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: BL50 matrix (15:-5)xS ktup: 2
+ join: 36, opt: 24, open/ext: -12/-2, width:  16
+ Scan time:  0.700
+</pre>
+<p>
+<hr>
+<p>
+<p><tt><pre>
+
+The best scores are:                                      opt bits <font color="darkred">E(13351)</font>
+sp|P20432|GSTT1_DROME Glutathione S-transferase 1  ( 210) 1399 359.8 <font color="darkred">2.9e-100</font> <A HREF="#gi|121694">align</A>
+sp|P04907|GSTF3_MAIZE Glutathione S-transferase    ( 222)  163 48.7 <font color="darkred">1.4e-06</font> <A HREF="#gi|1170090">align</A>
+sp|P12653|GSTF1_MAIZE Glutathione S-transferase I  ( 214)  140 42.9 <font color="darkred">7.5e-05</font> <A HREF="#gi|121695">align</A>
+sp|P0ACA5|SSPA_ECO57 Stringent starvation prote    ( 213)  134 41.3 <font color="darkred">0.00021</font> <A HREF="#gi|81174731">align</A>
+sp|P00502|GSTA1_RAT Glutathione S-transferase a    ( 222)  120 37.8 <font color="darkred"> 0.0025</font> <A HREF="#gi|62822551">align</A>
+sp|P08010|GSTM2_RAT Glutathione S-transferase Mu   ( 219)   85 29.0 <font color="darkred">    1.1</font> <A HREF="#gi|121719">align</A>
+sp|P14942|GSTA4_RAT Glutathione S-transferase alp  ( 223)   84 28.8 <font color="darkred">    1.4</font> <A HREF="#gi|121714">align</A>
+sp|P30151|EF1B_XENLA Elongation factor 1-beta (EF  ( 228)   78 27.3 <font color="darkred">    3.9</font> <A HREF="#gi|232034">align</A>
+sp|P09457|ATPO_YEAST ATP synthase subunit 5, mito  ( 213)   76 26.7 <font color="darkred">    5.3</font> <A HREF="#gi|114685">align</A>
+sp|P09211|GSTP1_HUMAN Glutathione S-transferase P  ( 211)   74 26.2 <font color="darkred">    7.4</font> <A HREF="#gi|121746">align</A>
+sp|P21163|PNGF_ELIMR Peptide-N(4)-(N-acetyl-beta-  ( 355)   76 27.0 <font color="darkred">    7.5</font> <A HREF="#gi|130373">align</A>
+sp|P17472|VGLB_EHV4 Glycoprotein B precursor       ( 920)   79 28.2 <font color="darkred">    8.6</font> <A HREF="#gi|138206">align</A>
+sp|P0A4L1|THIO1_ANASP Thioredoxin 1 (TRX-1) (Th    ( 108)   70 24.9 <font color="darkred">    9.4</font> <A HREF="#gi|61248483">align</A>
+</pre></tt><p><hr><p>
+
+>>>GTT1_DROME, 209 aa vs a library
+
+<p><pre>
+
+
+209 residues in 1 query   sequences
+5201128 residues in 13351 library sequences
+ Tcomplib [35.04] (8 proc)
+ start: Tue Jul 29 16:16:35 2008 done: Tue Jul 29 16:16:35 2008
+ Total Scan time:  0.700 Total Display time:  0.010
+
+Function used was FASTA [version 35.04 Jul. 7, 2008]
+</pre>

@@ -1,0 +1,56 @@
+# fasta35_t -m 6 -H -s P250 -d 0 -q -S gstt1_drome.aa a
+<pre>
+FASTA searches a protein or DNA sequence data bank
+ version 35.04 Jul. 7, 2008
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+</pre>
+Query: gstt1_drome.aa
+<pre>
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18) (CLASS-THET - 209 aa
+Library: PIR1 Annotated (rel. 66)  5201128 residues in 13351 sequences
+
+5201128 residues in 13351 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 5.1392+/-0.000554; mu= 6.1159+/- 0.031
+ mean_var=79.6963+/-15.410, 0's: 6 Z-trim: 33  B-trim: 506 in 1/61
+ Lambda= 0.143666
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: PAM250 matrix (17:-8)xS ktup: 2
+ join: 36, opt: 24, open/ext: -10/-2, width:  16
+ Scan time:  0.660
+</pre>
+<p>
+<hr>
+<p>
+<p><tt><pre>
+
+The best scores are:                                      opt bits <font color="darkred">E(13351)</font>
+sp|P20432|GSTT1_DROME Glutathione S-transferase 1  ( 210) 1087 234.6 <font color="darkred">1.4e-62</font> <A HREF="#gi|121694">align</A>
+sp|P04907|GSTF3_MAIZE Glutathione S-transferase    ( 222)  152 40.8 <font color="darkred">0.00032</font> <A HREF="#gi|1170090">align</A>
+sp|P0ACA5|SSPA_ECO57 Stringent starvation prote    ( 213)  140 38.3 <font color="darkred"> 0.0017</font> <A HREF="#gi|81174731">align</A>
+sp|P12653|GSTF1_MAIZE Glutathione S-transferase I  ( 214)  118 33.8 <font color="darkred">  0.041</font> <A HREF="#gi|121695">align</A>
+sp|P00502|GSTA1_RAT Glutathione S-transferase a    ( 222)  118 33.8 <font color="darkred">  0.042</font> <A HREF="#gi|62822551">align</A>
+sp|Q12546|PPA_ASPFI Acid phosphatase precursor     ( 614)   93 29.0 <font color="darkred">    3.3</font> <A HREF="#gi|25090936">align</A>
+sp|P14942|GSTA4_RAT Glutathione S-transferase alp  ( 223)   86 27.1 <font color="darkred">    4.2</font> <A HREF="#gi|121714">align</A>
+sp|P27415|VGLB_ILTVS Glycoprotein B precursor      ( 884)   93 29.1 <font color="darkred">    4.3</font> <A HREF="#gi|138212">align</A>
+sp|P12945|NAT1_YEAST N-terminal acetyltransferase  ( 855)   92 28.9 <font color="darkred">    4.8</font> <A HREF="#gi|127844">align</A>
+sp|P24904|VGLB_ILTVT Glycoprotein B precursor      ( 884)   91 28.7 <font color="darkred">    5.7</font> <A HREF="#gi|138213">align</A>
+sp|P09035|VHED_BPT2 Single-stranded DNA-binding p  ( 294)   83 26.6 <font color="darkred">    7.9</font> <A HREF="#gi|138388">align</A>
+sp|P09797|VHED_BPT6 Single-stranded DNA-binding p  ( 294)   82 26.4 <font color="darkred">    9.2</font> <A HREF="#gi|138391">align</A>
+sp|P03695|VHED_BPT4 Single-stranded DNA-binding p  ( 302)   82 26.4 <font color="darkred">    9.4</font> <A HREF="#gi|138390">align</A>
+</pre></tt><p><hr><p>
+
+>>>GTT1_DROME, 209 aa vs a library
+
+<p><pre>
+
+
+209 residues in 1 query   sequences
+5201128 residues in 13351 library sequences
+ Tcomplib [35.04] (8 proc)
+ start: Tue Jul 29 16:11:55 2008 done: Tue Jul 29 16:11:56 2008
+ Total Scan time:  0.660 Total Display time:  0.010
+
+Function used was FASTA [version 35.04 Jul. 7, 2008]
+</pre>

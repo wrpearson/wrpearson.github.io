@@ -1,0 +1,517 @@
+# fasta35_t -q -m 6 -S -f -12 gstt1_drome.aa a
+<pre>
+FASTA searches a protein or DNA sequence data bank
+ version 35.01 May 30, 2007
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+</pre>
+Query: gstt1_drome.aa
+<pre>
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18) (CLASS-THET 209 aa - 209 aa
+Library: PIR1 Annotated (rel. 66)  5395112 residues in 13970 sequences
+
+       opt      E()
+< 20    32     0:==
+  22     0     0:           one = represents 22 library sequences
+  24     2     0:=
+  26     8     0:=
+  28    15     3:*
+  30    31    19:*=
+  32   105    74:===*=
+  34   247   202:=========*==
+  36   447   414:==================*==
+  38   693   685:===============================*
+  40   955   955:===========================================*
+  42  1193  1167:=====================================================*=
+  44  1285  1288:==========================================================*
+  46  1318  1312:===========================================================*
+  48  1215  1256:======================================================== *
+  50  1166  1146:====================================================*
+  52   991  1007:=============================================*
+  54   847   861:=======================================*
+  56   662   719:=============================== *
+  58   544   590:========================= *
+  60   478   478:=====================*
+  62   356   383:=================*
+  64   311   305:=============*=
+  66   236   241:==========*
+  68   181   189:========*
+  70   143   148:======*
+  72   143   116:=====*=
+  74    78    90:====*
+  76    59    70:===*
+  78    50    55:==*
+  80    40    42:=*
+  82    31    33:=*
+  84    32    26:=*
+  86    18    20:*
+  88    20    15:*          inset = represents 1 library sequences
+  90    10    12:*
+  92     5     9:*         :=====   *
+  94     5     7:*         :===== *
+  96     0     6:*         :     *
+  98     2     4:*         :== *
+ 100     1     3:*         := *
+ 102     3     3:*         :==*
+ 104     2     2:*         :=*
+ 106     1     2:*         :=*
+ 108     1     1:*         :*
+ 110     0     1:*         :*
+ 112     0     1:*         :*
+ 114     0     1:*         :*
+ 116     1     0:=         *=
+ 118     1     0:=         *=
+>120     6     0:=         *======
+5395112 residues in 13970 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 3.9266+/-0.00046; mu= 13.3652+/- 0.026
+ mean_var=54.0365+/-10.220, 0's: 9 Z-trim: 37  B-trim: 30 in 1/62
+ Lambda= 0.174474
+ Kolmogorov-Smirnov  statistic: 0.0128 (N=29) at  46
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: BL50 matrix (15:-5)xS ktup: 2
+ join: 36, opt: 24, open/ext: -12/-2, width:  16
+ Scan time:  0.470
+</pre>
+<p>
+<hr>
+<p>
+<p><tt><pre>
+
+The best scores are:                                      opt bits E(13970)
+sp|P20432|GSTT1_DROME Glutathione S-transferase 1  ( 209) 1399 359.7 3.1e-100 <A HREF="#gi|121694">align</A>
+sp|P04907|GSTF3_MAIZE Glutathione S-transferase    ( 222)  163 48.7 1.5e-06 <A HREF="#gi|1170090">align</A>
+emb|CAA28053.1| unnamed protein product [Zea mays] ( 220)  156 46.9 4.9e-06 <A HREF="#gi|22280">align</A>
+sp|P12653|GSTF1_MAIZE Glutathione S-transferase I  ( 214)  140 42.9 7.9e-05 <A HREF="#gi|121695">align</A>
+sp|P0ACA5|SSPA_ECO57 Stringent starvation prote    ( 212)  134 41.3 0.00022 <A HREF="#gi|81174731">align</A>
+pir|XURTG| glutathione transferase (EC 2.5.1.18) c ( 222)  120 37.8  0.0026 <A HREF="#gi|66611">align</A>
+sp|P08010|GSTM2_RAT Glutathione S-transferase Mu   ( 218)   85 29.0     1.2 <A HREF="#gi|121719">align</A>
+sp|P14942|GSTA4_RAT Glutathione S-transferase alp  ( 222)   84 28.8     1.4 <A HREF="#gi|121714">align</A>
+sp|P30151|EF1B_XENLA Elongation factor 1-beta (EF  ( 227)   78 27.3     4.1 <A HREF="#gi|232034">align</A>
+sp|P09457|ATPO_YEAST ATP synthase subunit 5, mito  ( 212)   76 26.7     5.5 <A HREF="#gi|114685">align</A>
+sp|P09211|GSTP1_HUMAN Glutathione S-transferase P  ( 210)   74 26.2     7.8 <A HREF="#gi|121746">align</A>
+sp|P21163|PNGF_ELIMR Peptide-N(4)-(N-acetyl-beta-  ( 354)   76 27.0     7.8 <A HREF="#gi|130373">align</A>
+sp|P17472|VGLB_EHV4 Glycoprotein B precursor       ( 919)   79 28.2     8.9 <A HREF="#gi|138206">align</A>
+sp|P0A4L2|THIO1_ANASO Thioredoxin 1 (TRX-1) (Th    ( 107)   70 24.9     9.8 <A HREF="#gi|61248485">align</A>
+</pre></tt><p><hr><p>
+
+>>>GTT1_DROME, 209 aa vs a library
+
+<A name=gi|121694>
+<tt><pre>
+>>gi|121694|sp|P20432|GSTT1_DROME Glutathione S-transfer  (209 aa)
+ initn: 1399 init1: 1399 opt: 1399  Z-score: 1906.4  bits: 359.7 E(): 3.1e-100
+Smith-Waterman score: 1399; 100.0% identity (100.0% similar) in 209 aa overlap (1-209:1-209)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|121694">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|121694&db=Protein&lib=a&pgm=fa&start=1&stop=209&n1=209">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|121694&db=Protein&lib=a&pgm=fa&start=1&stop=209&n1=209">General re-search</A>
+<p>
+
+               10        20        30        40        50        60
+GTT1_D MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNG
+       ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+gi|121 MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNG
+               10        20        30        40        50        60
+
+               70        80        90       100       110       120
+GTT1_D FALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAK
+       ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+gi|121 FALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAK
+               70        80        90       100       110       120
+
+              130       140       150       160       170       180
+GTT1_D APADPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANV
+       ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+gi|121 APADPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANV
+              130       140       150       160       170       180
+
+              190       200         
+GTT1_D NRWYENAKKVTPGWEENWAGCLEFKKYFE
+       :::::::::::::::::::::::::::::
+gi|121 NRWYENAKKVTPGWEENWAGCLEFKKYFE
+              190       200         
+
+</pre></tt>
+<hr>
+<A name=gi|1170090>
+<tt><pre>
+>>gi|1170090|sp|P04907|GSTF3_MAIZE Glutathione S-transfe  (222 aa)
+ initn: 172 init1: 142 opt: 163  Z-score: 224.7  bits: 48.7 E(): 1.5e-06
+Smith-Waterman score: 168; 26.9% identity (53.8% similar) in 212 aa overlap (4-199:6-210)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|1170090">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|1170090&db=Protein&lib=a&pgm=fa&start=6&stop=210&n1=222">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|1170090&db=Protein&lib=a&pgm=fa&start=6&stop=210&n1=222">General re-search</A>
+<p>
+
+                 10        20        30        40        50        
+GTT1_D   MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVD
+            .: .: :     :  . .  :....   ..: .: : .:.:: .::   ::.:::
+gi|117 MAPLKLYGMPLSPNVVRVATVLNEKGLDFEIVPVDLTTGAHKQPDFLALNPFGQIPALVD
+               10        20        30        40        50        60
+
+       60        70          80        90       100       110      
+GTT1_D NGFALWESRAIQVYLVEKYGK--TDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQ
+       .  .:.:::::. :.. ::..  :: :    :   .. . ...... .  . :     : 
+gi|117 GDEVLFESRAINRYIASKYASEGTDLL----PATASAAKLEVWLEVES--HHFHPNASPL
+               70        80            90       100         110    
+
+                120       130       140          150          160  
+GTT1_D VF--------AKAPADPEAFKKIEAAFEFLNTF---LEGQDYAAGDSLTVADIA---LVA
+       ::        . ::    . :. :   . :...   :  . : ::: .:.::     : :
+gi|117 VFQLLVRPLLGGAPDAAVVEKHAEQLAKVLDVYEAHLARNKYLAGDEFTLADANHALLPA
+          120       130       140       150       160       170    
+
+            170       180       190       200           
+GTT1_D TVSTFEVAKFEISKYANVNRWYENAKKVTPGWEENWAGCLEFKKYFE  
+        .:.       ..   .:. :.: :  . :..... :            
+gi|117 LTSARPPRPGCVAARPHVKAWWE-AIAARPAFQKTVAAIPLPPPPSSSA
+          180       190        200       210       220  
+
+</pre></tt>
+<hr>
+<A name=gi|22280>
+<tt><pre>
+>>gi|22280|emb|CAA28053.1| unnamed protein product [Zea   (220 aa)
+ initn: 142 init1: 142 opt: 156  Z-score: 215.2  bits: 46.9 E(): 4.9e-06
+Smith-Waterman score: 156; 30.7% identity (60.6% similar) in 127 aa overlap (4-127:6-122)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|22280">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|22280&db=Protein&lib=a&pgm=fa&start=6&stop=122&n1=220">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|22280&db=Protein&lib=a&pgm=fa&start=6&stop=122&n1=220">General re-search</A>
+<p>
+
+                 10        20        30        40        50        
+GTT1_D   MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVD
+            .: .: :     :  . .  :....   ..: .: : .:.:: .::   ::.:::
+gi|222 MAPLKLYGMPLSPNVVRVATVLNEKGLDFEIVPVDLTTGAHKQPDFLALNPFGQIPALVD
+               10        20        30        40        50        60
+
+       60        70          80        90       100       110      
+GTT1_D NGFALWESRAIQVYLVEKYGK--TDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYP-
+       .  .:.:::::. :.. ::..  :: :    :   .. . ...... .      ...:: 
+gi|222 GDEVLFESRAINRYIASKYASEGTDLL----PATASAAKLEVWLEVES------HHFYPN
+               70        80            90       100             110
+
+         120       130       140       150       160       170     
+GTT1_D QVFAKAPADPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEIS
+       .: : .::  ::                                                
+gi|222 RVAAGVPAAREAAPGRRPDAAVVDKHAEQLAKVLDVYERTSPATSTSPGTSSRSPTPTTR
+              120       130       140       150       160       170
+
+</pre></tt>
+<hr>
+<A name=gi|121695>
+<tt><pre>
+>>gi|121695|sp|P12653|GSTF1_MAIZE Glutathione S-transfer  (214 aa)
+ initn: 128 init1: 101 opt: 140  Z-score: 193.6  bits: 42.9 E(): 7.9e-05
+Smith-Waterman score: 140; 25.8% identity (55.2% similar) in 163 aa overlap (32-184:34-194)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|121695">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|121695&db=Protein&lib=a&pgm=fa&start=34&stop=194&n1=214">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|121695&db=Protein&lib=a&pgm=fa&start=34&stop=194&n1=214">General re-search</A>
+<p>
+
+              10        20        30        40        50        60 
+GTT1_D VDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNGF
+                                     .:. ..:: .:: :  ::   .:.: :. .
+gi|121 MKLYGAVMSWNLTRCATALEEAGSDYEIVPINFATAEHKSPEHLVRNPFGQVPALQDGDL
+            10        20        30        40        50        60   
+
+              70        80        90               100       110   
+GTT1_D ALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVI--------NQRLYFDMGTLYQSFANYY
+        :.:::::  : ..: .: . :     .. :..        ::        :.: . . .
+gi|121 YLFESRAICKYAARK-NKPELLREGNLEEAAMVDVWIEVEANQYTAALNPILFQVLISPM
+            70         80        90       100       110       120  
+
+           120       130       140       150       160       170   
+GTT1_D YPQVFAKAPADPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFE
+          .  .  .: : ..:.. ..:  .. :    : ::: :..::.  :...  . .. . 
+gi|121 LGGTTDQKVVD-ENLEKLKKVLEVYEARLTKCKYLAGDFLSLADLNHVSVTLCLFATPYA
+            130        140       150       160       170       180 
+
+             180       190       200         
+GTT1_D --ISKYANVNRWYENAKKVTPGWEENWAGCLEFKKYFE
+         .. : .:. :.                         
+gi|121 SVLDAYPHVKAWWSGLMERPSVQKVAALMKPSA     
+             190       200       210         
+
+</pre></tt>
+<hr>
+<A name=gi|81174731>
+<tt><pre>
+>>gi|81174731|sp|P0ACA5|SSPA_ECO57 Stringent starvation   (212 aa)
+ initn: 115 init1: 115 opt: 134  Z-score: 185.5  bits: 41.3 E(): 0.00022
+Smith-Waterman score: 134; 26.3% identity (59.3% similar) in 118 aa overlap (43-160:49-161)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|81174731">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|81174731&db=Protein&lib=a&pgm=fa&start=49&stop=161&n1=212">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|81174731&db=Protein&lib=a&pgm=fa&start=49&stop=161&n1=212">General re-search</A>
+<p>
+
+             20        30        40        50        60        70  
+GTT1_D CRSVIMTAKAVGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNGFALWESRAIQVY
+                                     ... .::....:::::  ..::::: :. :
+gi|811 DIYSHQVRIVLAEKGVSFEIEHVEKDNPPQDLIDLNPNQSVPTLVDRELTLWESRIIMEY
+       20        30        40        50        60        70        
+
+             80        90       100       110       120       130  
+GTT1_D LVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAKAPADPEAFKKIE
+       : :.. .   :.:  :  :.  ..:::  :  . ... . .   . ..:     : :...
+gi|811 LDERFPHPP-LMPVYPVARG--ESRLY--MHRIEKDWYTLMNTIINGSASEADAARKQLR
+       80         90         100         110       120       130   
+
+            140       150       160       170       180       190  
+GTT1_D AAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANVNRWYENAKKVTP
+         .  .   .  . :  .: ....:  :                                
+gi|811 EELLAIAPVFGQKPYFLSDEFSLVDCYLAPLLWRLPQLGIEFSGPGAKELKGYMTRVFER
+           140       150       160       170       180       190   
+
+</pre></tt>
+<hr>
+<A name=gi|66611>
+<tt><pre>
+>>gi|66611|pir|XURTG| glutathione transferase (EC 2.5.1.  (222 aa)
+ initn:  96 init1:  62 opt: 120  Z-score: 166.2  bits: 37.8 E(): 0.0026
+Smith-Waterman score: 120; 30.2% identity (58.5% similar) in 159 aa overlap (22-175:25-173)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|66611">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|66611&db=Protein&lib=a&pgm=fa&start=25&stop=173&n1=222">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|66611&db=Protein&lib=a&pgm=fa&start=25&stop=173&n1=222">General re-search</A>
+<p>
+
+                  10        20        30         40        50      
+GTT1_D    MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAG-EHLKPEFLKINPQHTIPTL
+                               :.:::...:...     :.:: .   .  :  .: .
+gi|666 MSGKPVLHYFNARGRMECIRWLLAAAGVEFDEKFIQSPEDLEKLKKDGNLMFDQ--VPMV
+               10        20        30        40        50          
+
+         60        70        80        90         100       110    
+GTT1_D VDNGFALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRL--YFDMGTLYQSFANYYY
+         .:. : ..:::  :.. ::    .:: :  :.::.:..     .:.  . ....    
+gi|666 EIDGMKLAQTRAILNYIATKY----DLYGKDMKERALIDMYTEGILDLTEMIMQLVICPP
+       60        70            80        90       100       110    
+
+          120        130        140       150       160       170  
+GTT1_D PQVFAK-APADPEAFKKIEAAFE-FLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKF
+        :  :: : :  .. ..   :::  :..  .:::: .:. :: .:: :.  .  . : .:
+gi|666 DQKEAKTALAKDRTKNRYLPAFEKVLKS--HGQDYLVGNRLTRVDIHLLELL--LYVEEF
+          120       130       140         150       160         170
+
+            180       190       200                        
+GTT1_D EISKYANVNRWYENAKKVTPGWEENWAGCLEFKKYFE               
+       . :                                                 
+gi|666 DASLLTSFPLLKAFKSRISSLPNVKKFLQPGSQRKLPMDAKQIEEARKIFKF
+              180       190       200       210       220  
+
+</pre></tt>
+<hr>
+<A name=gi|121719>
+<tt><pre>
+>>gi|121719|sp|P08010|GSTM2_RAT Glutathione S-transferas  (218 aa)
+ initn:  92 init1:  56 opt:  85  Z-score: 118.7  bits: 29.0 E():  1.2
+Smith-Waterman score: 85; 24.8% identity (49.5% similar) in 105 aa overlap (53-157:60-157)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|121719">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|121719&db=Protein&lib=a&pgm=fa&start=60&stop=157&n1=218">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|121719&db=Protein&lib=a&pgm=fa&start=60&stop=157&n1=218">General re-search</A>
+<p>
+
+             30        40        50        60        70        80  
+GTT1_D VGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNGFALWESRAIQVYLVEKYGKTDS
+                                     .: :.:..  . .: ::  ::    :.  .
+gi|121 DKKYSMGDAPDYDRSQWLSEKFKLGLDFPNLPYLIDGSHKITQSNAILRYL----GRKHN
+      30        40        50        60        70        80         
+
+             90       100       110       120       130       140  
+GTT1_D LYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAKAPADPEAFKKIEAAFEFLNTFL
+       :  .  ..:  ..      : :  :     : :.   :    :: .. .   ... . ::
+gi|121 LCGETEEERIRVDVLENQAMDTRLQLAMVCYSPDFERK---KPEYLEGLPEKMKLYSEFL
+          90       100       110       120          130       140  
+
+            150       160       170       180       190       200  
+GTT1_D EGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANVNRWYENAKKVTPGWEENWAGCL
+         : . ::...: .:                                             
+gi|121 GKQPWFAGNKITYVDFLVYDVLDQHRIFEPKCLDAFPNLKDFVARFEGLKKISDYMKSGR
+            150       160       170       180       190       200  
+
+</pre></tt>
+<hr>
+<A name=gi|121714>
+<tt><pre>
+>>gi|121714|sp|P14942|GSTA4_RAT Glutathione S-transferas  (222 aa)
+ initn:  53 init1:  53 opt:  84  Z-score: 117.2  bits: 28.8 E():  1.4
+Smith-Waterman score: 112; 28.2% identity (56.3% similar) in 174 aa overlap (4-168:7-168)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|121714">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|121714&db=Protein&lib=a&pgm=fa&start=7&stop=168&n1=222">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|121714&db=Protein&lib=a&pgm=fa&start=7&stop=168&n1=222">General re-search</A>
+<p>
+
+                  10        20        30         40        50      
+GTT1_D    MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAG-EHLKPEFLKINPQHTIPTL
+             .::. : .  .:.     ..:::.....:. .   :.:. .   .  :  .: .
+gi|121 MEVKPKLYYFQGRGRMESIRWLLATAGVefeeefletreqyeKLQKDGCLLFGQ--VPLV
+               10        20        30        40        50          
+
+         60        70        80        90       100       110      
+GTT1_D VDNGFALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQ
+         .:. : ..:::  ::. ::    .:: :  :.:. :.  .: : ::  :..  .    
+gi|121 EIDGMLLTQTRAILSYLAAKY----NLYGKDLKERVRID--MYAD-GT--QDLMMMIIGA
+       60        70            80        90            100         
+
+        120            130        140         150       160        
+GTT1_D VFAKAPADPE-----AFKKIEAA-FEFLNTFLE--GQDYAAGDSLTVADIALVATVSTFE
+        : ::: . :     : :. .   :  .. .:.  :. . .:..:. ::: :. ..   :
+gi|121 PF-KAPQEKEESLALAVKRAKNRYFPVFEKILKDHGEAFLVGNQLSWADIQLLEAILMVE
+     110        120       130       140       150       160        
+
+      170       180       190       200                      
+GTT1_D VAKFEISKYANVNRWYENAKKVTPGWEENWAGCLEFKKYFE             
+                                                             
+gi|121 EVSAPVLSDFPLLQAFKTRISNIPTIKKFLQPGSQRKPPPDGHYVDVVRTVLKF
+      170       180       190       200       210       220  
+
+</pre></tt>
+<hr>
+<A name=gi|232034>
+<tt><pre>
+>>gi|232034|sp|P30151|EF1B_XENLA Elongation factor 1-bet  (227 aa)
+ initn:  36 init1:  36 opt:  78  Z-score: 108.9  bits: 27.3 E():  4.1
+Smith-Waterman score: 78; 29.2% identity (56.9% similar) in 65 aa overlap (130-193:7-71)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|232034">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|232034&db=Protein&lib=a&pgm=fa&start=7&stop=71&n1=227">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|232034&db=Protein&lib=a&pgm=fa&start=7&stop=71&n1=227">General re-search</A>
+<p>
+
+     100       110       120       130       140       150         
+GTT1_D FDMGTLYQSFANYYYPQVFAKAPADPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIA
+                                     :  :... :. ::  ..:  :   . ::.:
+gi|232                         MGFGDLKSPAGLKVLKEFLADKSYIEGYVPSQADVA
+                                       10        20        30      
+
+     160       170        180       190       200                  
+GTT1_D LVATVSTFEVAK-FEISKYANVNRWYENAKKVTPGWEENWAGCLEFKKYFE         
+       .  ..:.   :  :.  .. :  . ::. :.  ::                         
+gi|232 VFDALSAAPPADLFHALRWYNHIKSYEKQKSSLPGVKKALGNYGPVNIEDTTGSAAKetk
+         40        50        60        70        80        90      
+
+gi|232 eeddddidlfgsddeeESEDAKRVRDERLAQYEAKKSKKPTLIAKSSILLDVKPWDDETD
+        100       110       120       130       140       150      
+
+</pre></tt>
+<hr>
+<A name=gi|114685>
+<tt><pre>
+>>gi|114685|sp|P09457|ATPO_YEAST ATP synthase subunit 5,  (212 aa)
+ initn:  63 init1:  63 opt:  76  Z-score: 106.6  bits: 26.7 E():  5.5
+Smith-Waterman score: 76; 30.0% identity (62.5% similar) in 40 aa overlap (96-135:119-158)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|114685">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|114685&db=Protein&lib=a&pgm=fa&start=119&stop=158&n1=212">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|114685&db=Protein&lib=a&pgm=fa&start=119&stop=158&n1=212">General re-search</A>
+<p>
+
+          70        80        90       100       110       120     
+GTT1_D SRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAKAPADP
+                                     ...  :.:.: ..  .     : .  : ::
+gi|114 DAIVETHKNLDGYVVNLLKVLSENNRLGCFEKIASDFGVLNDAHNGLLKGTVTSAEPLDP
+       90       100       110       120       130       140        
+
+         130       140       150       160       170       180     
+GTT1_D EAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANVNRWYE
+       ..::.:: :.                                                  
+gi|114 KSFKRIEKALSASKLVGQGKSLKLENVVKPEIKGGLIVELGDKTVDLSISTKIQKLNKVL
+      150       160       170       180       190       200        
+
+</pre></tt>
+<hr>
+<A name=gi|121746>
+<tt><pre>
+>>gi|121746|sp|P09211|GSTP1_HUMAN Glutathione S-transfer  (210 aa)
+ initn:  52 init1:  52 opt:  74  Z-score: 103.9  bits: 26.2 E():  7.8
+Smith-Waterman score: 74; 22.9% identity (52.5% similar) in 118 aa overlap (53-169:53-165)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|121746">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|121746&db=Protein&lib=a&pgm=fa&start=53&stop=165&n1=210">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|121746&db=Protein&lib=a&pgm=fa&start=53&stop=165&n1=210">General re-search</A>
+<p>
+
+             30        40        50        60        70        80  
+GTT1_D VGVELNKKLLNLQAGEHLKPEFLKINPQHTIPTLVDNGFALWESRAIQVYLVEKYGKTDS
+                                     .: . :. ..:..: .:  .:    :.: .
+gi|121 ADQGQSWKEEVVTVETWQEGSLKASCLYGQLPKFQDGDLTLYQSNTILRHL----GRTLG
+             30        40        50        60        70            
+
+             90       100       110       120       130        140 
+GTT1_D LYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAKAPADPEAFKKIEAAFE-FLNTF
+       :: :  .. :.... .   .  :  .. .  : .  :      .:.      :: .:.  
+gi|121 LYGKDQQEAALVDM-VNDGVEDLRCKYISLIYTNYEAGKDDYVKALPGQLKPFETLLSQN
+       80        90        100       110       120       130       
+
+             150       160       170       180       190       200 
+GTT1_D LEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANVNRWYENAKKVTPGWEENWAGC
+         :. . .::... ::  :.  .   ::                                
+gi|121 QGGKTFIVGDQISFADYNLLDLLLIHEVLAPGCLDAFPLLSAYVGRLSARPKLKAFLASP
+       140       150       160       170       180       190       
+
+</pre></tt>
+<hr>
+<A name=gi|130373>
+<tt><pre>
+>>gi|130373|sp|P21163|PNGF_ELIMR Peptide-N(4)-(N-acetyl-  (354 aa)
+ initn:  56 init1:  56 opt:  76  Z-score: 103.9  bits: 27.0 E():  7.8
+Smith-Waterman score: 81; 29.5% identity (55.7% similar) in 88 aa overlap (121-194:41-126)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|130373">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|130373&db=Protein&lib=a&pgm=fa&start=41&stop=126&n1=354">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|130373&db=Protein&lib=a&pgm=fa&start=41&stop=126&n1=354">General re-search</A>
+<p>
+
+              100       110       120       130       140       150
+GTT1_D RAVINQRLYFDMGTLYQSFANYYYPQVFAKAPADPEAFKKIEAAFEFLNTFLEGQDYAAG
+                                     ::::  .  .:..  .  :.: .: . .: 
+gi|130 AYLMAGIVSCKGVDSATPVTEDRLALNAVNAPADNTV--NIKTFDKVKNAFGDGLSQSAE
+               20        30        40          50        60        
+
+               160       170             180              190      
+GTT1_D DSLTV-ADIALVATVSTFEVAKF------EISKYANV-------NRWYENAKKVTPGWEE
+        ..:  ::.. : :.. :   .       : ..::::       ..::: .. .:: :  
+gi|130 GTFTFPADVTTVKTIKMFIKNECPNKTCDEWDRYANVYVKNKTTGEWYEIGRFITPYWVG
+       70        80        90       100       110       120        
+
+        200                                                        
+GTT1_D NWAGCLEFKKYFE                                               
+                                                                   
+gi|130 TEKLPRGLEIDVTDFKSLLSGNTELKIYTETWLAKGREYSVDFDIVYGTPDYKYSAVVPV
+      130       140       150       160       170       180        
+
+</pre></tt>
+<hr>
+<A name=gi|138206>
+<tt><pre>
+>>gi|138206|sp|P17472|VGLB_EHV4 Glycoprotein B precursor  (919 aa)
+ initn:  87 init1:  65 opt:  79  Z-score: 102.8  bits: 28.2 E():  8.9
+Smith-Waterman score: 79; 26.9% identity (55.1% similar) in 78 aa overlap (94-171:649-721)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|138206">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|138206&db=Protein&lib=a&pgm=fa&start=649&stop=721&n1=919">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|138206&db=Protein&lib=a&pgm=fa&start=649&stop=721&n1=919">General re-search</A>
+<p>
+
+            70        80        90       100       110       120   
+GTT1_D WESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQRLYFDMGTLYQSFANYYYPQVFAKAPA
+                                     :::. :: .:  :  . :: : .   :.: 
+gi|138 KNANSRGTIEGQLGEENEVYTERKLIEPCAINQKRYFKFGKEYVYYENYTYVR---KVP-
+      620       630       640       650       660       670        
+
+           130       140       150       160       170       180   
+GTT1_D DPEAFKKIEAAFEFLNTFLEGQDYAAGDSLTVADIALVATVSTFEVAKFEISKYANVNRW
+        :  .. : .  :.  :.:: ...   .  : :..  .. ..  :. .            
+gi|138 -PTEIEVISTYVELNLTLLEDREFLPLEVYTRAELEDTGLLDYSEIQRRNQLHALRFYDI
+           680       690       700       710       720       730   
+
+           190       200                                           
+GTT1_D YENAKKVTPGWEENWAGCLEFKKYFE                                  
+                                                                   
+gi|138 DSVVNVDNTAVIMQGIATFFKGLGKvgeavgtlvlgaagavvstvsgiaSFINNPFggla
+           740       750       760       770       780       790   
+
+</pre></tt>
+<hr>
+<A name=gi|61248485>
+<tt><pre>
+>>gi|61248485|sp|P0A4L2|THIO1_ANASO Thioredoxin 1 (TRX-1  (107 aa)
+ initn:  54 init1:  54 opt:  70  Z-score: 102.1  bits: 24.9 E():  9.8
+Smith-Waterman score: 70; 24.6% identity (59.6% similar) in 57 aa overlap (1-57:24-79)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=gi|61248485">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchfa.cgi?query=gi|61248485&db=Protein&lib=a&pgm=fa&start=24&stop=79&n1=107">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your.fasta.host.here/fasta/cgi/searchxf.cgi?query=gi|61248485&db=Protein&lib=a&pgm=fa&start=24&stop=79&n1=107">General re-search</A>
+<p>
+
+                                      10        20        30       
+GTT1_D                        MVDFYYLPGSSPCRSVIMTAKAVGVELNKKLLNLQAG
+                              .:::.  :  .::: :  ..  .. . . :.  ....
+gi|612 MSAAAQVTDSTFKQEVLDSDVPVLVDFWA-PWCGPCRMVAPVVDEIAQQYEGKIKVVKVN
+               10        20         30        40        50         
+
+        40        50        60        70        80        90       
+GTT1_D EHLKPEFLKINPQHTIPTLVDNGFALWESRAIQVYLVEKYGKTDSLYPKCPKKRAVINQR
+          .:.  .    ..::::.                                        
+gi|612 TDENPQVASQYGIRSIPTLMIFKGGQKVDMVVGAVPKTTLSQTLEKHL            
+      60        70        80        90       100                   
+
+</pre></tt>
+<hr>
+<p><pre>
+
+
+209 residues in 1 query   sequences
+5395112 residues in 13970 library sequences
+ Tcomplib [35.01] (2 proc)
+ start: Mon Jul 23 20:44:10 2007 done: Mon Jul 23 20:44:10 2007
+ Total Scan time:  0.470 Total Display time:  0.020
+
+Function used was FASTA [version 35.01 May 30, 2007]
+</pre>

@@ -1,0 +1,18 @@
+# ssearch36 -q -S -s BP62 -m 8C rand5_800.fa q
+# SSEARCH 36.3.8f May, 2017
+# Query: random_5 consisting of 800 residues. - 800 aa
+# Database: QFO_uniprot/ref
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 11 hits found
+random_5	sp|Q55470|Y514_SYNY3	30.48	116	73	11	134	249	441	545	0.035	43.4
+random_5	tr|F1R8L4|F1R8L4_DANRE	30.84	130	74	23	560	679	64	180	1.6	37.1
+random_5	tr|C3XZX6|C3XZX6_BRAFL	33.33	71	44	5	630	695	30	100	4.3	36.7
+random_5	sp|Q14451|GRB7_HUMAN	29.51	62	43	1	694	754	319	380	4.6	36.3
+random_5	tr|C3Y8N2|C3Y8N2_BRAFL	34.92	71	41	8	331	399	89	153	4.6	36.0
+random_5	tr|G3RHF8|G3RHF8_GORGO	29.51	62	43	1	694	754	342	403	4.8	36.3
+random_5	tr|H2QCV3|H2QCV3_PANTR	29.51	62	43	1	694	754	342	403	4.8	36.3
+random_5	tr|C3ZWE1|C3ZWE1_BRAFL	46.15	27	14	1	102	127	73	99	7.9	34.8
+random_5	tr|Q7SA78|Q7SA78_NEUCR	30.38	84	55	5	496	577	238	318	8.1	35.6
+random_5	tr|H2L3H3|H2L3H3_ORYLA	32.00	82	51	7	181	260	189	265	8.9	34.4
+random_5	sp|Q7Z2Z1|TICRR_HUMAN	31.82	45	30	1	85	129	194	237	9.7	37.1
+# SSEARCH processed 1 queries

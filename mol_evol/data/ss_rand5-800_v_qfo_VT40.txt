@@ -1,0 +1,15 @@
+# ssearch36 -q -S -s VT40 -m 8C rand5_800.fa q
+# SSEARCH 36.3.8f May, 2017
+# Query: random_5 consisting of 800 residues. - 800 aa
+# Database: QFO_uniprot/ref
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 8 hits found
+random_5	tr|Q7SEB1|Q7SEB1_NEUCR	83.33	28	3	10	535	562	101	118	3.2	36.2
+random_5	tr|Q4WI18|Q4WI18_ASPFU	83.33	28	3	10	535	562	102	119	4.3	35.8
+random_5	tr|A7EKH5|A7EKH5_SCLS1	83.33	28	3	10	535	562	103	120	4.3	35.8
+random_5	tr|A3RMT9|A3RMT9_CAEEL	71.43	14	4	0	601	614	5	18	5.1	36.2
+random_5	tr|Q6AW08|Q6AW08_CAEEL	55.56	18	8	0	770	787	515	532	7.2	36.3
+random_5	tr|Q5Z816|Q5Z816_ORYSJ	83.33	28	3	10	535	562	93	110	7.6	34.8
+random_5	tr|D6WVU4|D6WVU4_TRICA	83.33	28	3	10	535	562	99	116	7.6	34.8
+random_5	tr|Q0V655|Q0V655_PHANO	77.78	28	4	10	535	562	101	118	8.2	34.8
+# SSEARCH processed 1 queries

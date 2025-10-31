@@ -1,0 +1,12 @@
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: MD40 matrix (18:-23)xS ktup: 2
+ join: 36, opt: 24, open/ext: -21/-4, width:  16
+ Scan time:  0.630
+
+The best scores are:                                      opt bits E(13351)</font>
+sp|P20432|GSTT1_DROME Glutathione S-transferase 1  ( 210) 2323 648.5 3.5e-187
+sp|P0ACA5|SSPA_ECO57 Stringent starvation prote    ( 213)  145 44.8 1.9e-05
+sp|P04907|GSTF3_MAIZE Glutathione S-transferase    ( 222)  125 39.3  0.0009
+sp|P03608|COAT_TYMV Coat protein (Virion protein)  ( 190)   82 27.3     3.1
+sp|P20125|COAT_TYMVA Coat protein (Virion protein  ( 190)   82 27.3     3.1
+sp|P06431|VNCS_FPV Non-capsid protein NS-1 (Non-s  ( 393)   79 26.8     9.6

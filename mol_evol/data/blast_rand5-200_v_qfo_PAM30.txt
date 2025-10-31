@@ -1,0 +1,9 @@
+# BLASTP 2.6.0+
+# Query: random_5 consisting of 200 residues.
+# Database: /slib2/bl_dbs/pfam31_qfo
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+random_5	F4K528	44.444	27	6	2	19	36	501	527	6.0	33.3
+random_5	F4K529	44.444	27	6	2	19	36	493	519	6.6	33.3
+random_5	Q5KIC0	80.000	10	2	0	184	193	358	367	9.0	32.9
+# BLAST processed 1 queries

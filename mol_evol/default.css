@@ -1,0 +1,9 @@
+h1 {font-size: 16pt; font-family: "Helvetica","sans-serif"}
+h3 {font-size: 14pt; font-family: "Helvetica","sans-serif"}
+body { background-color: white ; font-size: 11pt; font-family: "Helvetica","sans-serif" }
+td {font-size: 11pt; text-align:right; font-family: "Helvetica","sans-serif"}
+th {font-size: 11pt; font-family: "Helvetica","sans-serif"}
+p {font-size: 11pt; font-family: "Helvetica","sans-serif"}
+li:not(:last-child) {
+    margin-bottom: 5px;
+}

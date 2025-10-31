@@ -1,0 +1,48 @@
+# BLASTP 2.14.1+
+# Query: random_1 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_2 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_3 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_4 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_5 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 2 hits found
+random_5	A7S363	63.158	19	7	0	117	135	1054	1072	6.9	35.4
+random_5	A7S363	63.158	19	7	0	117	135	1556	1574	6.9	35.4
+# BLASTP 2.14.1+
+# Query: random_6 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_7 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_8 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+random_8	A0A1D6LDB1	37.681	69	11	10	528	576	63	119	9.6	34.6
+# BLASTP 2.14.1+
+# Query: random_9 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# 0 hits found
+# BLASTP 2.14.1+
+# Query: random_10 consisting of 800 residues.
+# Database: /slib2/bl_dbs/qfo78
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+random_10	H3H1I7	40.541	37	5	3	612	648	127	146	5.0	35.4
+# BLAST processed 10 queries

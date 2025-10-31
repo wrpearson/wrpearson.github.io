@@ -1,0 +1,22 @@
+##
+
+for s in BP62 BL50 VT160 VT80 VT40 VT20 VT10 ; do
+  ssearch36 -m8C -s $s -S random_200.txt /slib2/fa_dbs/qfo78.lseg > ss_randall-200_v_qfo_${s}.txt
+done
+
+for s in BP62 BL50 VT160 VT80 VT40 VT20 VT10 ; do
+  ssearch36 -m8C -s $s -S random_800.txt /slib2/fa_dbs/qfo78.lseg > ss_randall-800_v_qfo_${s}.txt
+done
+
+for s in BP62 BL50 VT160 VT80 VT40 VT20 VT10 ; do
+  ssearch36 -m8C -s $s -S random_800.txt /slib2/fa_dbs/qfo78.lseg > ss_randall-800_v_qfo_${s}.txt
+done
+
+for s in BLOSUM62 BLOSUM80 PAM30 PAM70; do
+  blastp -outfmt 7 -query random_200.txt -db /slib2/bl_dbs/qfo78 -matrix $s > blast_randall-200_v_qfo_${s}.txt
+done
+
+for s in BLOSUM62 BLOSUM80 PAM30 PAM70; do
+  blastp -outfmt 7 -query random_800.txt -db /slib2/bl_dbs/qfo78 -matrix $s > blast_randall-800_v_qfo_${s}.txt
+done
+

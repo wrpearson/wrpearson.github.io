@@ -1,0 +1,98 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Programming for Biology - Python/Matrix exercises
+</title>
+</head>
+<body bgcolor=white onload='update_modtime();'>
+<h2>fasta.bioch.virginia.edu/mol_evol/pfb_python_matrices.html</h2>
+<p />
+  The goals of this exercise are to:
+  <ol>
+    <li>
+      Do some simple parsing of BLAST tabular format output files to extract some information
+    <li>
+      Evaluate the accuracy of similarity statistics
+    <li>
+      Demonstrate to yourself that scoring matrices have different target identities and alignment lengths.
+  </ol>
+<hr />
+<p />
+On <a href="http://fasta.bioch.virginia.edu/mol_evol/data"
+target=data_win>fasta.bioch.virginia.edu/mol_evol/data</a> are sets of
+results from either SSEARCH or BLASTP searching either a 200 or 800
+amino acid random protein sequence against the QFO78 library of 78
+Uniprot Reference Proteomes.
+
+<p /> There are 4 sets of results for each of the two searching
+algorithms, <tt>ssearch</tt> and <tt>blastp</tt>., a set of searches
+with one random sequence, either 200 aa or 800 aa long with
+either <tt>ssearch</tt> (<tt>ss_rand5-</tt>)
+or <tt>blastp</tt>(<tt>blast_rand5-</tt>), using one of 7 scoring
+matrices for <tt>ssearch</tt> and one of 4 for <tt>blastp</tt>.  In
+addition, there are the same set of searches using 10 query sequences
+(<tt>randall</tt> instead of only one (<tt>rand5</tt> -- the fifth
+random sequence).
+
+<p />
+Your goal this afternoon will be to write a script that reads each of
+the sets of data from <b>either</b> the SSEARCH or BLASTP outputs and
+produces a table with each of the scoring matrices as row, and the
+percent identity, alignment length, and E()-values for columns, for
+the top hit from each of the searches.
+<p />
+To do this, you will need to:
+<ol>
+<li>
+  Download a set of SSEARCH <i>or</i> BLASTP results.
+<p />
+<li>
+  Write a program that will take take an argument from the command
+  line, which you can use to specify either <tt>rand5-200</tt>
+  or <tt>rand5-800</tt>, and concatenate it with a scoring matrix name
+  (<tt>BL50</tt>, <tt>BP62</tt>, etc. for
+  SSEARCH, <tt>BLOSUM62</tt>, <tt>BLOSUM80</tt>, etc. for BLASTP, so that
+  you can open and each result file and associate the results with a
+  scoring matrix.
+<p />
+<li>
+  To parse the BLASTP tabular output file, you must:
+  <ol type='a'>
+    <li> remove the newline character
+    <li> skip lines beginning with "#"
+    <li> use <tt>line.split('\t')</tt> to break each result line into its parts, which are:
+      <tt>qseqid, sseqid, percid, alen, mismat, gaps, q_start, q_end, s_start, s_end, evalue, bits</tt> <br />
+      consider breaking the line up and saving the results to a dictionary with:
+      <pre>this_data=dict(zip(field_names, line.split('\t')))</pre>
+    <li> As soon as you have a result line, save <tt>this_data</tt>, close the file, and move to the next result file.
+  </ol>
+<p />
+<li>
+  Save the results in a dictionary using the matrix name as the key,
+  and then print out the values you want ('percid', 'alen', and
+  'evalue').
+<p />
+<li>
+  Does the alignment length, percent identity, or evalue depend on the query sequence length?
+<p />
+<li>
+  Compare the SSEARCH results with the BLAST results.  Which program
+  gives a better range of alignment lengths and percent identities?
+<li>
+  For a more challenging exercise, parse the results from the <tt>ss_randall-200...</tt> and <tt>ss_randall-800...</tt> searches, which give the results for 10 random query sequences.  Calculate the median <tt>percid</tt>, <tt>alen</tt>, and <tt>evalue</tt> from the 10 results for each scoring matrix.
+</ol>
+<hr />
+<a href="data/results.html" target=results_win>results.html</a>
+<p id="last_mod"></p>
+<p>
+<hr>
+</body>
+</html>

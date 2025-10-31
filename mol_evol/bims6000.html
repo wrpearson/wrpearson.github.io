@@ -1,0 +1,244 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script type="text/javascript">
+<!-- 
+    var default_show ='block';
+
+    function set_block() {
+       if (window.location.search) {
+          default_show ='block';
+       }
+       else default_show ='block';
+    }
+
+    function show_hide(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block') { e.style.display = 'none';}
+       else {
+          e.style.display = default_show;
+       }
+    }
+//-->
+<!-- Programming for Biology - Similarity Searching Exercises -->
+<!-- Computational Genomics 2012 - Similarity Searching Exercises -->
+<!-- EBI Bioinformatics Summer School 2016 -->
+<!-- BIMS6000 - Similarity searching exercises -->
+<!-- Molecular Evolution - Similarity Searching Exercises -->
+<!-- Computational Genomics 2014 - Similarity Searching Exercises -->
+</script>
+<style>
+  .box {display: inline-block; width: 20px; height: 9px; margin: 1px;}
+  span.c_0 { background-color:slategrey;}
+  span.c_1 { background-color:lightgreen;}
+  span.c_2 { background-color:lightblue;}
+  span.c_3 { background-color:pink;}
+  span.c_4 { background-color:cyan;}
+  span.c_5 { background-color:tan;}
+  span.c_6 { background-color:gold;}
+  span.c_7 { background-color:plum;}
+  span.c_8 { background-color:mediumplum;}
+</style>
+<!-- EBI Bioinformatics Summer School 2017 -->
+<!-- Molecular Evolution - Similarity Searching Exercises -->
+<title>
+BIMS 6000 --  2020 - Similarity Searching Exercises
+</title>
+</head>
+<body bgcolor=white onload="set_block()">
+<!-- <h1><a href="http://tinyurl.com/fasta-work">tinyurl.com/fasta-work</a></h1> -->
+<h1>
+<a href="http://fasta.bioch.virginia.edu/mol_evol/">fasta.bioch.virginia.edu/mol_evol</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://tinyurl.com/fasta-demo">tinyurl.com/fasta-demo</a></h1>
+<h2>
+BIMS6000 --  2020 - Similarity Searching Exercises
+</h2>
+<p>
+<hr />
+<i>To do these exercises in a breakout room with zoom, I recommend that
+one person in the group do the searches, and share their screen with
+the rest of the group during this class-time.  At the same time, all
+of the members of the group should have a window open to this page, so
+that you can look at the questions on this page, and the results from
+the search from the shared zoom screen, and discuss the questions and
+answers.</i>
+<hr />
+<p>
+These exercises use programs on the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml"
+target="fasta_win">FASTA WWW Search page</a> and the 
+<!-- Computational Genomics -->
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast_plus"
+target='blast_win'>BLAST WWW Search page</a>.
+<p>
+In the links
+below, <a href="http://fasta.bioch.virginia.edu/fasta_www2/" target='fasta_win'>[pgm]</a>
+indicates a link with most of the information filled in; e.g. the
+program name, query, and
+library.  <a href="http://ncbi.nlm.nih.gov/"  target='entrez_win'>[seq]</a> links go to the
+NCBI, for more information about the sequence.  In general, you should
+click <a>[pgm]</a> links, but not <a>[seq]</a> links.
+<p>
+<hr>
+<b> Identifying homologs and non-homologs; effects of scoring matrices and algorithms; using domain annotations</b>
+<hr>
+<p>
+<p>
+Use the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=295842263&db=p&annot_seq2=5"
+target="fasta_win">FASTA search page [pgm]</a> to compare Honey bee
+glutathione transferase D1 NP_001171499/ H9KLY5_APIME <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&list_uids=295842263&dopt=fasta" TARGET=entrez_win>[seq]</a> (gi|295842263) to the PIR1 Annotated protein sequence database.  Be sure to press <input type='submit' value='Search Database' />, not <input type='submit' value='Align two sequences'>.  
+<ol>
+<li>Take a look at the output.
+<ol type='a'>
+<p>
+<li>
+How long is the query sequence? 
+<li> How many sequences are in the PIR1 database?
+<li> What scoring matrix was used?
+<li> What were the gap penalties? (what is the penalty for a one-residue gap? two residues? -- this is a "trick" question)
+<li> What are each of the numbers after the description of the library sequence?  Which one is best for inferring homology?
+<li> How similar is the highest scoring sequence?  What is the difference between %_id and %_sim? Why is there no 100% identity match?
+<li> Looking at an alignment, where are the boundaries of the alignment (the best local region)?  How many gaps are in the best alignment?  The second best?
+</ol>
+<p>
+<li>
+Homologs, non-homologs, and the statistical control.
+<ol type='a'>
+<p>
+<li>
+What is the highest (worst) E()-value shown?  What <u>should</u> the
+highest (worst) E()-value calculated in the search be (approximately)?
+<li>
+Which alignment has the worst statistically significant (E()<0.001) score?  Do you think this sequence is likely to be homologous?
+<li>
+What is the highest scoring (most significant) non-homolog? (The non-homolog with the
+highest alignment score, or the lowest E()-value.)  Why do you think it is not homologous?
+Look for positive evidence (e.g. a non-homologous domain) for non-homology.
+<p>
+You can use the domain diagrams (colors) to identify distant homologs, and, by elimination, the highest scoring non-homolog. You can also use the <tt><a href="http://www.uniprot.org/">Sequence&nbsp;Lookup</a></tt> link to Uniprot to look at Domains and Families.
+<li>
+If the
+statistical estimates are accurate, what <u>should</u> the E()-value for the
+highest non-homolog (the highest score by chance) be?  (This is a
+control for statistical accuracy.)
+<li>
+What is the E()-value of the most distant homolog shown (based on displayed domain content)?  Could there be more distant <b>homologs</b> in the database?
+<li>
+How would you confirm that your candidate non-homolog was truly
+unrelated?  (<i>Hint</i> - compare your candidate non-homolog
+with <b>SwissProt</b> or <b>QFO78/Uniprot Ref</b> for a more comprehensive test.</i>)
+</ol>
+<p>
+<li>
+Domains and alignment regions
+<ol type='a'>
+<p>
+<li>
+There are three parts to the domain display, the domain structure of
+the query (top) sequence (if available), the domain structure of the library (bottom)
+sequence, and the domain alignment boundaries in the middle (inside the
+alignment box).  The boundaries and color of the alignment domain
+coloring match the <tt>Region:</tt> sub-alignment scores.  
+<li>
+Note that the alignment of Honey bee <tt>GSTD1</tt>
+and <tt>SSPA_ECO57</tt> includes portions of both the N-terminal and
+C-terminal domains, but neither domain is completely aligned. Why do
+you think the alignments do not include the complete domains?
+<li>
+Is your explanation for the partial domain alignment consistent the
+the argument that domains have a characteristic length? How might you
+test whether a complete domain is present?
+</ol>
+<!--
+<li>
+Homology (and non-homology) can also be inferred by domain
+relationships. Try the same Honey
+bee <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=295842263&db=p&annot_seq1=4&annot_seq2=4&hide_align=1"
+target="fasta_win">GSTD1 search [pgm]</a> search using the <b>Annotate
+Query</b> and Database <b>Annotations:</b> set to
+show <select><option>InterPro domains/no features</option></select>.
+<ol type='a'>
+<li>
+Does the domain display change your mind about the highest scoring non-homolog?
+The FASTA programs can partition an alignment score based domain
+boundaries, and report the amount of score associated with a domain.
+In the <tt>SSPA_ECO57</tt> alignment, how much of the score comes from
+the GST-N terminal domain? The GST-C terminal domain?  Does this
+alignment provide strong support for the presence of a GST-C terminal
+domain?  How might you test for the presence of the domain
+on <tt>GSTD1</tt>?  On <tt>SSPA_ECO57</tt>?
+
+</ol>
+<p>
+<!--
+<li>
+Note that this Honey bee glutathione transferase shares significant
+similarity with both sequences from bacteria (SSPA_ECO57, stringent
+starvation protein) and mammals.  How might you test whether the
+stringent starvation protein is homologous to glutathione
+transferases? (<i>Hint - compare your candidate non-homolog
+with <b>SwissProt</b> for a more comprehensive test.</i>)
+<p>
+-->
+<p>
+<li>
+Repeat the
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=295842263&db=p&annot_seq1=4&annot_seq2=4&hide_align=1"
+target="fasta_win">GSTD1 search [pgm]</a> using the BLASTP62/-11/-1
+scoring matrix <select><option>BlastP62 (30%)</option></select> that
+BLAST uses.<br />
+Re-examine the honey bee/<tt>SSPA_ECO57</tt> alignment.
+<ol type='a'>
+<p>
+<li>
+Are both Glutathione transferase domains present in the honey bee protein??
+<li>
+Look at the alignments to the homologs above and below <tt>SSPA_ECO57</tt>.
+Based on those.
+aligments, do you think the Glutathione-S-Trfase C-like domain is
+really missing from the honey bee protein? 
+<li>
+Why did the alignment become shorter?
+<li>
+Why would a domain appear to be present in the first (BLOSUM50) search, but not in the second (BLOSUM62)?
+</ol>
+<!--
+<p>
+<li>
+One of the candidate non-homologs is <tt>sp|Q9SI20|EF1D2_ARATH</tt>,
+with an E()-value of 0.11.
+<ol type='a'>
+<li>
+Does the domain structure of <tt>EF1D2_ARATH</tt> suggest that it could be a glutatione
+transferase homolog?
+<li>
+Use the 
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&query=Q9SI20&q_type=acc&db=Protein&lib=Q&pgm=fa&start=8&stop=60&n1=231&o_pgm=fa&annot_seq2=2&hide_align=1">
+General Research</a> to explore the domains contained
+in <tt>EF1D2_ARATH</tt> homologs found in SwissProt.  Use the "Use subset range" option to limit the search to the N-terminal region.
+<li>
+Does this secondary search support homology or non-homology?  What is the percent identity of the first significant aligment with an annotated domain? What is the E()-value?
+<li>
+The portion of the protein you are searching with is very short.  Based on the percent identity that you saw in the previous search, what would be a better scoring matrix? Why?
+<li>
+Try a search with that scoring matrix.  What is the new E()-value with
+the scoring matrix you chose?
+</ol>
+-->
+<p>
+</ol>
+</ol>
+<p>
+Where to get the FASTA package: 
+<a href="http://github.com/wrpearson/fasta36">github.com/wrpearson/fasta36<a>
+<p>
+The "normal" <a href="http://fasta.bioch.virginia.edu/">FASTA WWW site:</a>
+<p>
+Contact Bill Pearson: <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</a>
+<p>
+<hr>
+</body>
+</html>

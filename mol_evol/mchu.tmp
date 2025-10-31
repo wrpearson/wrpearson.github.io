@@ -1,0 +1,86 @@
+# lalign36 -m 6 -m "F11 mchu.lav" /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa
+<pre>
+LALIGN finds non-overlapping local alignments
+ version 36.3.5c Dec, 2011(preload8)
+Please cite:
+ X. Huang and W. Miller (1991) Adv. Appl. Math. 12:373-381
+
+Query: /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa
+  1>>>MCHU - Calmodulin - Human, rabbit, bovine, rat, a - 148 aa
+Library: /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa
+      148 residues in     1 sequences
+</pre>
+<pre>
+Statistics: (shuffled [500]) MLE statistics: Lambda= 0.1489;  K=0.03568
+ statistics sampled from 0 (0) to 500 sequences
+Threshold: E() < 1 score: 45
+Algorithm: Smith-Waterman (SSE2, Michael Farrar 2006) (7.2 Nov 2010)
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ Scan time:  0.000
+</pre>
+<hr>
+
+>>>MCHU, 148 aa vs /home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa library
+
+<A name=MCHU>
+<pre>
+>>MCHU - Calmodulin - Human, rabbit, bovine, rat, and ch  (148 aa)
+ Waterman-Eggert score: 214;  50.8 bits; E(1) <  1.1e-11
+47.7% identity (78.5% similar) in 65 aa overlap (11-75:84-148)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=MCHU">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchfa.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=84&stop=148&n1=148">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchxf.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=84&stop=148&n1=148">General re-search</A>
+
+               20        30        40        50        60        70
+MCHU   EFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLT
+       :..::: .:::::.: :.. ::  :: .::.. :. :...:: :.: ::.: ... ::. 
+MCHU   EIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQ
+            90       100       110       120       130       140   
+
+            
+MCHU   MMARK
+       ::. :
+MCHU   MMTAK
+            
+
+</pre>
+<hr>
+<pre>
+ Waterman-Eggert score: 181;  43.7 bits; E(1) <  1.5e-09
+34.3% identity (64.8% similar) in 105 aa overlap (10-110:46-146)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=MCHU">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchfa.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=46&stop=146&n1=148">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchxf.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=46&stop=146&n1=148">General re-search</A>
+
+      10        20        30         40        50        60        
+MCHU   AEFKEAFSLFDKDGDGTITTKELGTVM-RSLGQNPTEAELQDMINEVDADGNGTIDFPEF
+       ::... ..  : ::.:::   :. :.: :.. .. .: :... .   : :::: :.  :.
+MCHU   AELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAEL
+          50        60        70        80        90       100     
+
+          70        80        90       100       110
+MCHU   ---LTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMT
+          .: ...:. : . .: ::::    : ::.: ..  :. ..::
+MCHU   RHVMTNLGEKLTDEEVDEMIREA----DIDGDGQVNYEEFVQMMT
+         110       120           130       140      
+
+</pre>
+<hr>
+<pre>
+ Waterman-Eggert score: 61;  17.9 bits; E(1) <  0.085
+35.1% identity (70.3% similar) in 37 aa overlap (1-36:113-145)
+<A HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein&fcmd=Search&doptcmd1=DocSum&term=MCHU">Entrez lookup</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchfa.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=113&stop=145&n1=148">Re-search database</A>&nbsp;&nbsp;<A HREF="http://your_fasta_host_here/searchxf.cgi?query=MCHU&db=Protein&lib=/home/wrp/Devel/fa36b1.1_svn/seq/mchu.aa&pgm=lsw&start=113&stop=145&n1=148">General re-search</A>
+
+               10         20        30      
+MCHU   ADQLTEEQIAEF-KEAFSLFDKDGDGTITTKELGTVM
+       ...::.:.. :. .::    : :::: .. .:.  .:
+MCHU   GEKLTDEEVDEMIREA----DIDGDGQVNYEEFVQMM
+            120           130       140     
+
+</pre>
+<hr>
+<pre>
+148 residues in 1 query   sequences
+148 residues in 1 library sequences
+ Scomplib [36.3.5c Dec, 2011(preload8)]
+ start: Tue May  1 06:17:29 2012 done: Tue May  1 06:17:29 2012
+ Total Scan time:  0.000 Total Display time:  0.010
+
+Function used was LALIGN [36.3.5c Dec, 2011(preload8)]
+</pre>

@@ -1,0 +1,49 @@
+# fasta35_t -m 6 -H -s M10 -d 0 -q -S gstt1_drome.aa a
+<pre>
+FASTA searches a protein or DNA sequence data bank
+ version 35.04 Jul. 7, 2008
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+</pre>
+Query: gstt1_drome.aa
+<pre>
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18) (CLASS-THET - 209 aa
+Library: PIR1 Annotated (rel. 66)  5201128 residues in 13351 sequences
+
+5201128 residues in 13351 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 4.1659+/-0.000457; mu= 20.5394+/- 0.026
+ mean_var=42.9125+/- 7.963, 0's: 6 Z-trim: 31  B-trim: 28 in 1/61
+ Lambda= 0.195786
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: MD10 matrix (18:-34)xS ktup: 2
+ join: 36, opt: 24, open/ext: -23/-4, width:  16
+ Scan time:  0.580
+</pre>
+<p>
+<hr>
+<p>
+<p><tt><pre>
+
+The best scores are:                                      opt bits <font color="darkred">E(13351)</font>
+sp|P20432|GSTT1_DROME Glutathione S-transferase 1  ( 210) 2574 731.2 <font color="darkred">4.5e-212</font> <A HREF="#gi|121694">align</A>
+sp|P0ACA5|SSPA_ECO57 Stringent starvation prote    ( 213)   96 31.3 <font color="darkred">   0.23</font> <A HREF="#gi|81174731">align</A>
+sp|P98073|ENTK_HUMAN Enteropeptidase precursor (   (1020)   86 28.9 <font color="darkred">    5.8</font> <A HREF="#gi|1352369">align</A>
+sp|P07805|DCOR_TRYBB Ornithine decarboxylase (OD   ( 423)   82 27.5 <font color="darkred">    6.2</font> <A HREF="#gi|7404357">align</A>
+sp|P31627|ENV_CAEVG Envelope glycoprotein precu    ( 942)   83 28.0 <font color="darkred">    9.8</font> <A HREF="#gi|18266851">align</A>
+sp|P31626|ENV_CAEVC Envelope glycoprotein precurs  ( 967)   83 28.0 <font color="darkred">     10</font> <A HREF="#gi|399431">align</A>
+</pre></tt><p><hr><p>
+
+>>>GTT1_DROME, 209 aa vs a library
+
+<p><pre>
+
+
+209 residues in 1 query   sequences
+5201128 residues in 13351 library sequences
+ Tcomplib [35.04] (8 proc)
+ start: Tue Jul 29 16:12:25 2008 done: Tue Jul 29 16:12:25 2008
+ Total Scan time:  0.580 Total Display time:  0.010
+
+Function used was FASTA [version 35.04 Jul. 7, 2008]
+</pre>

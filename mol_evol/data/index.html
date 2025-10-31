@@ -1,0 +1,110 @@
+<html>
+  <body>
+<h3>Query sequence sets</h3>
+    <a href="random_200.html" target=rand_data>random_200.html</a><br />
+    <a href="random_800.html" target=rand_data>random_800.html</a><br />
+    <hr />
+    <p>
+  Result files can be downloaded with the command:
+  <pre>
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/ss_rand5-200_v_qfo_BL50.txt
+  </pre>
+To download a set of results files automatically:
+  <pre>
+    ## for ssearch results:
+    for m in BL50 BP62 VT10 VT20 VT40 VT80 VT160; do
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/ss_rand5-200_v_qfo_${m}.txt
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/ss_rand5-800_v_qfo_${m}.txt
+    done
+
+    ## for BLASTP results:
+    for m in BLOSUM62 BLOSUM80 PAM30 PAM70; do
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/blast_rand5-200_v_qfo_${m}.txt
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/blast_rand5-800_v_qfo_${m}.txt
+    done
+  </pre>
+  
+  To get the results with 10 searches:
+  <pre>
+    ## for ssearch results:
+    for m in BL50 BP62 VT10 VT20 VT40 VT80 VT160; do
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/ss_randall-200_v_qfo_${m}.txt
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/ss_randall-800_v_qfo_${m}.txt
+    done
+
+    ## for BLASTP results:
+    for m in BLOSUM62 BLOSUM80 PAM30 PAM70; do
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/blast_randall-200_v_qfo_${m}.txt
+    curl -O https://fasta.bioch.virginia.edu/mol_evol/data/blast_randall-800_v_qfo_${m}.txt
+    done
+  </pre>
+<hr />
+<b>SSEARCH result sets (1 query sequence)</b>
+<hr />
+ <a href="ss_rand5-200_v_qfo_BL50.txt" target=rand_ss>ss_rand5-200_v_qfo_BL50.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_BP62.txt" target=rand_ss>ss_rand5-200_v_qfo_BP62.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_VT10.txt" target=rand_ss>ss_rand5-200_v_qfo_VT10.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_VT160.txt" target=rand_ss>ss_rand5-200_v_qfo_VT160.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_VT20.txt" target=rand_ss>ss_rand5-200_v_qfo_VT20.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_VT40.txt" target=rand_ss>ss_rand5-200_v_qfo_VT40.txt</a><br />
+ <a href="ss_rand5-200_v_qfo_VT80.txt" target=rand_ss>ss_rand5-200_v_qfo_VT80.txt</a><br />
+<p />
+ <a href="ss_rand5-800_v_qfo_BL50.txt" target=rand_ss>ss_rand5-800_v_qfo_BL50.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_BP62.txt" target=rand_ss>ss_rand5-800_v_qfo_BP62.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_VT10.txt" target=rand_ss>ss_rand5-800_v_qfo_VT10.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_VT160.txt" target=rand_ss>ss_rand5-800_v_qfo_VT160.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_VT20.txt" target=rand_ss>ss_rand5-800_v_qfo_VT20.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_VT40.txt" target=rand_ss>ss_rand5-800_v_qfo_VT40.txt</a><br />
+ <a href="ss_rand5-800_v_qfo_VT80.txt" target=rand_ss>ss_rand5-800_v_qfo_VT80.txt</a><br />
+<hr />
+<b>SSEARCH result sets (10 query sequences)</b>
+<hr />
+ <a href="ss_randall-200_v_qfo_BL50.txt" target=rand_ss>ss_randall-200_v_qfo_BL50.txt</a><br />
+ <a href="ss_randall-200_v_qfo_BP62.txt" target=rand_ss>ss_randall-200_v_qfo_BP62.txt</a><br />
+ <a href="ss_randall-200_v_qfo_VT10.txt" target=rand_ss>ss_randall-200_v_qfo_VT10.txt</a><br />
+ <a href="ss_randall-200_v_qfo_VT160.txt" target=rand_ss>ss_randall-200_v_qfo_VT160.txt</a><br />
+ <a href="ss_randall-200_v_qfo_VT20.txt" target=rand_ss>ss_randall-200_v_qfo_VT20.txt</a><br />
+ <a href="ss_randall-200_v_qfo_VT40.txt" target=rand_ss>ss_randall-200_v_qfo_VT40.txt</a><br />
+ <a href="ss_randall-200_v_qfo_VT80.txt" target=rand_ss>ss_randall-200_v_qfo_VT80.txt</a><br />
+<p />
+ <a href="ss_randall-800_v_qfo_BL50.txt" target=rand_ss>ss_randall-800_v_qfo_BL50.txt</a><br />
+ <a href="ss_randall-800_v_qfo_BP62.txt" target=rand_ss>ss_randall-800_v_qfo_BP62.txt</a><br />
+ <a href="ss_randall-800_v_qfo_VT10.txt" target=rand_ss>ss_randall-800_v_qfo_VT10.txt</a><br />
+ <a href="ss_randall-800_v_qfo_VT160.txt" target=rand_ss>ss_randall-800_v_qfo_VT160.txt</a><br />
+ <a href="ss_randall-800_v_qfo_VT20.txt" target=rand_ss>ss_randall-800_v_qfo_VT20.txt</a><br />
+ <a href="ss_randall-800_v_qfo_VT40.txt" target=rand_ss>ss_randall-800_v_qfo_VT40.txt</a><br />
+ <a href="ss_randall-800_v_qfo_VT80.txt" target=rand_ss>ss_randall-800_v_qfo_VT80.txt</a><br />
+<hr />
+<b>BLASTP result sets (1 sequence)</b>
+<hr />
+ <a href="blast_rand5-200_v_qfo_BLOSUM62.txt" target=rand_ss>blast_rand5-200_v_qfo_BLOSUM62.txt</a><br />
+ <a href="blast_rand5-200_v_qfo_BLOSUM80.txt" target=rand_ss>blast_rand5-200_v_qfo_BLOSUM80.txt</a><br />
+ <a href="blast_rand5-200_v_qfo_PAM30.txt" target=rand_ss>blast_rand5-200_v_qfo_PAM30.txt</a><br />
+ <a href="blast_rand5-200_v_qfo_PAM70.txt" target=rand_ss>blast_rand5-200_v_qfo_PAM70.txt</a><br />
+<p />
+ <a href="blast_rand5-800_v_qfo_BLOSUM62.txt" target=rand_ss>blast_rand5-800_v_qfo_BLOSUM62.txt</a><br />
+ <a href="blast_rand5-800_v_qfo_BLOSUM80.txt" target=rand_ss>blast_rand5-800_v_qfo_BLOSUM80.txt</a><br />
+ <a href="blast_rand5-800_v_qfo_PAM30.txt" target=rand_ss>blast_rand5-800_v_qfo_PAM30.txt</a><br />
+ <a href="blast_rand5-800_v_qfo_PAM70.txt" target=rand_ss>blast_rand5-800_v_qfo_PAM70.txt</a><br />
+<hr />
+<b>BLASTP result sets (10 sequences)</b>
+<hr />
+ <a href="blast_randall-200_v_qfo_BLOSUM62.txt" target=rand_ss>blast_randall-200_v_qfo_BLOSUM62.txt</a><br />
+ <a href="blast_randall-200_v_qfo_BLOSUM80.txt" target=rand_ss>blast_randall-200_v_qfo_BLOSUM80.txt</a><br />
+ <a href="blast_randall-200_v_qfo_PAM30.txt" target=rand_ss>blast_randall-200_v_qfo_PAM30.txt</a><br />
+ <a href="blast_randall-200_v_qfo_PAM70.txt" target=rand_ss>blast_randall-200_v_qfo_PAM70.txt</a><br />
+<p />
+ <a href="blast_randall-800_v_qfo_BLOSUM62.txt" target=rand_ss>blast_randall-800_v_qfo_BLOSUM62.txt</a><br />
+ <a href="blast_randall-800_v_qfo_BLOSUM80.txt" target=rand_ss>blast_randall-800_v_qfo_BLOSUM80.txt</a><br />
+ <a href="blast_randall-800_v_qfo_PAM30.txt" target=rand_ss>blast_randall-800_v_qfo_PAM30.txt</a><br />
+ <a href="blast_randall-800_v_qfo_PAM70.txt" target=rand_ss>blast_randall-800_v_qfo_PAM70.txt</a><br />
+<hr />
+<h3>Solutions:</h3>
+<a href='parse_tab_py.html'>parse_tab.py</a>
+<br />
+<a href='parse_tab2_py.html'>parse_tab2.py</a>
+<br />
+<a href='parse_tab2n_py.html'>parse_tab2n.py</a>
+<hr />
+</body>
+</html>

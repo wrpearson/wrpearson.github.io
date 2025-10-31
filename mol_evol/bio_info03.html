@@ -1,0 +1,281 @@
+<HTML>
+<HEAD>
+<TITLE>
+CSHL Bioinformatics - 2003 - FASTA Exercises
+</TITLE>
+<link href="default12.css" type="text/css" rel="stylesheet">
+</HEAD>
+<BODY bgcolor=white>
+
+<H2>CSHL Bioinformatics - FASTA Demo - Oct  18, 2003</H2>
+<P>
+<HR>
+<P>
+<h2>fasta.bioch.virginia.edu/mol_evol/</h2>
+These exercises use programs on the <A
+HREF="http://x00.achs.virginia.edu/fasta/fasta_list.html"
+target=fasta_win">FASTA WWW Search page</A> and the Mol Evol03 <A
+HREF="http://fasta.bioch.virginia.edu/fasta/cgi/blast_frm.cgi"
+target=blast_win>BLAST WWW Search page</A>.
+<p>
+<hr>
+<b> Identifying homologs and non-homologs; effects of scoring matrices
+and algorithms</b>
+<hr>
+<p>
+<P><b>1.</b> Use the <a
+href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=121694&db=p"
+target=fasta_win">FASTA search page</A> to compare Drosophila
+glutathione transferase <tt>gtt1_drome (gi|121694)</tt> to the PIR
+Annotated protein sequence database.
+
+<p>(a) What is the highest scoring non-homolog? (How would you confirm
+that your candidate non-homolog was truly unrelated?)  What happens to
+the length of the alignment as non-homologous sequences are
+aligned?</P>
+
+<P>(b) Note that this drosophila glutathione transferase shares
+significant similarity with both sequences from E. Coli and mammals.
+How might you confirm that the E. coli stringent starvation protein is
+homologous to glutathione transferases? (<i>Hint - search SwissProt
+for a more comprehensive view of the family</i>)
+</P>
+
+<P>(c) Compare the expectation (E()) values for the distant
+relationships between <tt>gtt1_drome</tt> and <tt>xurt8c</tt>
+(SwissProt <tt>gta3_rat</tt>) or <tt>xurtg4</tt> (SwissProt
+<tt>gta1_rat</tt>). How would you demonstrate that <tt>gtt1_drome</tt>
+is homologous to <tt>xurtg4</tt>? (<i>Hint - You can use SwissProt to find intermediate sequences, but you don't need to</i>)</P>
+
+<P>(d) Examine how the expectation value changes with different scoring
+matrices (BLOSUM62, BlastP62, PAM250) and different gap
+penalties. (The default scoring matrix for the FASTA programs is
+BLOSUM50, with gap penalties of -10 to open a gap and -2 for each
+residue in the gap - e.g. -12 for the first residue in the gap using
+the old FASTA parameters.)  What happens to the E()-value for the
+highest scoring unrelated sequence with the different matrices?  Look
+at the distribution of scores and the E()-value of the highest scoring
+unrelated sequence when the gap-open/gap-ext penalties are small
+(-7/-1).
+
+<p>(e) (<i>optional</i>) Try the search with <em>ktup=1</em> (<A
+href="ktup_info.html" target=info_win>What is ktup?</A>).
+<b>FASTA</b> uses the <em>ktup</em> parameter to adjust the
+sensitivity and speed of the search.  With <em>ktup=2</em>,
+<b>FASTA</b> looks for "pairs" of matched identical residues to find
+regions of similarity.  <em>ktup=1</em> looks for singly-aligned
+residues, and thus takes longer.
+
+<!--
+<p>(f) (<i>optional - <b>don't do it this afternoon</b></i>) In groups
+of 4 students, try the search with <A
+HREF="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=sw&query=gtt1_drome&db=p"
+target=fasta_win"> <b>ssearch</b></A> (Smith-Waterman).  Again, look
+at the E()-values for distant homologs and the highest scoring
+unrelated sequence.
+-->
+<!--
+<p>(f) (<i>optional - <b>don't do it this afternoon</b></i>) In groups
+of 4 students, try the search with <b>ssearch34_t</b> (Smith-Waterman)
+from the command line (be sure to save your output):
+<ol>
+<li><tt>cp /slib/data/gtt1_drome.aa .</tt> (the "." is important)
+<li><pre>ssearch34 -q -S gtt1_drome.aa q > gtt1_drome.ss_results</pre>
+</ol>
+Again, look at the E()-values for distant homologs and the highest
+scoring unrelated sequence.
+-->
+
+<hr>
+
+<p><b>2.</b> Do the same search (<tt>121694</tt>) using the Course
+<A HREF="http://fasta.bioch.virginia.edu/fasta/cgi/blast_frm.cgi"
+target="blast_win"> BLAST</A> WWW page.
+
+<p>(a) What is the highest scoring non-homolog?
+
+<p>(b) How do the <b>blastp</b> E()-values compare with the
+<b>FASTA</b> (<tt>blosum62</tt>) E()-values for the distantly related
+mammalian and plant sequences?
+
+<hr>
+<b>Comparing protein /translated DNA to DNA/DNA comparison</b>
+<hr>
+<P><b>3.</b> 
+<!--
+(a) Use <a
+href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=tx&query=gtt1_drome&db=n"
+TARGET="fasta_win">TFASTX</A> to compare <tt>gtt1_drome</tt> to the
+<b>Plant</b> section of Genbank.  What is the
+highest scoring plant homologue? [this search now takes too long.  the results are <A href="gtt1_pl_tfx.html" target="fasta_win">here</A>]
+-->
+(a) The result of a TFASTX search with <tt>gtt1_drome</tt> vs the <b>Plant</b>
+section of GenBank is shown <A href="gtt1_pl_tfx.html" target="fasta_win">here</A>.  What is the highest scoring plant homologue? 
+<!--
+<p>
+You can also do this search on your workstation.:
+<ol>
+<li> (as before) <tt>cp /slib/data/gtt1_drome.aa .</tt>
+<li> <tt>tfastx34 -q gtt1_drome.aa L > gtt1_drome.tx_plant</tt>
+</ol>
+<br>
+-->
+(b) Use <a
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&LAYOUT=TwoWindows&AUTO_FORMAT=Semiauto&ALIGNMENTS=50&ALIGNMENT_VIEW=Pairwise&CLIENT=web&DATABASE=nr&DESCRIPTIONS=100&ENTREZ_QUERY=(none)&EXPECT=10&FILTER=L&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML&GENETIC_CODE=0&HITLIST_SIZE=100&NCBI_GI=on&PAGE=Translations&PROGRAM=tblastn&SERVICE=plain&SET_DEFAULTS.x=23&SET_DEFAULTS.y=10&SHOW_OVERVIEW=on&UNGAPPED_ALIGNMENT=no&END_OF_HTTPGET=Yes&SHOW_LINKOUT=yes"
+TARGET="blast_win">TBLASTN</A> to compare <tt>gtt1_drome (121694)
+</tt> to the <b>Plant</b> section of Genbank.  What is the highest
+scoring plant homologue?  (Use the options towards the bottom of the
+page to limit the search to plant <b>Viridiplantae</b> sequences or
+the <tt>Arabidopsis [ORGN]</tt> sequences.)
+
+<hr>
+
+<P><b>4.</b> Using the Genbank DNA sequence encoding <a
+HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Text&db=Nucleotide&uid=8033&dopt=FASTA"
+target="entrez_win">gtt1_drome (dmgst, gi|8033)</a>.  <p>(a) Search
+the Arabidopsis protein sequences with <A
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&LAYOUT=TwoWindows&AUTO_FORMAT=Semiauto&ALIGNMENTS=50&ALIGNMENT_VIEW=Pairwise&CLIENT=web&DATABASE=nr&DESCRIPTIONS=100&ENTREZ_QUERY=(none)&EXPECT=10&FILTER=L&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML&GENETIC_CODE=1&HITLIST_SIZE=100&NCBI_GI=on&PAGE=Translations&PROGRAM=blastx&SERVICE=plain&SET_DEFAULTS.x=37&SET_DEFAULTS.y=5&SHOW_OVERVIEW=on&UNGAPPED_ALIGNMENT=no&END_OF_HTTPGET=Yes&SHOW_LINKOUT=yes"
+target="blast_win">BLASTX</A> What are the E()-values for Arabidopsis GSTs?
+
+<p>(b) Copy the <a
+HREF="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Text&db=Nucleotide&uid=8033&dopt=FASTA""
+target="entrez_win"><tt>gi|8033</tt></a> cDNA sequence into the <A
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&LAYOUT=TwoWindows&AUTO_FORMAT=Semiauto&ALIGNMENTS=50&ALIGNMENT_VIEW=Pairwise&CLIENT=web&DATABASE=nr&DESCRIPTIONS=100&ENTREZ_QUERY=(none)&EXPECT=10&FILTER=L&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML&GENETIC_CODE=1&HITLIST_SIZE=100&NCBI_GI=on&PAGE=Translations&PROGRAM=blastx&SERVICE=plain&SET_DEFAULTS.x=37&SET_DEFAULTS.y=5&SHOW_OVERVIEW=on&UNGAPPED_ALIGNMENT=no&END_OF_HTTPGET=Yes&SHOW_LINKOUT=yes"
+target="blast_win">BLASTX</A> query sequence box.
+
+<p>(c) Put in 5 - 10 frame-shifts into <a
+HREF="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?cmd=&txt=&save=0&cfm=&query_key=1&db=nucleotide&view=fasta"
+target="entrez_win">dmgst gi|8033</a> (or use <A href="dmgst_mut.html"
+target=info_win>this sequence</A>).  Before submitting the search to
+BLAST, also copy it into a <a
+href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=tx&query=gtt1_drome&db=n"
+TARGET="fasta_win">FASTX</A> query window.  Try the <b>BLASTX</b> search against
+arabidopsis proteins again.
+
+<p> Try the same search with the frame-shifted <A
+href="dmgst_mut.html">dmgst gi|8033</A> with <A
+href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fx">FASTX</A>.
+To compare with BLASTX, use the BlastP62 scoring matrix.
+
+<p>
+(d) Use <A HREF="http://www.ncbi.nlm.nih.gov/BLAST/"
+target="blast_win">BLASTN</A> to compare <tt>dmgst
+(gi|8033)</tt> to the DNA sequences in Arabidopsis.  Is there a
+detectable Arabidopsis homologue?
+
+<p>(e) <em>optional</em> The default BLAST DNA parameters are designed
+for very close matches (98% identity).  Use the <A
+HREF="http://www.ncbi.nlm.nih.gov/blast/html/blastcgihelp.html#other_advanced">Other
+advanced options:</A> <tt>-r +5 -q -4 -G 12 -E 4</tt>, which targets the
+DNA search for 70% identity.
+
+<p>(f) <em>optional</em> Use <a
+href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=dmgst&db=n"
+TARGET="fasta_win">FASTA</A> to compare <tt>dmgst</tt> to the
+<b>Plant</b> section of Genbank.  Now what is
+the highest scoring Plant homologue?
+
+<p><i>(later)</i>Try the search
+with <em>ktup=3</em> rather than the default <em>ktup=6</em>.
+
+<hr>
+<P><b>5.</b> Use <A HREF="http://fasta.bioch.virginia.edu/fasta/prss.htm" target="fasta_win"><b>prss</b></A> to evaluate the statistical significance of a match.
+Note the difference between the p()-value and the E()-value. What would the
+conversion between p() and E() for a search of SwissProt?</P>
+<hr>
+<b>Significant similarities within sequences - domain duplication</b>
+<hr>
+<P><b>6.</b> (a) Use <A HREF="http://fasta.bioch.virginia.edu/fasta/lalign2.htm"
+target="fasta_win">lalign</A> to examine local
+similarities between <tt>calm1_human</tt> and itself.  Which of these
+alignments are statistically significant? Which are biologically
+significant?</P>
+
+<P>(b) Use <A HREF="http://fasta.bioch.virginia.edu/fasta/plalign2.htm" target="fasta_win">plalign</A> to plot the same alignment.
+<p>
+For a more complex domain alignments, try <tt>mwkw</tt>, or mouse RNA
+polymerase (<tt>rpb1_mouse</tt> resdiues 1500-) against itself.  Try
+the <tt>rpb1_mouse</tt> alignment using the MD20 scoring matrix as
+well as BLOSUM50.
+<!--
+<hr>
+<b>Do all sequences have paralogs?</b>
+<hr>
+<P><b>5.</b> Do a <a href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=ob_rat&db=p"
+TARGET="fasta_win"><b>FASTA</b></A> and/or <A
+HREF="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&PAGE=Protein&PROGRAM=blastp"
+target="blast_win"><b>blast2.0</b></a> search with
+<tt>leptin</tt> (<tt><A
+HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?db=p&form=6&Dopt=f&uid=ob_rat"
+TARGET="entrez_win">ob_rat / gi|1709436</A></tt>).
+<p>
+At some point, try the same search with <A
+HREF="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&PAGE=Proteins&PROGRAM=blastp&RUN_PSIBLAST=on"
+target="blast_win"><b>PSI-Blast</b></a>
+<hr>
+<b>Are all statistically significant matches homologous??</b>
+<hr>
+<P><b>6.</b> <A HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?db=p&form=6&Dopt=f&uid=skil_human"
+TARGET="entrez_win">skil_human (gi|134594)</A> is known to be homologous
+to <tt>ski_human</tt>. Is <tt>skil_human (gi|134594)</tt> homologous to members of other
+transcription factor families? Search Swiss-Prot with
+<a href="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=skil_human&db=p"TARGET="fasta_win">FASTA</A> or 
+<A HREF="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&PAGE=Proteins&DATABASE=swissprot"
+target="blast_win">BLAST</A> (use 134594).
+</P>
+<P>(a) Examine the portion of <tt>skil</tt> that aligns with a library
+sequence. (Use the <tt>: ----- :</tt> graph above each alignment.
+
+<P>(b) Note that different parts of <tt>skil_human</tt> align with different
+library sequences. Part of skil_human aligns with other proteins that
+contain a coiled-coil domain. Search with a subset of <tt>skil</tt> that does
+not contain the coiled-coil domain.</P> <p>(c) Use the <A
+href="http://fasta.bioch.virginia.edu/fasta/pseg.htm" target=pseg_win>pseg</A> program, with
+the "<tt>Domains</tt>" option, to identify the <b>low</b> and
+<b>normal</b> complexity regions in <tt>skil_human</tt>.  Search with
+the <b>normal</b> complexity (uppercase, right) domains.  <p>(d) Try a
+<A
+HREF="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&PAGE=Proteins&PROGRAM=blastp" blast_win>blast</a>
+search (or a <A
+HREF="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=skil_human&db=p"
+target="fasta_win">FASTA</a> search.against a
+<b><tt>seg</tt></b>'ed database.  Does the automatic removal of low
+complexity regions remove the hits to the coiled-coil domain?
+-->
+<hr>
+<p><b>7.</b>
+(a) Use the <A
+HREF="http://x00.achs.virginia.edu/fasta/cgi/search_frm.cgi?pgm=fa&query=grou_drome&db=p"
+target="fasta_win"><b>fasta</b></A> program to search the
+<b><tt>PIR1</tt></b> database with <A
+HREF="http://www.ncbi.nlm.nih.gov/htbin-post/Entrez/query?db=p&form=6&Dopt=f&uid=grou_drome"
+TARGET="entrez_win">grou_drome</A>.  Do the same search against the
+<b><tt>PIR1 (seg)</tt></b> database.  Compare the E()-value of the
+highest scoring unrelated sequence and the GTP-binding regulatory
+protein <b><tt>RGFFBH</tt></b>.
+<p>
+(b)
+Do the same search with <A HREF="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Web&PAGE=Proteins&PROGRAM=blastp" blast_win>blast</a>.  Compare the results (high scoring sequences and homolog scores) with and without using the <b><tt>seg</tt></b> option.
+<HR>
+<p>
+<b><A href="running_fasta.html" target="run_win">Running FASTA interactively from the command line</a></b>
+<HR>
+<!--
+<A HREF="mol_evol02_a.html">Problem discussion</A>
+<hr>
+-->
+<p>
+Where to get the FASTA package: 
+<A href="ftp://ftp.virginia.edu/pub/fasta/">ftp.virginia.edu/pub/fasta/<a>
+<p>
+The "normal" <A HREF="http://fasta.bioch.virginia.edu/">FASTA WWW site: </A>
+<p>
+Contact Bill Pearson: <A HREF="mailto:wrp@virginia.edu">wrp@virginia.edu</A>
+<p>
+<hr>
+<!--
+<p>
+<A HREF="http://newfish.mbl.edu/Course">Molecular Evolution Course Home Page</A>
+-->
+</BODY>
+</HTML>

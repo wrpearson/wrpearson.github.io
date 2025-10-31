@@ -1,0 +1,14 @@
+#Query: Name: sp|P20432|GTT1_DROME; Length: 209
+#Database: Name: "GP/9606.9558/RefSeq_protein"; Entries: 55972; Residues: 37140131
+#Parameters:   gapext: 1;   matrix: PAM70;   expect: 5;   allowgaps: yes;   gapopen: 10; 
+#Hits:	ACC     	E()	bits	f_id	a_len	descr
+XP_005261647	3e-07	53.4	0.434	76	PREDICTED: glutathione S-transferase theta-2 isoform X1 [Homo sapiens]
+XP_005261772	3e-07	53.4	0.434	76	PREDICTED: glutathione S-transferase theta-2B isoform X1 [Homo sapiens]
+NP_000845	3e-07	53.4	0.434	76	glutathione S-transferase theta-2 [Homo sapiens]
+NP_000844	4e-06	49.6	0.397	68	glutathione S-transferase theta-1 isoform a [Homo sapiens]
+XP_005261644	0.003	40.4	0.463	41	PREDICTED: glutathione S-transferase theta-1 isoform X1 [Homo sapiens]
+NP_001280742	0.013	37.9	0.368	57	glutathione S-transferase theta-1 isoform d [Homo sapiens]
+NP_004271	0.14	34.9	0.352	47	eukaryotic translation elongation factor 1 epsilon-1 isoform 1 [Homo sapiens]
+XP_006715135	0.62	32.8	0.283	97	PREDICTED: glutathione S-transferase A3 isoform X1 [Homo sapiens]
+NP_000838	0.66	32.8	0.283	97	glutathione S-transferase A3 [Homo sapiens]
+NP_001395	4.4	30.3	0.268	47	elongation factor 1-gamma [Homo sapiens]

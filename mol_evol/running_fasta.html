@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>
+Running the FASTA programs locally
+</title>
+<body>
+
+<h3>Running the FASTA programs locally</h3>
+<p>
+In addition to running the FASTA programs from the FASTA WWW site <a
+href="http://fasta.bioch.virginia.edu/">fasta.bioch.virginia.edu</a>,
+you can run the FASTA programs on your workstation from the command
+line.
+<p>
+For example,
+<pre>fasta34 -q gtt1_drome.aa a</pre>
+runs the exact same search with the drosophila glutathione transferase
+sequence that you ran in the first exercise.
+<p>
+The FASTA programs can be from the command line, and in interactive
+mode. A complete list of programs in shown in <A
+href="fasta34_programs.html">Table I</A>.
+
+ In interactive mode, the program prompts for a sequence file
+name and a library, e.g.
+<pre>
+$ fasta34
+# fasta34
+ FASTA searches a protein or DNA sequence data bank
+ version 3.4t21 May 14, 2003
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+ test sequence file name: gtt1_drome.aa
+
+ Choose sequence library:
+
+    A: NBRF PIR1 Annotated Protein Database (rel 56)
+    D: NRL_3d structure database
+    N: NCBI/Blast non-redundant proteins
+    Q: NCBI/Blast Swissprot
+    H: Human IPI proteins
+    M: Mouse IPI proteins
+
+ Enter library filename (e.g. prot.lib), letter (e.g. P)
+ or a % followed by a list of letters (e.g. %PN): Q
+ ktup? (1 to 2) [2]
+</pre>
+Once the query sequence, library, and ktup are entered, the search
+begins.
+<pre>
+Query library gtt1_drome.aa vs Q library
+searching /slib/swissprot.lseg library
+
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18)
+  (CLASS-THETA). - D\
+ROS - 209 aa
+ vs  NCBI/Blast Swissprot library
+..... ..... ..... ..... ..... ..... ..... ..... ..... .....
+..... ..... ..... ..... ..... ..... ..... ..... ..... .....
+..... . Done!
+
+(stuff deleted)
+ 112     8     7:*         :=*
+ 114     3     5:*         :=*
+ 116     1     4:*         :*
+ 118     4     3:*         :*
+>120   165     2:*         :*=======================================
+48074139 residues in 131318 sequences
+ statistics sampled from 60000 to 131153 sequences
+  Expectation_n fit: rho(ln(x))= 4.7225+/-0.000183; mu= 10.0275+/-
+ 0.010
+ mean_var=62.6712+/-12.830, 0's: 185 Z-trim: 253  B-trim: 5049 in 2/64
+ Lambda= 0.162009
+ Kolmogorov-Smirnov  statistic: 0.0154 (N=29) at  46
+
+FASTA (3.45 Mar 2002) function [optimized, BL50 matrix (15:-5)] ktup:
+2
+ join: 36, opt: 24, open/ext: -10/-2, width:  16
+ Scan time: 16.410
+Enter filename for results []: gtt1_drome.fa_results
+ How many scores would you like to see? [20]
+The best scores are:                                       opt bits  E(131318)
+gi|121694|sp|P20432|GTT1_DROME Glutathione S-tran  ( 209) 1399 335.0 8.2e-92
+gi|232191|sp|P30104|GTT1_DROER GLUTATHIONE S-TRAN  ( 200) 1313 314.9 8.9e-86
+gi|232195|sp|P30108|GTT1_DROYA GLUTATHIONE S-TRAN  ( 200) 1312 314.6 1.1e-85
+gi|232194|sp|P30107|GTT1_DROTE GLUTATHIONE S-TRAN  ( 200) 1309 313.9 1.7e-85
+gi|232192|sp|P30105|GTT1_DROMA GLUTATHIONE S-TRAN  ( 200) 1298 311.4 1e-84
+gi|232193|sp|P30106|GTT1_DROSE GLUTATHIONE S-TRAN  ( 200) 1292 310.0 2.7e-84
+gi|121696|sp|P28338|GTT1_MUSDO GLUTATHIONE S-TRAN  ( 208) 1230 295.5 6.4e-80
+ ...
+</pre>
+<p>
+In general, it is easier to do the search from the command line:
+<pre>
+fasta34 -q gtt1_drome.aa q > gtt1_drome.fasta_results
+</pre>
+In this case the <tt>"-q"</tt> indicates that the program should not
+prompt for any input.  After the options, the three command line
+arguments are
+<pre>
+fasta34 query_file library ktup
+</pre>
+<h3> FASTA command line options </h3>
+<p>
+Search parameters, output formats, and statistical methods can be
+changed with command line options.  With the FASTA programs (as with
+many Unix programs), command line options MUST preceed any command
+arguments;
+thus:
+<pre>
+fasta34 -opt1 -opt2 -opt3 query_file library ktup
+</pre>
+
+A complete set of command line options is shown in <a
+href="fasta34_options.html">Table II</A>.  The default parameter values
+(scoring matrices, gap penalties, etc) are listed in <A
+href="fasta34_defaults.html">Table III</A>.
+<p>
+The most commonly used program options are <tt>"-q"</tt> (quiet), and
+<tt>"-S"</tt> (ignore low complexity regions).  The scoring matrix is
+set with the <tt>"-s"</tt> option; gap open and gap extend with
+<tt>"-f/-g"</tt>.
+<p>
+In general, since FASTA searches may take several minutes (and
+sometimes much longer), you should always direct the output of the
+program to a file:
+<pre>
+tfastx34 -q gtt1_drome.aa L > gtt1_tfx_pl.results
+</pre>
+<hr>
+<p>
+Where to get the FASTA package: 
+<A href="ftp://ftp.virginia.edu/pub/fasta/">ftp.virginia.edu/pub/fasta/<a>
+<p>
+The "normal" <A HREF="http://fasta.bioch.virginia.edu/">FASTA WWW site: </A>
+<p>
+Contact Bill Pearson: <A HREF="mailto:wrp@virginia.edu">wrp@virginia.edu</A>
+<p>
+<hr>
+<p>
+<A HREF="http://newfish.mbl.edu/Course">Molecular Evolution Course Home Page</A>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script type="text/javascript">
+<!-- 
+    var default_show ='block';
+
+    function set_block() {
+       if (window.location.search) {
+          default_show ='block';
+       }
+       else default_show ='block';
+    }
+
+    function show_hide(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block') { e.style.display = 'none';}
+       else {
+          e.style.display = default_show;
+       }
+    }
+//-->
+<!-- Molecular Evolution - Similarity Searching Exercises -->
+<!-- Programming for Biology - Similarity Searching Exercises -->
+<!-- Computational Genomics 2012 - Similarity Searching Exercises -->
+</script>
+<title>
+UniProt Curators June, 2013
+</title>
+</head>
+<body bgcolor=white onload="set_block()">
+<h1><a href="http://tinyurl.com/fasta-uniprot">tinyurl.com/fasta-uniprot</a></h1>
+<h2>
+UniProt Curators June, 2013
+</h2>
+<p>
+<hr />
+<p>
+In the links
+below, <a href="http://fasta.bioch.virginia.edu/fasta_www2/">[pgm]</a>
+indicates a link with most of the information filled in; e.g. the
+program name, query, and
+library.
+<p>
+<hr>
+<b>Finding Homologous domains. What is there?  What is not?</b>
+<hr>
+<p>
+<p>
+<b>1.</b> Use the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=295842263&db=p&annot_seq2=4&hide_align=1"
+target="fasta_win">FASTA search page [pgm]</a> to compare Honey bee
+glutathione transferase D1 (NP_001171499/ H9KLY5_APIME ) to the PIR1 Annotated protein sequence database. Use the Database <b>Annotations:</b> set to show <select><option>InterPro domains/no features</option></select> to highlight the domain structure of the library sequences. (Be sure to press <input type='submit' value='Search Database' />, not <input type='submit' value='Compare Sequences'>.)
+<p>
+There are three parts to the domain display, the domain structure of
+the query (top) sequence, the domain structure of the library (bottom)
+sequence, and the domain alignment score in the middle (inside the
+alignment box).  The boundaries and color of the alignment domain
+coloring match the <tt>Region:</tt> sub-alignment scores.  
+<ol type="a">
+<li>
+Note that the alignment of Honey bee <tt>GSTD1</tt>
+and <tt>SSPA_ECO57</tt> includes portions of both the N-terminal and
+C-terminal domains, but neither domain is completely aligned. Why do
+you think the alignments do not include the complete domains?
+<p>
+<li>
+Is your explanation for the partial domain alignment consistent the
+the argument that domains are atomic? How might you test whether a
+complete domain is present?
+<p>
+<li>
+One of the candidate non-homologs is <tt>sp|Q9SI20|EF1D2_ARATH</tt>,
+with an E()-value of 0.11.
+<ol type='i'>
+<li>
+Does the domain structure of <tt>EF1D2_ARATH</tt> suggest that it could be a glutatione
+transferase homolog?
+<li>
+Use the 
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&query=Q9SI20&q_type=acc&db=Protein&lib=Q&pgm=fa&start=8&stop=60&n1=231&o_pgm=fa&annot_seq2=2&hide_align=1">
+General Research</a> to explore the domains contained
+in <tt>EF1D2_ARATH</tt> homologs found in SwissProt.
+<li>
+Does this second search support homology or non-homology?
+</ol>
+<p>
+<li>
+Compare the Honey bee <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=295842263&db=p&annot_seq1=4&annot_seq2=4&hide_align=1"
+target="fasta_win">GSTD1 [pgm]</a> sequence to the sequences with solved 3D structures (<b>Library:</b> <select><option>PDB structures (NCBI)</option></select> making certain that the <b>Annotations:</b> <select><option>CATH structural domains</option></select> is set.)
+<ol type='i'>
+<li> Are the structural domains in GSTD1 consistent with the InterPro domains?
+<li> Looking <tt>pdb|2DSAA</tt> or <tt>pdb|1EV4A</tt>, how many "Glutaredoxin" domains appear to be present?
+<li> Looking at <tt>pdb|3NIVA</tt>, what do you think the "correct" structural domain annotation should be?  How could you confirm you hypothesis?
+</ol>
+<p>
+<li>
+Take your favorite protein and compare it to <select><option>SwissProt (NCBI)</option></select> and/or the <select><option>PDB sequences (NCBI)</option></select>.
+<ol type='i'>
+<li>
+What domains (SwissProt--InterPro/Uniprot/Pfam; PDB -- CATH) domains does it contain?
+<li>Are domains "missed" (not labeled) in some homologs?
+<li>Do domains identify homologs that do not share siginificant similarity?
+</ol>
+</ol>
+<p>
+<b>2.</b> Searching with Calmodulin (CALM1_HUMAN), missing domains, extra domains?
+Compare human calmodulin <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=calm1_human&db=p&annot_seq1=4&annot_seq2=4&hide_align=1"
+target="fasta_win">CALM1_HUMAN [pgm]</a> to PIR1.
+<ol type='a'>
+<li>
+Scroll down to <tt>CALM_YEAST</tt>.  How many calmodulin domains does it have?
+<p>
+<li>
+Look at <tt>MYL6_PIG</tt> and </tt>MLRM_CHICK</tt>.  Note the difference in similarity score for the "missing" calmodulin domains. How might you confirm that both proteins have four domains?
+</ol>
+<hr>
+<b>Significant similarities within sequences - domain duplication and
+over-extension</b>
+<hr>
+<p>
+<b>3.</b> Exploring domains with local alignments --- Calmodulin
+<ol type='a'>
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lplalign&pgm=lpal&query=calm1_human&q_type=acc&query2=calm1_human&q2_type=acc"
+target="fasta_win">lalign/plalign [pgm]</a> to examine local similarities between calmodulin <tt>CALM1_HUMAN</tt> and itself.
+
+<li>Trace the top scoring (non-identical alignment) on the right along the plot of the alignment on  the left.
+<li>How many domains are aligned in the top-scoring alignment?
+<li>
+Do the same <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lplalign&pgm=lpal&query=calm1_human&q_type=acc&query2=calm1_human&q2_type=acc">alignment [pgm]</a>, but check the "annotate sequence" boxes to highlight the annotated EF-hand domains.
+<li>
+What happens to the domain alignment plot when you use the VT40 scoring matrix.  Do you see the same sets of alignments with VT40?  With shallow scoring matrices, are the domains fully aligned?
+<li>
+What parts of the domains align with VT20?
+</ol>
+<p>
+<b>4.</b> Exploring domains with local alignments --- Cortactin (SRC8_HUMAN)
+<ol type="a">
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lplalign&pgm=lpal&query=src8_human&q_type=acc&query2=src8_human&q2_type=acc"
+target="fasta_win">lalign/plalign&nbsp;[pgm]</a> to examine local
+similarities between <tt>SRC8_HUMAN</tt> and itself.  Check the options to "annotate sequence 1 domains" and "annotate sequence 2 domains".
+<ol type='i'>
+<li>
+Identify the third highest scoring alignment on both the alignment plot and the text alignment.
+<li>
+What is the percent identity of the alignment?
+<li>
+How many domains are aligned in this alignment?
+<li>
+Estimate the fraction identical in the first 20 residues of the alignment.  In the last 100 residues.
+<li>
+Do the ends of the alignment correspond to the domain boundaries?
+</ol>
+<p>
+<li>
+Based on the percent identities you saw in part (a), what would the appropriate scoring matrix be to accurately identify the cortactin domains?
+<ol type='i'>
+<li>
+Using a "correct" scoring matrix, the third highest scoring alignment on both the alignment plot and the text alignment.
+<li>
+What is the percent identity of the alignment (did you pick the right matrix?)
+<li>
+How many domains are aligned?
+<li>
+Do the ends of the alignment correspond to the domain boundaries?
+</ol>
+<p>
+<li>
+Try some other scoring matrices.  What happens to the relationship between domain ends and alignment ends when the scoring matrix is too deep (BP62)?  Too shallow (VT10)?
+</ol>
+</ol>
+<b>5.</b> Overextension in similarity searches -- Cortactin
+<p>
+<ol type='a'>
+<li>
+Use the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=src8_human&db=p&annot_seq2=4&annot_seq1=4&hide_align=1" target="fasta_win">FASTA [pgm]</a> to compare human cortactin (<tt>SRC8_HUMAN</tt>) to SwissProt.
+<p>
+<li>Human cortactin and its mouse and chicken orthologs, have 7 Hsl
+cortactin domains and an SH3 domain. Are these the only conserved
+domains?
+<p>
+<li>
+Examine the <tt>HCLS1_HUMAN</tt> alignment diagram and sub-region scores.  How many Cortactin domains does <tt>HCLS1_HUMAN</tt> have?  Look at the "open" alignment from SRC8_HUMAN:214-484 and HCLS1_HUMAN:213-427. The sub-region score for this alignment is negative.  Why do you think this region was aligned?  Do you think this entire region is "homologous"?
+<p>
+<li>In the <tt>SRC8_HUMAN : HCLS1_HUMAN,</tt> alignment, are all the homologous domains labeled?  How about in the Drebrin aligments?
+<p>
+<li>Find another example of "homologous over-extension".  How would you demonstrate that the aligned region did not contain a homologous domain?
+</ol>
+<hr />
+<b>Searching with Exons -- scoring matrices for short sequences</b>
+<hr>
+<b>6.</b> Use the
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;pgm=fx&amp;db=p&amp;annot_seq2=2&amp;hide_align=1&amp;query=>ref|NM_001178028.1| Apis mellifera glutathione S-transferase D1 (GstD1)%0AAGAGATCCAAAGAGGAGAGGTATGGTGGATCAAAATGCTGTATTTTGGCATAGGTACCCTTAACGAGAAC%0AGTGGTTAAATGTTACTACTCGCCAACATTTTTGAAGGCGCATTCCTTGGAACGAGGAGAGGTGTGGAGAG%0AATAGTGCGAGGTGTTGAACGCGTTTCTCAACGATCGCGAGTACGTTGCCGGCGACACGCTTACCGTTGCT%0AGATTTTGCCATCCACACGACCATTTGCGTCCCCGTTGAAATTAAAATGCCGATCGATTTTTATCAACTTC%0ACCGGAAGTCCTCCGTGCCGCGCAGTTGCGTTGACGGCTGCCGCTCTCGACATCGAGATGAACTTCAAACA%0AGGTCAATTTGATGAACGGGGAACACTTGAAGCCTGAATTTTTAAAGATAAACCCGCAACACACGATACCC%0AACGATTGATGACAATGGTTTCCGTCTGTGGGAAAGTCGAGCCATCATGACGTACTTGGCGGACCAATACG%0AGCAAAAATGACACTCTGTATCCGAAAGATCTGAAGAAACGTGCGATCGTCAATCAAAGATTGTACTTCGA%0ACATGTGCAGTTTATACAAATCGTTCATGGATTATTACTATCCAATCATTTTCATGAAAGCGGTTAAAGAT%0ACAAGCGAAATACGAAAACATCGGCACGGCGCTATCGTTTCTCGATAAATTTCTCGAAGGGGAAAACTATG%0ATGGCAGGGAAGAACATGACTCTTGCCGATTTAAGCATCGTATCCACTGTCTCCACTTTAGAGGCCCTGGA%0ACTACGATCTCAGCAAATATAAGAACGTTACGAGATGGTTCGCAAAGATAAAACCCGAGATACCGAAATAC%0AGAGGAGTACAACAACGCTGGGTTGAAAATGTTCAAAGAGTTGGTGAACGAAAAGTTGTCGAAAAAGTAAA%0AGCGAGATGAGATAAAATCCGTCCGTTTATTTTATTTTATAATTCCTTCGTTTTTTATTATTCGTATGAAA%0AAATTATTTTACGTATAAATAAATTGTTCTTTGTCCCTTTGGGGGAATTG%0A&q_type=fasta" target='fasta_win'>FASTX
+[pgm]</a> to compare the Honey bee GSTD1 mRNA (NM_001178028,
+gi|GI:295842262) to the PIR1 database.  How does the sensitivity of
+this translated DNA vs protein search compare with your earlier
+protein:protein search?
+<p>
+<ol type='a'>
+<li>
+Now do the same search, but use only exon 3 of the Honey bee GSTD1 gene, which corresponds to nt 456-597.  Use the Subset-range to select the exon 3 nucleotides from GSTD1 and run <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fx&db=p&annot_seq2=2&hide_align=1&ssr=456-597&query=>ref|NM_001178028.1| Apis mellifera glutathione S-transferase D1 (GstD1)%0AAGAGATCCAAAGAGGAGAGGTATGGTGGATCAAAATGCTGTATTTTGGCATAGGTACCCTTAACGAGAAC%0AGTGGTTAAATGTTACTACTCGCCAACATTTTTGAAGGCGCATTCCTTGGAACGAGGAGAGGTGTGGAGAG%0AATAGTGCGAGGTGTTGAACGCGTTTCTCAACGATCGCGAGTACGTTGCCGGCGACACGCTTACCGTTGCT%0AGATTTTGCCATCCACACGACCATTTGCGTCCCCGTTGAAATTAAAATGCCGATCGATTTTTATCAACTTC%0ACCGGAAGTCCTCCGTGCCGCGCAGTTGCGTTGACGGCTGCCGCTCTCGACATCGAGATGAACTTCAAACA%0AGGTCAATTTGATGAACGGGGAACACTTGAAGCCTGAATTTTTAAAGATAAACCCGCAACACACGATACCC%0AACGATTGATGACAATGGTTTCCGTCTGTGGGAAAGTCGAGCCATCATGACGTACTTGGCGGACCAATACG%0AGCAAAAATGACACTCTGTATCCGAAAGATCTGAAGAAACGTGCGATCGTCAATCAAAGATTGTACTTCGA%0ACATGTGCAGTTTATACAAATCGTTCATGGATTATTACTATCCAATCATTTTCATGAAAGCGGTTAAAGAT%0ACAAGCGAAATACGAAAACATCGGCACGGCGCTATCGTTTCTCGATAAATTTCTCGAAGGGGAAAACTATG%0ATGGCAGGGAAGAACATGACTCTTGCCGATTTAAGCATCGTATCCACTGTCTCCACTTTAGAGGCCCTGGA%0ACTACGATCTCAGCAAATATAAGAACGTTACGAGATGGTTCGCAAAGATAAAACCCGAGATACCGAAATAC%0AGAGGAGTACAACAACGCTGGGTTGAAAATGTTCAAAGAGTTGGTGAACGAAAAGTTGTCGAAAAAGTAAA%0AGCGAGATGAGATAAAATCCGTCCGTTTATTTTATTTTATAATTCCTTCGTTTTTTATTATTCGTATGAAA%0AAATTATTTTACGTATAAATAAATTGTTCTTTGTCCCTTTGGGGGAATTG%0A&q_type=fasta" target='fasta_win'>FASTX [pgm]</a> again.
+<ol type='i'>
+<li>What is the best E()-value with BLOSUM50?  What is the percent identity for this alignment?
+<li>How long is the longest possible translated amino-acid sequence? How long is the protein alignment?
+<li>What would be a more appropriate scoring matrix based on the percent identity?
+<li>What is the E()-value with that scoring matrix?
+<li>Does the domain structure correspond to the exon structure?
+</ol>
+<p>
+<li>
+Repeat the same translated FASTX search, using exon 2 of the Honey bee GSTD1 gene, which corresponds to nt 397-455 <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fx&&db=p&annot_seq2=2&hide_align=1&ssr=397-457&query=>ref|NM_001178028.1| Apis mellifera glutathione S-transferase D1 (GstD1)%0AAGAGATCCAAAGAGGAGAGGTATGGTGGATCAAAATGCTGTATTTTGGCATAGGTACCCTTAACGAGAAC%0AGTGGTTAAATGTTACTACTCGCCAACATTTTTGAAGGCGCATTCCTTGGAACGAGGAGAGGTGTGGAGAG%0AATAGTGCGAGGTGTTGAACGCGTTTCTCAACGATCGCGAGTACGTTGCCGGCGACACGCTTACCGTTGCT%0AGATTTTGCCATCCACACGACCATTTGCGTCCCCGTTGAAATTAAAATGCCGATCGATTTTTATCAACTTC%0ACCGGAAGTCCTCCGTGCCGCGCAGTTGCGTTGACGGCTGCCGCTCTCGACATCGAGATGAACTTCAAACA%0AGGTCAATTTGATGAACGGGGAACACTTGAAGCCTGAATTTTTAAAGATAAACCCGCAACACACGATACCC%0AACGATTGATGACAATGGTTTCCGTCTGTGGGAAAGTCGAGCCATCATGACGTACTTGGCGGACCAATACG%0AGCAAAAATGACACTCTGTATCCGAAAGATCTGAAGAAACGTGCGATCGTCAATCAAAGATTGTACTTCGA%0ACATGTGCAGTTTATACAAATCGTTCATGGATTATTACTATCCAATCATTTTCATGAAAGCGGTTAAAGAT%0ACAAGCGAAATACGAAAACATCGGCACGGCGCTATCGTTTCTCGATAAATTTCTCGAAGGGGAAAACTATG%0ATGGCAGGGAAGAACATGACTCTTGCCGATTTAAGCATCGTATCCACTGTCTCCACTTTAGAGGCCCTGGA%0ACTACGATCTCAGCAAATATAAGAACGTTACGAGATGGTTCGCAAAGATAAAACCCGAGATACCGAAATAC%0AGAGGAGTACAACAACGCTGGGTTGAAAATGTTCAAAGAGTTGGTGAACGAAAAGTTGTCGAAAAAGTAAA%0AGCGAGATGAGATAAAATCCGTCCGTTTATTTTATTTTATAATTCCTTCGTTTTTTATTATTCGTATGAAA%0AAATTATTTTACGTATAAATAAATTGTTCTTTGTCCCTTTGGGGGAATTG%0A&q_type=fasta" target='fasta_win'>FASTX [pgm]</a>.
+<ol type='i'>
+<li>What is the best E()-value with BLOSUM50?  What is the percent identity for this alignment?
+<li>How long is the longest possible translated amino-acid sequence? How long is the protein alignment?
+<li>What would be a more appropriate scoring matrix based on the percent identity?
+<li>What is the E()-value with that scoring matrix?
+</ol>
+</ol>
+<hr>
+The "normal" <a href="http://fasta.bioch.virginia.edu/">FASTA WWW site:</a>
+<p>
+Contact Bill Pearson: <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</a>
+<p>
+<hr>
+<!--
+<p>
+<a href=".">Course Home Page</a>
+-->
+</body>
+</html>

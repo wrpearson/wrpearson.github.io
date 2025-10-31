@@ -1,0 +1,393 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+<!--
+    function show_hide(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+//-->
+</script>
+<title>
+Bioch5080 - Similarity Searching Exercises
+</title>
+</head>
+<body bgcolor=white>
+<h2>Bioch5080 - Similarity Searching Exercises</h2>
+<h2><a href="http://fasta.bioch.virginia.edu/bioch508/bioch508_ex1.html">fasta.bioch.virginia.edu/bioch508/bioch508_ex1.html</a></h2>
+<p>
+<hr />
+<p>
+These exercises use programs on the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml"
+target=fasta_win">FASTA WWW Search page</a> and the 
+Bioch508 <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast"
+target=blast_win>BLAST WWW Search page [pgm]</a>.
+<p>
+In the links
+below, <a href="http://fasta.bioch.virginia.edu/fasta_www2/">[pgm]</a>
+indicates a link with most of the information filled in; e.g. the
+program name, query, and
+library.  <a href="http://ncbi.nlm.nih.gov/">[seq]</a> links go to the
+NCBI, for more information about the sequence.
+<p>
+<hr>
+<b> Identifying homologs and non-homologs; effects of scoring matrices
+and algorithms</b>
+<hr>
+<p>
+<p>
+<b>1.</b> Use the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=fa&query=121694&db=p"
+target=fasta_win">FASTA search page [pgm]</a> to compare Drosophila
+glutathione transferase <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&list_uids=121694&dopt=fasta" TARGET=entrez_win>
+GSTT1_DROME [seq]</a> (gi|121694) to the PIR1
+Annotated protein sequence database.  Be sure to press <input type='submit' value='Search Database' />, not <input type='submit' value='Compare Sequences'>.
+
+<ol type="a">
+<li>Take a look at the output.
+<ol type='i'>
+<li>
+How long is the query sequence? 
+<li> How many sequences are in the PIR1 database?
+<li> What scoring matrix was used?
+<li> What were the gap penalties?
+<li> What are each of the numbers after the description of the library sequence?  Which one is best for inferring homology?
+<li> Looking at an alignment, where are the boundaries of the alignment (the best local region)?
+</ol>
+<!--
+<p><a id="link1a" href="#" onClick="show_hide('answer1a'); return false">[show answer]</a></p>
+<div id="answer1a" style='display:none'>Answer: (i) 209 aa; (ii) 13,351; (iii) BLOSUM50; (iv) gap open= -10; extend -2; one residue gap: -12; two residue: -14; (v) library sequence length; (band) optimized (opt) score (raw score), bit score, E()-value, percent identity, fraction identical, alignment length;</div>
+-->
+<p>
+<li>
+What is the highest scoring non-homolog? (The non-homolog with the highest alignment score, or the lowest E()-value.) How would you confirm
+that your candidate non-homolog was truly unrelated?
+<p>
+<li>
+Note that this drosophila glutathione transferase shares significant
+similarity with both sequences from bacteria (SSPA_ECO57, stringent
+starvation protein) and mammals.  How might you test whether the
+stringent starvation protein is homologous to glutathione
+transferases? (<i>Hint - compare your candidate non-homolog with <b>SwissProt</b> for a more reliable test.</i>)
+<p>
+<li>Compare the expectation (E()) value for the distant
+relationship between <tt><b>GSTT1_DROME</b></tt> and
+<tt><b>GSTP1_HUMAN</b></tt> (class-mu).  How would you demonstrate that
+<tt><b>GSTT1_DROME</B></tt> is homologous to <tt><b>GSTP1_HUMAN</b></tt>?
+<!--
+<p><a id="link1d" href="#" onClick="show_hide('answer1d'); return false">[show answer]</a></p>
+<p id='answer1d' style='display:none'>Answer: Try searching PIR1 with an intermediate (but significant) mammalian sequence.</p>
+<p>
+-->
+<li> Examine how the expectation value changes with different scoring
+matrices (BLOSUM62, BlastP62, PAM250) and different gap
+penalties. (The default scoring matrix for the FASTA programs is
+BLOSUM50, with gap penalties of -10 to open a gap and -2 for each
+residue in the gap - e.g. -12 for a one residue gap).
+<ol type='i'>
+<li>
+What happens to the E()-value for the 100% identical sequence with the different matrices and different gap penalties?
+<li>
+What happens to the E()-value for distant homologs, like <tt>GSTA1_RAT</tt> with the different matrices and different gap penalties?
+<li>
+What happens to the E()-value for the highest scoring unrelated
+sequence with the different matrices?
+<!--
+<li>
+Look at the distribution of scores and the
+E()-value of the highest scoring unrelated sequence when the
+gap-open/gap-ext penalties are small (-7/-1).
+-->
+</ol>
+<!--
+<p><a href='#' onClick="show_hide('answer1e'); return false">[show answer]</a></p>
+<table id="answer1e" style='display:none'>
+<tr>
+<th>Best scores</th>
+<th colspan=2>BL50 -10/-2</th><th colspan=2>BL50 -12/-2</th><th colspan=2>BL62 -11/-1</th><th colspan=2>PAM250 -10/-2</th>
+</tr>
+<tr>
+<td>GSTT1_DROME</td><td>1399</td><td>1.1e-98</td><td>1399</td><td>1.5e-109</td><td>1108</td><td>3.4e-117</td><td>1087</td><td>1.2e-75</td>
+</tr>
+<tr>
+<td>GSTF3_MAIZE</td><td>173</td><td>3.5e-06</td><td>163</td><td>1.8e-07</td><td>119</td><td>3e-07</td><td>152</td><td>1.1e-05</td></tr>
+<tr>
+<td>GSTF1_MAIZE</td><td>151</td><td>7.1e-05</td><td>140</td><td>1.4e-05</td><td>96</td><td>0.0001</td><td>118</td><td>0.0035</td>
+</tr>
+<tr>
+<td>SSPA_ECO57</td><td>140</td><td>9.7e-05</td><td>134</td><td>4.2e-05</td><td>99</td><td>4.8e-05</td><td>140</td><td>7.8e-05</td>
+</tr>
+<tr>
+<td>GSTA1_RAT</td><td>139</td><td>0.00012</td><td>120</td><td>0.00064</td><td>78</td><td>0.011</td><td>118</td><td>0.037</td>
+</tr>
+<tr>
+<td>GSTA4_RAT</td><td>97</td><td>0.16</td><td>84</td><td>0.6</td><td>55</td><td>3.9</td><td>86</td><td>0.8</td>
+</tr>
+<tr>
+<td>GSTM2_RAT</td><td>93</td><td>0.32</td><td>85</td><td>0.48</td><td>61</td><td>0.83</td><td>75</td><td>5.9</td>
+</tr>
+<tr>
+<td>GSTP1_HUMAN</td><td>82</td><td>2.0</td><td>74</td><td>3.7</td><td>--</td><td>--</td><td>--</td><td>--</td>
+</tr>
+<tr>
+<td><font color='red'>Highest unrelated</font></td>
+<td>79</td><td>3.5</td><td>76</td><td>2.6</td><td>58</td><td>3</td><td>93</td><td>1.7</td>
+</tr>
+</table>
+-->
+<p>
+<li> Try the search with <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&pgm=sw&query=gstt1_drome&db=p"
+target=fasta_win> <b>ssearch</b> [pgm]</a> (Smith-Waterman).  Again, look
+at the E()-values for distant homologs and the highest scoring
+unrelated sequence.
+<!--
+<p>
+<li> (<i>optional)</i> Try the search with <em>ktup=1</em> (<a
+href="ktup_info.html" target=info_win>What is ktup?</a>).
+<b>FASTA</b> uses the <em>ktup</em> parameter to adjust the
+sensitivity and speed of the search.  With <em>ktup=2</em>,
+<b>FASTA</b> looks for "pairs" of matched identical residues to find
+regions of similarity.  <em>ktup=1</em> looks for singly-aligned
+residues, and thus takes longer.
+-->
+</ol>
+
+<hr>
+<p>
+<b>2.</b> Do the same search (<tt>121694</tt>) using the Course
+<a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast"
+target="blast_win"> BLAST [pgm]</a> WWW page.
+<ol type='a'>
+<li>Take a look at the output.
+<ol type="i">
+<li>
+How long is the query sequence? 
+<li> How many sequences are in the PIR1 database?
+<li> What scoring matrix was used?
+<li> What were the gap penalties?
+<li> What are the numbers after the description of the library sequence?  Which one is best for inferring homology?
+<li> Looking at an alignment, where are the boundaries of the alignment (the best local region)?
+</ol>
+<p>
+<li>
+What is the highest scoring non-homolog?
+<p>
+<li> How do the <b>blastp</b> E()-values compare with the
+<b>FASTA</b> (<tt>blosum62</tt>) E()-values for the distantly related
+mammalian and plant sequences?
+</ol>
+<hr>
+<b>Comparison of Protein:Protein, translated DNA:protein to DNA:DNA searches - more sensitive DNA searches</b>
+<hr>
+<b>3.</b> In the next three exercises, we will try to find
+<b>gstt1_drome</b> homologs in the <i>Arabidopsis</i> genome, using
+(a) protein:protein (BLASTP), (b) DNA:protein (BLASTX), (c)
+protein:DNA (TBLASTN), and (d,e) DNA:DNA (BLASTN) searches.
+<p>
+<!--
+<i>Use the</i> <b>Organism</b> <i>option to limit the search to</i> <tt>Oarbidopsis thaliana (taxid:3702)</tt>
+-->
+<i>In each of the exercises below, the <b>BLASTP</b>, <b>BLASTX</b> etc. links are pre-set to search Arabidopsis sequences.</i>
+
+<ol type='a'>
+<li> <b>BLASTP</b>
+Compare the <a
+href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&list_uids=121694&dopt=fasta"
+TARGET=entrez_win> GSTT1_DROME [seq]</a> (gi|121694) protein sequence to Arabidopsis proteins using <a
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?PAGE=Proteins&PROGRAM=blastp&BLAST_PROGRAMS=blastp&PAGETYPE=BlastSearch&DATABASE=refseq_protein&DESCRIPTIONS=100&EQ_TEXT=arabidopsis[orgn]&QUERY=121694"
+target="blast_win">BLASTP [pgm]</a>.
+<p>
+What are the E()-values for Arabidopsis <b>ATGSTT1</b>, <b>ATGSTF10</b>, <b>ATGSTZ1</b>and <b>ATGSTU4</b>
+
+<li>
+<b>BLASTX</b>
+Try the same search using the <b>GSTT1_DROME</b> cDNA <a
+href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nucleotide&list_uids=8033&dopt=fasta"
+TARGET=entrez_win> DMGST [seq]</a> (gi|8033) against <i>Arabidopsis</i> proteins using
+<a
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?PAGE=Translations&PROGRAM=blastx&BLAST_PROGRAMS=blastx&PAGETYPE=BlastSearch&DATABASE=refseq_protein&DESCRIPTIONS=100&EQ_TEXT=arabidopsis[orgn]&QUERY=8033"
+target="blast_win">
+BLASTX [pgm]</a>.
+<p>
+What are the E()-values for Arabidopsis <b>ATGSTT1</b>, <b>ATGSTF10</b>, <b>ATGSTZ1</b>and <b>ATGSTU4</b>
+
+<li>
+<b>TBLASTN</b>.  Use  
+<a
+href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&list_uids=121694&dopt=fasta"
+TARGET=entrez_win> GSTT1_DROME [seq]</a> (gi|121694) against translated <i>Arabidopsis</i> DNA using
+<a
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?PAGE=Translations&PROGRAM=tblastn&BLAST_PROGRAMS=tblastn&PAGETYPE=BlastSearch&DATABASE=refseq_rna&DESCRIPTIONS=100&EQ_TEXT=arabidopsis[orgn]&QUERY=121694"
+target="blast_win">TBLASTN [pgm]</a>.
+<p>
+What are the E()-values for Arabidopsis <b>ATGSTT1</b>, <b>ATGSTF10</b>, <b>ATGSTZ1</b>and <b>ATGSTU4</b>
+
+<li> Finally, try the DNA:DNA comparison. 
+Use 
+<a
+href="http://www.ncbi.nlm.nih.gov/blast/Blast.cgi?PAGE=Nucleotides&PROGRAM=blastn&BLAST_PROGRAMS=blastn&PAGETYPE=BlastSearch&DATABASE=refseq_rna&DESCRIPTIONS=100&EQ_TEXT=arabidopsis[orgn]&QUERY=8033"
+target="blast_win">BLASTN [pgm]</a> to compare <tt>dmgst
+(gi|8033)</tt> to the <tt>Reference mRNA sequences (refseq_rna)</tt> sequences in Arabidopsis.
+
+<p>Are there detectable Arabidopsis homologues?
+</ol>
+<hr />
+<b>Searching from the command line -- BLAST and FASTA</b>
+<hr />
+<p>
+We have installed current versions of FASTA and BLAST on
+<tt>franklin.achs.virginia.edu</tt>.  To use the programs (as well as
+the BED tools and other bioinformatics tools), you should need to modify the <tt>~/.variables.ksh</tt> file in your home directory on <tt>franklin.achs</tt>. Simply type:<br />
+<tt>
+<pre>
+cat /data/slib/info/init_seqprg.sh >> .variables.ksh
+</pre>
+</tt>
+Once you have modified your <tt>.variables.ksh</tt> file, you should reload it:
+<pre>
+. (dot) .variables.ksh
+</pre>
+and then you should be able to find the similarity searching programs, e.g. type:
+<pre>
+blastp -h
+</pre>
+to see the <tt>blastp</tt> options.
+<p>
+Once you have the <tt>/seqprg/bin</tt> directory in your path, you can do <tt>blast</tt> or <tt>ssearch</tt> (or <tt>fasta</tt> searches from the command line.  Like the FASTA Web pages, we need to know three things:
+<ol type='a'>
+<li>The name of the program: <tt>ls&nbsp;/seqprg/bin</tt> lists the programs available. You will be using the following programs:<br />
+<tt>/seqprg/bin/blastp, blastn, tblastn, blastx</tt><br />
+<tt>/seqprg/bin/fasta, fastx, tfastx, ssearch,</tt> and <tt>lalign</tt>
+<p>
+<li>
+The location of the query sequence file.  I have put some protein and DNA sequences in <tt>/data/slib2/bioc5080/data</tt>.  You can use these directly, or copy them to your own directory.
+<li>
+<p>
+The location of the sequence databases to be searched.  For these exercises, you will be using the FASTA protein databases at <tt>/data/slib/fa_dbs/</tt> and the BLAST protein databases at <tt>/data/slib/bl_dbs/*.psq</tt> (When you refer to the database names with <tt>blast</tt>, leave out the <tt>.psq</tt>.
+<p>
+For seaches against DNA databases with the <tt>FASTA</tt> programs, you can simply use 'm' for mammal, 'p' for primate, or 'b' for verteBrate.  When using <tt>blastn</tt> or <tt>tblastn</tt>, you will refer to <tt>/data/slib/gb_asn/gbmam</tt>, <tt>gbpri</tt>, <tt>gbrod</tt>. To see all the possible names, type <tt>ls&nbsp;/data/slib/gb_asn/*.nal</tt>.
+</ol>
+<p>
+<hr />
+<b>5.</b> Simple command line searches
+<ol type='a'>
+<li>Reproduce the first search you did with <tt>fasta</tt> from the command line.  Type:<br />
+<pre>
+fasta36 -q -H -S /data/slib/bioc5080/data/gstt1_drome.aa /data/slib/fa_dbs/pir1 > gstt1.fasta_pir1_results
+</pre>
+(In this command line, <tt>-q</tt> makes the search "quiet", it does not prompt for the query or library file; <tt>-H</tt> turns off the histogram, and <tt>-S</tt> causes low complexity regions to be ignored in the initial scan.)
+<p>
+<li>
+ou could also search SwissProt by typing:
+<pre>
+fasta36 -q -H -S /data/slib/bioc5080/data/gstt1_drome.aa /data/slib/fa_dbs/pir1 > gstt1.fasta_sp_results
+</pre>
+Take a look at your <tt>fasta</tt> results.
+<p>
+<li>
+Now try the same search with <tt>blastp</tt>.  You can quickly find the <tt>blastp</tt> command options by typing: <tt>blastp</tt>.
+<pre>
+blastp -query /data/slib/bioc5080/data/gstt1_drome.aa -db /data/slib/fa_dbs/pir1 > gstt1.blastp_pir1_results
+</pre>
+Take a look at your <tt>blast</tt> results.
+<p>
+<li>
+<i>DNA and translated DNA searches.</i> Use the <tt>blastn</tt> program to compare the mouse GSTM1 sequence </tt>/data/slib/bioc5080/data/mgstm1.seq</tt> to the mammalian division of genbank (<tt>/data/slib/gb_asn/gbmam.nal</tt>.
+<p>
+Then do the same search with a translated comparison (use <tt>tblastn</tt> to compare  </tt>/data/slib/bioc5080/data/mgstm1.aa</tt> to the mammalian division of genbank (<tt>/data/slib/gb_asn/gbmam.nal</tt>.  How many more sequences do you find?
+<p>
+<li>
+Both <tt>blast</tt> and <tt>fasta</tt> have some output options that make it much easier to parse alignment results, looking for alignment boundaries, percent identity, E()-values, etc.  Next week, we can use BioPerl to parse <tt>blast</tt> and <tt>fasta</tt> output, but you can produce a very simple form of the output using the <tt>fasta -q -m 8C</tt> option, or the <tt>blast -outfmt=7</tt> option.
+<pp>
+For <tt>fasta</tt>, you can use the <tt>fasta36 -q -H -m 8C</tt> option to get tab-delimited alignment summaries that look like <tt>blast -outfmt=7</tt> output.  Do the searches with <tt>gstt1_drome.aa</tt> vs <tt>swissprot</tt> saving the results in tab delimited format.
+</ol>
+<hr />
+<p>
+To get more information on <tt>fasta36</tt> command line options, type:
+<pre>
+man /seqprg/man/man1/fasta36.1
+</pre>
+For more information on <tt>blast</tt>, look at <tt>/seqprg/doc/blast_user_manual.pdf</tt>.
+<p>
+<hr />
+<b>HOMEWORK</b> for Friday, Feb. 24<br />
+<hr />
+(1) Take a protein sequence of your choice, and compare it to the
+<tt>swissprot</tt> database using <tt>blastp</tt>, <tt>fasta</tt>, and
+<tt>ssearch</tt>. Prepare a table for all of the significant hits (E()
+< 0.001) comparing the E()-values and alignment lengths found with the
+three different programs. Use the <tt>-s BP62</tt> for <tt>fasta</tt>
+and <tt>ssearch</tt> to make sure the same scoring matrix is used.
+<p>
+(2) (a) Take a protein sequence of your choice, and compare it to the
+proteins in <tt>swissprot</tt>
+(<tt>/data/slib/fa_gbs/swissprot.lseg</tt> for <tt>fasta</tt>,
+<tt>/data/slib/bl_dbs/pir1</tt> for <tt>blast</tt>.
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;(b) Write a program that automatically
+searches for the highest scoring non-homolog by extracting candidate
+non-homologs from the results file -- you may want to use -outfmt=7
+(blast) or -m 8 (fasta) -- and then re-searching the swissprot
+database with the library sequence as query to see whether the
+candidate non-homolog shares significant similarity with proteins that
+share significant similarity with the original query.
+<hr>
+<b>Significant similarities within sequences - domain duplication</b>
+<hr>
+<p><b>6.</b> Exploring domains with local alignments --- Calmodulin
+<ol type='a'>
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&pgm=lal&query=calm1_human&q_type=acc&query2=calm1_human&q2_type=acc"
+target="fasta_win">lalign [pgm]</a> to examine local
+similarities between calmodulin <tt>CALM1_HUMAN</tt> and itself.
+
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&pgm=pal&query=calm1_human&q_type=acc&query2=calm1_human&q2_type=acc" target="fasta_win">plalign [pgm]</a> to plot the same alignment.  How many repeats are present in this sequence.
+<li>
+What happens to the domain alignment plot when you use a shallower scoring matrix (try BP62, MD20).
+</ol>
+<p><b>7.</b> Exploring domains with local alignments --- Cortactin (SRC8_HUMAN)
+<ol type="a">
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&pgm=lal&query=src8_human&q_type=acc&query2=src8_human&q2_type=acc"
+target="fasta_win">lalign [pgm]</a> to examine local
+similarities between <tt>SRC8_HUMAN</tt> and itself.
+Note the average percent identity for the some of the most significant alignments.
+<p>
+<li> Use <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&pgm=pal&query=src8_human&q_type=acc&query2=src8_human&q2_type=acc"
+target="fasta_win">plalign [pgm]</a> to plot the same alignment.  How many
+repeats are shown in this alignment?  How long do they appear to be?
+<p>
+<li>
+Based on the percent identities you saw in part (a), what would the appropriate scoring matrix be to accurately identify the cortactin domains?
+<p>
+<li>What happens to the domain alignment plot when you use a shallower
+scoring matrix (try BP62, MD40).  How do the BP62, PAM120, and MD40
+alignments differ?  Why are they different?  Which matrix appears to
+best identify all the repeats found in the PFAM diagram?
+<p>
+<li>
+You can look at the PFAM annotation of this protein at PFAM: <a href="http://pfam.janelia.org/protein?acc=Q14247">SRC8_HUMAN [pfam]</a> (Cortactin).  How many repeats are shown in this diagram?  How long are they?
+</ol>
+
+<hr>
+<p>
+Where to get the FASTA package: 
+<a href="http://github.com/wrpearson/fasta36">github.com/wrpearson/fasta36<a>
+<p>
+The "normal" <a href="http://fasta.bioch.virginia.edu/">FASTA WWW site:</a>
+<p>
+Contact Bill Pearson: <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</a>
+<p>
+<hr>
+<p>
+<a href=".">Course Home Page</a>
+</body>
+</html>

@@ -1,0 +1,8 @@
+#Query: Name: sp|P20432|GTT1_DROME; Length: 209
+#Database: Name: "GP/9606.9558/RefSeq_protein"; Entries: 55972; Residues: 37140131
+#Parameters:   gapext: 1;   matrix: PAM30;   expect: 5;   allowgaps: yes;   gapopen: 9; 
+#Hits:	ACC     	E()	bits	f_id	a_len	descr
+XP_005261647	0.75	32.9	0.526	37	PREDICTED: glutathione S-transferase theta-2 isoform X1 [Homo sapiens]
+XP_005261772	0.75	32.9	0.526	37	PREDICTED: glutathione S-transferase theta-2B isoform X1 [Homo sapiens]
+NP_000845	0.76	32.9	0.526	37	glutathione S-transferase theta-2 [Homo sapiens]
+NP_000844	4.6	30.3	0.341	68	glutathione S-transferase theta-1 isoform a [Homo sapiens]

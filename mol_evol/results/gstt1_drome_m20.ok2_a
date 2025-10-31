@@ -1,0 +1,35 @@
+# fasta35_t -H -s M20 -d 0 -q -S gstt1_drome.aa a
+FASTA searches a protein or DNA sequence data bank
+ version 35.04 Jul. 7, 2008
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+Query: gstt1_drome.aa
+  1>>>GTT1_DROME GLUTATHIONE S-TRANSFERASE 1-1 (EC 2.5.1.18) (CLASS-THET - 209 aa
+Library: PIR1 Annotated (rel. 66)  5201128 residues in 13351 sequences
+
+5201128 residues in 13351 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 4.0907+/-0.000454; mu= 20.3851+/- 0.026
+ mean_var=42.6201+/- 7.898, 0's: 6 Z-trim: 32  B-trim: 28 in 1/61
+ Lambda= 0.196457
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: MD20 matrix (18:-29)xS ktup: 2
+ join: 36, opt: 24, open/ext: -22/-4, width:  16
+ Scan time:  0.590
+
+The best scores are:                                      opt bits E(13351)
+gi|121694|sp|P20432|GSTT1_DROME Glutathione S-tran ( 210) 2473 705.2  3e-204
+gi|81174731|sp|P0ACA5|SSPA_ECO57 Stringent starvat ( 213)  117 37.4  0.0032
+gi|1170090|sp|P04907|GSTF3_MAIZE Glutathione S-tra ( 222)   80 27.0     4.7
+gi|138222|sp|P22596|VGLC_EHV4 Glycoprotein C precu ( 486)   80 27.2     8.9
+gi|7404357|sp|P07805|DCOR_TRYBB Ornithine decarbox ( 423)   79 26.9     9.6
+
+
+
+209 residues in 1 query   sequences
+5201128 residues in 13351 library sequences
+ Tcomplib [35.04] (8 proc)
+ start: Tue Jul 29 16:09:51 2008 done: Tue Jul 29 16:09:51 2008
+ Total Scan time:  0.590 Total Display time:  0.010
+
+Function used was FASTA [version 35.04 Jul. 7, 2008]

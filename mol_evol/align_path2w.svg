@@ -1,0 +1,362 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onload="startup(evt)" onmouseup="next_node(evt)" >
+
+<rect width='600' height='750'
+  style="fill:rgb(10,10,10); stroke-width:1; stroke:rgb(0,0,0)" />
+
+
+<script>
+<![CDATA[
+  var SVGDoc = null;
+  var SVGRoot = null;
+  var count = 0;
+
+  var cur_row = 0;
+  var cur_col = 0;
+  var seq0 = 'ACGT';
+  var seq1 = 'ACGGT'; 
+
+  var max_c = seq0.length;
+  var max_r = seq1.length;
+  
+// declare the 2-D path score array //
+  path_array = new Array(max_r+1);
+  for (r = 0; r < max_r+1; r++) {
+    path_array[r] = new Array(max_c+1);
+  }
+
+// initialize the scores
+  var d_score = 0;
+  var gap_p = -2;
+  path_array[0][0], 
+  path_array[0][0] = 0;
+  for (c = 1; c <= max_c; c++) {
+    path_array[0][c] = path_array[0][c-1] + gap_p;
+  }
+  for (r = 1; r <= max_r; r++ ) {
+    path_array[r][0] = path_array[r-1][0] + gap_p;
+    for (c = 1; c <= max_c; c++ ) {
+      d_score = -1;
+      if (seq0.charAt(c-1) == seq1.charAt(r-1)) { d_score = 1;}
+      path_array[r][c] = Math.max(path_array[r-1][c-1]+d_score,
+				  path_array[r-1][c]+gap_p,
+				  path_array[r][c-1]+gap_p);
+    }
+  }
+
+ var svgns = 'http://www.w3.org/2000/svg';
+ var xlinkns = 'http://www.w3.org/1999/xlink';
+
+function startup(evt){
+  O=evt.target
+  SVGDoc = O.ownerDocument;
+  SVGRoot = SVGDoc.documentElement;
+  first_stuff(evt);
+}
+
+function make_circle(evt, row_i, col_i, label) {
+
+  var N = SVGDoc.createElementNS(svgns,"circle");
+
+  //  alert("N["+ index + "]: " + xPOS[index]);
+
+  N.setAttributeNS(svgns,"id",label);
+
+  N.setAttribute("cx", 100+col_i*100);
+  N.setAttribute("cy", 100+row_i*100); 
+  N.setAttribute("r", 25); 
+
+  N.setAttribute("opacity",1.0);
+  N.setAttribute("stroke","#FFFFFF");
+  N.setAttribute("stroke-width",2);
+  N.setAttribute("fill", "none");
+  N.setAttribute("visibility","visible");
+
+  SVGRoot.appendChild(N);
+//  alert("onclick "+ label+N.getAttribute("onclick"));
+}
+
+function label_top(evt, row_i, col_i, label) {
+  var N = SVGDoc.createElementNS(svgns,'text');
+ N.setAttribute('x', 140 + col_i*100);
+ N.setAttribute('y', 70 + row_i*100);
+ N.setAttribute('font-size',24);
+ N.setAttribute('fill','white');
+ texte = SVGDoc.createTextNode(label);
+ N.appendChild(texte);
+
+ SVGRoot.appendChild(N);
+}
+
+function label_left(evt, row_i, col_i, label) {
+  var N = SVGDoc.createElementNS(svgns,'text');
+ N.setAttribute('x', 60 + col_i*100);
+ N.setAttribute('y', 160 + row_i*100);
+ N.setAttribute('font-size',24);
+ N.setAttribute('fill','white');
+ texte = SVGDoc.createTextNode(label);
+ N.appendChild(texte);
+
+ SVGRoot.appendChild(N);
+}
+
+function label_node(evt, row_i, col_i, label) {
+
+ var I = SVGDoc.createElementNS(svgns,'text');
+ I.setAttribute('x', 70 + col_i*100);
+ I.setAttribute('y', 95 + row_i*100);
+ I.setAttribute('font-size',14);
+ I.setAttribute('fill',"#7777FF");
+ I.setAttribute('text-anchor','end');
+ texte = SVGDoc.createTextNode(path_array[row_i][col_i-1]+gap_p);
+ I.appendChild(texte);
+ SVGRoot.appendChild(I);
+
+ var D = SVGDoc.createElementNS(svgns,'text');
+ D.setAttribute('x', 105 + col_i*100);
+ D.setAttribute('y', 70 + row_i*100);
+ D.setAttribute('font-size',14);
+ D.setAttribute('fill',"#7777FF");
+
+ D.setAttribute('text-anchor','start');
+ texte = SVGDoc.createTextNode(path_array[row_i-1][col_i]+gap_p);
+ D.appendChild(texte);
+ SVGRoot.appendChild(D);
+
+ var M = SVGDoc.createElementNS(svgns,'text');
+ M.setAttribute('x', 75 + col_i*100);
+ M.setAttribute('y', 70 + row_i*100);
+ M.setAttribute('font-size',14);
+ M.setAttribute('fill',"#7777FF");
+
+ M.setAttribute('text-anchor','start');
+ var d_score = -1;
+ if (seq0.charAt(col_i-1) == seq1.charAt(row_i-1)) { d_score = 1;}
+ var score = path_array[row_i-1][col_i-1] + d_score;
+ texte = SVGDoc.createTextNode(score);
+ M.appendChild(texte);
+ SVGRoot.appendChild(M);
+
+ var S = SVGDoc.createElementNS(svgns,'text');
+ S.setAttribute('x', 60 + col_i*100);
+ S.setAttribute('y', 50 + row_i*100);
+ S.setAttribute('font-size',18);
+// S.setAttribute('stroke',"#FFFFFF");
+ S.setAttribute('text-anchor','left');
+ var d_score = -1;
+ if (seq0.charAt(col_i-1) == seq1.charAt(row_i-1)) { d_score = 1;}
+ texte = SVGDoc.createTextNode(d_score);
+ S.appendChild(texte);
+ SVGRoot.appendChild(S);
+
+ var N = SVGDoc.createElementNS(svgns,'text');
+ N.setAttribute('x', 100 + col_i*100);
+ N.setAttribute('y', 105 + row_i*100);
+ N.setAttribute('font-size',18);
+ N.setAttribute('stroke',"#FF7777");
+ N.setAttribute('text-anchor','middle');
+ texte = SVGDoc.createTextNode(label);
+ N.appendChild(texte);
+
+ SVGRoot.appendChild(N);
+}
+
+function make_node(evt, row_i, col_i, label) {
+  make_circle(evt, row_i, col_i, label);
+  SVGRoot.appendChild(make_xline(evt, row_i, col_i));
+  SVGRoot.appendChild(make_xyline(evt, row_i, col_i));
+  SVGRoot.appendChild(make_yline(evt, row_i, col_i));
+}
+
+function make_rnode(evt, row_i, col_i, label) {
+  make_circle(evt, row_i, col_i, label);
+  SVGRoot.appendChild(make_yline(evt, row_i, col_i));
+}
+function make_bnode(evt, row_i, col_i, label) {
+  make_circle(evt, row_i, col_i, label);
+  SVGRoot.appendChild(make_xline(evt, row_i, col_i));
+}
+
+function make_xline(evt, row_i, col_i) {
+
+  var N = SVGDoc.createElementNS(svgns,"line");
+
+  N.setAttribute("x1", 25+ 100+ col_i*100);
+  N.setAttribute("x2", 75+ 100+ col_i*100);
+  N.setAttribute("y1", 100 + row_i*100);
+  N.setAttribute("y2", 100 + row_i*100);
+
+  N.setAttribute("opacity",1.0);
+  N.setAttribute("stroke","#FFFFFF");
+  N.setAttribute("stroke-width",2);
+  N.setAttribute("fill", "#FFFFFF");
+  N.setAttribute("visibility","visible");
+
+  return N;
+}
+
+function make_xyline(evt, row_i, col_i) {
+
+  var N = SVGDoc.createElementNS(svgns,"line");
+
+  N.setAttribute("x1", 18+ 100 + col_i*100);
+  N.setAttribute("x2", 83+ 100 + col_i*100);
+  N.setAttribute("y1", 18+ 100 + row_i*100);
+  N.setAttribute("y2", 83+ 100 + row_i*100);
+
+  N.setAttribute("opacity",1.0);
+  N.setAttribute("stroke","#FFFFFF");
+  N.setAttribute("stroke-width",1.5);
+  N.setAttribute("fill", "#FFFFFF");
+  N.setAttribute("visibility","visible");
+
+  return N;
+}
+
+function make_yline(evt, row_i, col_i) {
+
+  var N = SVGDoc.createElementNS(svgns,"line");
+
+  N.setAttribute("x1", 100+ col_i*100);
+  N.setAttribute("x2", 100+ col_i*100);
+  N.setAttribute("y1", 25 + 100 + row_i*100);
+  N.setAttribute("y2", 75 + 100 + row_i*100);
+
+  N.setAttribute("opacity",1.0);
+  N.setAttribute("stroke","#FFFFFF");
+  N.setAttribute("stroke-width",2);
+  N.setAttribute("fill", "#FFFFFF");
+  N.setAttribute("visibility","visible");
+
+  return N;
+}
+
+function label_top_edge(evt, max_c) {
+  var score = 0;
+  var gap_p = -2;
+
+  for (c = 0; c < max_c; c++) {
+    // put gap_p below edge
+    var N = SVGDoc.createElementNS(svgns,'text');
+    N.setAttribute('x', 140 + c*100);
+    N.setAttribute('y', 120);
+    N.setAttribute('font-size',18);
+    N.setAttribute('fill','#FFFFFF');
+    texte = SVGDoc.createTextNode(gap_p);
+    N.appendChild(texte);
+    SVGRoot.appendChild(N);
+  }
+
+  for (c = 0; c <= max_c; c++) {
+    // put score in circle
+    var N = SVGDoc.createElementNS(svgns,'text');
+    N.setAttribute('x', 100 + c*100);
+    N.setAttribute('y', 105);
+    N.setAttribute('text-anchor','middle');
+    N.setAttribute('font-size',18);
+    N.setAttribute('fill', "#FFFFFF");
+    texte = SVGDoc.createTextNode(score);
+    N.appendChild(texte);
+    SVGRoot.appendChild(N);
+
+    score = score + gap_p;
+  }
+}
+
+function label_left_edge(evt, max_r) {
+  var score = 0;
+  var gap_p = -2;
+
+  for (r = 0; r < max_r; r++) {
+    // put gap_p below edge
+    var N = SVGDoc.createElementNS(svgns,'text');
+    N.setAttribute('x', 110);
+    N.setAttribute('y', 150 + r*100 );
+    N.setAttribute('font-size',18);
+    N.setAttribute('fill','#FFFFFF');
+    texte = SVGDoc.createTextNode(gap_p);
+    N.appendChild(texte);
+    SVGRoot.appendChild(N);
+  }
+
+  for (r = 0; r <= max_r; r++) {
+    // put score in circle
+    var N = SVGDoc.createElementNS(svgns,'text');
+    N.setAttribute('x', 100 );
+    N.setAttribute('y', 105 + r*100);
+    N.setAttribute('font-size',18);
+    N.setAttribute('text-anchor','middle');
+    N.setAttribute('fill','#FFFFFF');
+    texte = SVGDoc.createTextNode(score);
+    N.appendChild(texte);
+    SVGRoot.appendChild(N);
+
+    score = score + gap_p;
+  }
+}
+
+function first_stuff(evt) {
+  rLabel = new Array("A", "B", "C", "D", "E", "F");
+  cLabel = new Array("1", "2", "3", "4", "5", "6");
+
+// make a big rectangle
+
+
+// label the top row sequence
+  for (c = 0; c < max_c; c++) {
+     label_top(evt, 0, c, seq0.charAt(c));
+  }
+
+// label the side sequence
+  for (r = 0; r < max_r; r++) {
+     label_left(evt, r, 0, seq1.charAt(r));
+  }
+
+// set up the node grid
+  for (r = 0; r < max_r; r++) {
+    for (c = 0; c < max_c; c++) {
+       make_node(evt, r, c, rLabel[r]+cLabel[c]);
+    }
+    make_rnode(evt, r, c, rLabel[r]+cLabel[c]);
+  }
+  for (c = 0; c < max_c; c++) {
+    make_bnode(evt, max_r, c, rLabel[max_r]+cLabel[c]);
+  }
+  make_circle(evt, max_r, max_c, rLabel[max_r]+cLabel[max_c]);
+
+// put in initial scores
+  label_top_edge(evt, max_c);
+  label_left_edge(evt, max_r);
+
+  cur_row = 1;
+  cur_col = 0;
+}
+
+function Match(mscore, iscore, dscore) {
+  this.mscore = mscore;
+  this.iscore = iscore;
+  this.dscore = dscore;
+
+  this.score = Math.max(mscore, iscore, dscore);
+}
+
+function next_node(evt) {
+
+  cur_col += 1;
+
+  if (cur_col  > max_c) {
+    cur_row += 1;
+    cur_col = 1;
+  }
+
+  var score = path_array[cur_row][cur_col];
+
+  //  alert("display " + score + " at " + cur_row + "," + cur_col);
+
+  label_node(evt, cur_row, cur_col, score);
+}
+
+  ]]>
+</script>
+
+
+</svg>

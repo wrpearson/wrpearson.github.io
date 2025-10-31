@@ -1,0 +1,140 @@
+# ssearch36 -m8C -s VT160 -S random_800.txt /slib2/fa_dbs/qfo78.lseg
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_1 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 5 hits found
+random_1	tr|F1PB37|F1PB37_CANLF	35.45	110	71	26	524	655	233	346	0.34	40.3
+random_1	sp|Q5W7P8|TRBM_CANLF	35.45	110	71	26	524	655	233	346	0.34	40.3
+random_1	tr|B4FH72|B4FH72_MAIZE	25.97	154	114	25	57	224	135	299	5.9	35.2
+random_1	tr|C3XQ28|C3XQ28_BRAFL	33.90	118	78	30	523	653	401	535	6.8	35.9
+random_1	tr|A0A140LFY4|A0A140LFY4_DANRE	21.37	117	92	8	400	521	5	124	10	34.8
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_2 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 7 hits found
+random_2	tr|A0CBZ4|A0CBZ4_PARTE	20.94	339	268	49	54	424	250	605	0.26	42.7
+random_2	tr|C3ZE53|C3ZE53_BRAFL	29.06	117	83	23	355	492	26	144	1.4	36.2
+random_2	tr|A0CJJ3|A0CJJ3_PARTE	23.93	163	124	16	9	179	418	588	1.6	39.8
+random_2	tr|A7RPI5|A7RPI5_NEMVE	23.55	344	263	85	134	528	123	500	2	38.0
+random_2	tr|A7RPI2|A7RPI2_NEMVE	23.16	285	219	62	134	464	205	505	3.6	36.7
+random_2	tr|C3Z8Q9|C3Z8Q9_BRAFL	25.27	186	139	38	366	563	19	230	4.5	35.3
+random_2	tr|A7RP96|A7RP96_NEMVE	24.13	344	261	81	134	528	129	502	4.7	36.5
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_3 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 10 hits found
+random_3	tr|Q9RZ19|Q9RZ19_DEIRA	25.28	269	201	52	109	392	152	457	1.4	38.0
+random_3	tr|A0A2K1KEN6|A0A2K1KEN6_PHYPA	29.46	112	79	12	315	433	281	397	4.1	36.3
+random_3	tr|W5M3K5|W5M3K5_LEPOC	34.04	94	62	17	428	536	22	117	4.3	34.7
+random_3	tr|Q55AE0|Q55AE0_DICDI	30.23	129	90	16	504	640	646	782	4.3	37.2
+random_3	tr|A0D3Q5|A0D3Q5_PARTE	30.95	126	87	32	623	765	32	172	5.5	37.2
+random_3	tr|A0DK74|A0DK74_PARTE	26.83	123	90	24	354	482	63	203	5.7	36.1
+random_3	tr|Q8F0M6|Q8F0M6_LEPIN	27.84	97	70	13	296	398	328	431	6.3	36.5
+random_3	tr|A0A1W3JJK5|A0A1W3JJK5_CIOIN	25.52	192	143	32	55	253	178	394	6.7	35.6
+random_3	tr|T1FC37|T1FC37_HELRO	30.71	140	97	27	204	353	5	161	7.3	34.2
+random_3	tr|F7CPG9|F7CPG9_XENTR	28.93	121	86	41	103	238	97	243	9.1	35.4
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_4 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 22 hits found
+random_4	tr|A7T177|A7T177_NEMVE	24.71	85	64	13	262	356	3	90	1.3	36.1
+random_4	tr|B5DEZ5|B5DEZ5_RAT	25.14	346	259	70	98	465	19	412	1.4	38.3
+random_4	tr|F7DBN0|F7DBN0_MONDO	24.27	206	156	16	318	534	250	460	2	38.0
+random_4	tr|A0A2I2YPK9|A0A2I2YPK9_GORGO	25.18	278	208	51	341	653	281	574	3.1	37.1
+random_4	tr|H9H6W0|H9H6W0_MONDO	26.25	160	118	18	343	504	187	362	3.7	36.7
+random_4	tr|J9NUM4|J9NUM4_CANLF	26.83	205	150	31	286	500	369	594	4.5	36.9
+random_4	tr|B8C4H8|B8C4H8_THAPS	23.24	142	109	16	119	273	95	239	5.2	35.2
+random_4	tr|F6RDH4|F6RDH4_XENTR	25.00	104	78	25	326	437	37	157	5.7	34.5
+random_4	tr|K7E6E0|K7E6E0_MONDO	24.16	327	248	52	158	514	201	549	5.9	36.2
+random_4	sp|P10078|ZFP28_MOUSE	24.29	177	134	23	318	511	628	810	6.1	36.6
+random_4	tr|H2QH20|H2QH20_PANTR	22.08	308	240	40	186	500	333	673	6.2	36.4
+random_4	tr|Q7QJU3|Q7QJU3_ANOGA	25.33	150	112	25	8	164	588	755	6.4	36.6
+random_4	sp|Q6ZNG1|ZN600_HUMAN	22.08	308	240	40	186	500	333	673	7.3	36.2
+random_4	tr|A0A1B8Y038|A0A1B8Y038_XENTR	23.56	174	133	45	226	437	39	219	7.7	34.5
+random_4	tr|G3RFW9|G3RFW9_GORGO	25.15	167	125	35	327	500	273	467	7.7	35.8
+random_4	sp|Q7L2R6|ZN765_HUMAN	26.09	138	102	15	318	466	381	522	8.2	35.5
+random_4	tr|F7FPW1|F7FPW1_MONDO	26.21	393	290	77	75	495	1	442	8.6	36.8
+random_4	tr|A0A3Q1N0S8|A0A3Q1N0S8_BOVIN	21.98	232	181	33	212	464	259	502	8.9	35.5
+random_4	tr|A0CR21|A0CR21_PARTE	20.06	339	271	48	150	524	2785	3135	9.2	38.1
+random_4	tr|Q8I4Y3|Q8I4Y3_PLAF7	26.35	148	109	30	173	346	82	233	9.6	34.7
+random_4	tr|F6R7C8|F6R7C8_MONDO	34.72	72	47	11	425	500	253	331	10	34.7
+random_4	tr|D4A813|D4A813_RAT	25.34	367	274	59	98	496	19	412	10	35.7
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_5 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 7 hits found
+random_5	sp|Q55470|Y514_SYNY3	29.00	100	71	8	145	249	443	545	1.3	38.3
+random_5	tr|A0A2I2YZE3|A0A2I2YZE3_GORGO	23.45	226	173	33	179	424	274	512	1.3	39.4
+random_5	tr|A2ECY4|A2ECY4_TRIVA	25.27	182	136	27	154	355	271	459	3.7	36.7
+random_5	tr|H2R705|H2R705_PANTR	23.67	207	158	32	179	404	276	495	6.6	37.1
+random_5	tr|Q7SA78|Q7SA78_NEUCR	30.59	85	59	6	496	584	238	324	7.4	35.8
+random_5	tr|A0A2I3SAF2|A0A2I3SAF2_PANTR	23.67	207	158	32	179	404	268	487	7.5	36.9
+random_5	tr|A7SGJ4|A7SGJ4_NEMVE	36.36	55	35	14	624	682	6	70	9.3	33.3
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_6 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 10 hits found
+random_6	tr|Q8EXK0|Q8EXK0_LEPIN	23.44	128	98	12	50	186	245	375	0.67	39.0
+random_6	tr|A2FTG8|A2FTG8_TRIVA	27.41	135	98	21	72	210	278	429	1.8	37.7
+random_6	tr|A7SBA2|A7SBA2_NEMVE	24.64	138	104	18	42	184	13	163	2.3	36.3
+random_6	tr|F1PEP1|F1PEP1_CANLF	36.76	68	43	9	392	461	152	226	2.9	36.5
+random_6	tr|C3YN54|C3YN54_BRAFL	27.50	80	58	21	69	166	130	212	3.1	35.7
+random_6	tr|A2GV07|A2GV07_TRIVA	24.79	117	88	18	518	639	22	151	3.4	35.4
+random_6	tr|H2XN34|H2XN34_CIOIN	25.00	84	63	7	43	129	199	286	4.2	36.3
+random_6	tr|H2MKH6|H2MKH6_ORYLA	28.17	71	51	4	370	443	54	125	5.1	35.6
+random_6	tr|D6W8C2|D6W8C2_TRICA	21.77	147	115	14	366	520	195	347	5.1	36.1
+random_6	tr|A0A3Q2UAU2|A0A3Q2UAU2_CHICK	23.90	205	156	47	54	286	910	1133	5.7	37.6
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_7 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 7 hits found
+random_7	tr|Q5A510|Q5A510_CANAL	26.65	334	245	75	31	395	296	673	0.81	39.5
+random_7	tr|F7ERK3|F7ERK3_XENTR	24.57	232	175	20	31	274	54	293	1.1	37.7
+random_7	tr|G3N3T1|G3N3T1_BOVIN	22.22	252	196	36	23	295	49	315	2.1	36.8
+random_7	tr|Q54U32|Q54U32_DICDI	20.00	105	84	6	248	355	163	270	2.1	37.2
+random_7	tr|Q553N1|Q553N1_DICDI	22.27	229	178	31	562	799	141	391	3.6	37.4
+random_7	tr|A0CGH0|A0CGH0_PARTE	22.84	197	152	35	5	216	622	838	7.5	36.8
+random_7	tr|E1B829|E1B829_BOVIN	22.27	238	185	28	25	281	50	296	9.9	34.6
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_8 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 3 hits found
+random_8	tr|A0A3Q1LJG0|A0A3Q1LJG0_BOVIN	23.61	216	165	51	133	378	15	251	1.6	37.0
+random_8	tr|A0CR21|A0CR21_PARTE	19.57	281	226	50	409	712	724	1031	1.7	40.5
+random_8	tr|T1FK79|T1FK79_HELRO	25.56	133	99	25	442	591	2	142	2.8	35.2
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_9 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 9 hits found
+random_9	tr|F7EF47|F7EF47_XENTR	20.73	164	130	18	602	774	326	498	1.9	38.2
+random_9	tr|A7T2G6|A7T2G6_NEMVE	28.09	89	64	27	570	684	170	259	2.2	37.1
+random_9	sp|Q8BHI7|ELOV5_MOUSE	21.77	147	115	20	250	408	11	165	2.3	36.6
+random_9	tr|A0A3Q1M5G0|A0A3Q1M5G0_BOVIN	27.93	111	80	14	583	702	133	248	3	36.8
+random_9	tr|W5NL17|W5NL17_LEPOC	29.13	127	90	24	112	241	82	229	5.4	36.2
+random_9	tr|C3ZA23|C3ZA23_BRAFL	37.50	80	50	23	109	191	68	167	5.6	35.9
+random_9	tr|W5NJR4|W5NJR4_LEPOC	20.39	152	121	20	245	408	7	166	5.8	35.2
+random_9	sp|Q5RGQ2|ANM8B_DANRE	25.27	91	68	8	311	406	181	274	6.9	35.5
+random_9	tr|A7SC98|A7SC98_NEMVE	33.93	56	37	2	338	394	135	191	9.9	34.8
+# SSEARCH 36.3.8i Nov, 2022
+# Query: random_10 consisting of 800 residues. - 800 aa
+# Database: /slib2/fa_dbs/qfo78.lseg
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 8 hits found
+random_10	tr|F1NFT7|F1NFT7_CHICK	20.83	168	133	15	181	351	530	709	1	39.3
+random_10	tr|C3ZBZ6|C3ZBZ6_BRAFL	29.52	105	74	11	84	193	18	128	2.9	35.2
+random_10	tr|Q54SJ6|Q54SJ6_DICDI	22.64	159	123	22	472	648	584	746	5.5	36.7
+random_10	tr|Q4QCA6|Q4QCA6_LEIMA	23.73	118	90	5	530	650	59	178	5.6	35.2
+random_10	tr|F6TRB4|F6TRB4_XENTR	20.12	164	131	15	181	347	531	706	6.8	36.5
+random_10	tr|A0A2I3RQS1|A0A2I3RQS1_PANTR	20.87	230	182	26	549	783	144	394	7	36.5
+random_10	tr|Q9LTY3|Q9LTY3_ARATH	21.43	112	88	13	676	799	415	527	8.6	35.8
+random_10	tr|G3S8G5|G3S8G5_GORGO	25.34	146	109	24	182	338	187	345	9	35.2
+# SSEARCH processed 10 queries

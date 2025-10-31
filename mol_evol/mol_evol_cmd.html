@@ -1,0 +1,111 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+<!-- Programming for Biology - Similarity Searching Exercises -->
+</script>
+<title>
+Command-line similarity Searching Exercises
+</title>
+</head>
+<body bgcolor=white>
+<h2>
+<!-- Programming for Biology -->
+Molecular Evolution - Similarity Searching Exercises from the command line</h2>
+<p>
+<hr />
+<p>
+These exercises use programs on the <b>class-XX</b> compute cluster. To run the exercises from the command line, you first must:
+</pre>
+ssh username@class-xx (02 - 04, 06,07,090)
+<p>
+To make certain the programs are set up properly, type:
+<pre>
+fasta36  or
+fasta36 -help
+</pre>
+<p>
+<a name='ex1' />
+<ol>
+<li>
+<b>Searching with <tt>FASTA</tt></b>
+<p>
+To do a similarity search from the command line, we need: (1) a program; (2) a query sequence; and a database.  The and programs databases have been installed. Today, we will use five search programs: <tt>fasta36</tt>, <tt>ssearch36</tt>, <tt>blastp</tt> (protein:protein), and <tt>fastx36/blastx</tt> (DNA:protein).
+<p>
+<ol type='a'>
+<li>
+You can transfer a query sequence from your laptop, OR you can extract a sequence from the databasese on the server using the <tt>blastdbcmd</tt> program.
+<p>
+Before uing the <tt>blastdbcmd</tt>, you must type
+<pre>
+module load bioware
+</pre>
+
+<pre>
+blastdbcmd -entry gstt1_drome > gstt1_drome.aa
+</pre>
+will find the SwissProt entry gstt1_drome and write it to the file <tt>gstt1_drome</tt>.
+<p>
+<li>
+The <tt>FASTA</tt> programs use the command line syntax: <tt>program -opt1 -opt2 query library</tt>.  Thus:
+<pre>
+fasta36 gstt1_drome.aa /class/shared/seq_db/pir1.lseg > gstt1_drome.fa_out
+</pre>
+Will compare the <tt>gstt1_drome.aa</tt> sequence to the <tt>pir1.lseg</tt> database.  You can also search SwissProt with '<tt>/class/shared/seq_db/swissprot.lseg</tt>'.  (You can abbreviate the pir1 database as '<tt>a</tt>' and the SwissProt database as '<tt>s</tt>'.)
+<p>
+<li>
+Run the search, then look at the output using an editor, or transferring the file to your laptop, or typing <tt>more gstt1_drome.fa_out</tt>.
+<p>
+<li>
+Compare the command at the top of your output file with the commands run on the web site.
+<p>
+To see a complete list of <tt>fasta36</tt> options, type:
+<pre>
+fasta36 -help
+</pre>
+<li>
+Try searching with a different scoring matrix; the option <tt>-s BP62</tt> sets the scoring matrix and gap penalties to match <tt>blastp</tt>.  Be certain to save new searches in different file names.  Try to make the filenames descriptive, e.g. <tt>gstt1_drome_swissprot_BP62.fa_out</tt> for:
+<pre>
+fasta36 -s BP62 gstt1_drome.aa s > gstt1_drome_swissprot_BP62.fa_out
+</pre>
+(note that the scoring matrix option <tt>-s BP62</tt> MUST preceed the query and library file names.)
+<p>
+Try a shallow scoring matrix, e.g. <tt>-s MD40</tt> or <tt>-s MD20</tt>.
+<p>
+A complete list of options is available <a href="fasta_guide.pdf">here</a>.
+<p>
+<li>
+Try doing the same search with <tt>ssearch36</tt> (Smith-Waterman):
+<pre>
+ssearch36 gstt1_drome.aa/class/shared/seq_db/pir1.lseg> gstt1_drome.ss_out
+</pre>
+How do the results compare with <tt>fasta36</tt>.  Do you find more significant scores?
+<p>
+<li>
+Try using <tt>ssearch36</tt> using alternate scoring matrices (<tt>-s BP62</tt>).
+</ol>
+<p>
+<a name='ex2' />
+<li><b>Searching with BLAST.</b>
+<p>
+BLAST uses a different command line syntax; every argument has a name, e.g. <tt>-query gstt1_drome.aa</tt> <tt>-db swissprot</tt>.
+To see a complete list of <tt>blastp</tt> options, type:
+<pre>
+blastp -help
+</pre>
+<ol type='a'>
+<li>
+To do a similar search, type:
+<pre>
+blastp -query gstt1_drome.aa -db /class/shared/seq_db/pir1 > gstt1_drome.bl_out
+</pre>
+<li>
+To search <tt>swissprot</tt>, type:
+<pre>
+blastp -query gstt1_drome.aa -db swissprot > gstt1_drome_swissprot.bl_out
+</pre>
+</ol>
+</ol>
+</body>
+</html>
