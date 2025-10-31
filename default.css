@@ -1,0 +1,27 @@
+#h1 {font-size: 14pt}
+#body { font-size: 12pt }
+#td {font-size: 12pt}
+#th {font-size: 14pt}
+h1 {font-size: 16pt;
+    font-family: arial, helvetica, sans-serif;
+    }
+h3 {font-size: 14 pt;
+    font-family: arial, helvetica, sans-serif;
+}
+body { background-color: white ; font-size: 11pt;
+    font-family: arial, helvetica, sans-serif;
+ }
+td {font-size: 11pt; text-align:left;
+    font-family: arial, helvetica, sans-serif;
+}
+th {font-size: 11pt;
+    font-family: arial, helvetica, sans-serif;
+}
+
+li {font-size: 11pt; margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: arial, helvetica, sans-serif;
+}
+.tab { margin-left: 40px;}
+#a { text-decoration: none}
+a.plain { text-decoration: none}
