@@ -1,7 +1,667 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<html><head>
-<title>404 Not Found</title>
-</head><body>
-<h1>Not Found</h1>
-<p>The requested URL was not found on this server.</p>
-</body></html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+BIOL4230/BIOL7230
+</title>
+<!-- <base  HREF="https://wrpearson.github.io/biol4230/" /> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+</head><body bgcolor=white>
+<h2 align='center'>Biology (BIOL) 4230/7230, Spring 2018</h2>
+<h2 align='center'>Bioinformatics and Functional Genomics</h2>
+<hr/>
+<p align=center>
+Biol4230/Biol7230 - Tues/Thurs 9:30 &ndash; 10:45, Ruffner Hall Rm 175;  Friday 9:00 &ndash; 9:50  Ruffner 173
+<p align=center>
+Course director: William R. Pearson, Pinn (Jordan) Hall Rm 6-057, <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</A><br />
+Office hours, 1:00 - 3:00 PM Monday, or by appt.
+<hr />
+<p align=center>Course Overview, <a href='policies.html'>Policies</a>
+<hr />
+<h3 align='center'>Texts:</h3>
+<p align='center'>
+<i>Bioinformatics and Functional Genomics (2nd ed)</i> (2009) J. Pevzner, Wiley-Blackwell, ISBN:0470085851
+<br />
+<i>Practical Computing for Biologists</i> (2010) S. Haddock and C. Dunn, Sinauer, ISBN: 0878933913
+<p align='center'>
+<A HREF="biol4230_text.html">Other texts</A>
+<hr />
+<table align=center>
+<tr>
+<td>Th</td>
+<td align=center>1/18</td>
+
+  <td align='left'>Course Overview/Molecular Biology Review/Bioinformatics Overview
+  <a href="lects/biol4230_0_intro.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Fr</td>
+<td align=center>1/19</td>
+
+  <td align='left'><A HREF="labs/unix_demo0.html">Unix command line lab</A>
+      
+  <a href="lects/biol4230_1_unix.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>1/23</td>
+
+  <td align='left'>Protein structure, homology, and similarity searching
+  <a href="lects/biol4230_2_blast1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>1/25</td>
+
+  <td align='left'>Unix II - shell scripting and Bioinformatics databases
+  <a href="lects/biol4230_3_unix2db.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Fr</td>
+<td align=center>1/26</td>
+
+  <td align='left'><A HREF="labs/blast_demo.html">Similarity Searching Lab</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td></td>
+<td align=center></td>
+
+  <td align='left'><A HREF="labs/blast_hwk2.html">Homework - similarity searching</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>1/30</td>
+
+  <td align='left'>Similarity Searching II
+  <a href="lects/biol4230_4_blast2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>2/1</td>
+
+  <td align='left'>Programming in Python
+  <a href="lects/biol4230_5_python1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Fr</td>
+<td align=center>2/2</td>
+
+  <td align='left'><A HREF="labs/blast_demo2.html">Similarity Searching Lab II </A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td></td>
+<td align=center></td>
+
+  <td align='left'><A HREF="labs/python_hwk3.html">Homework - Intro to Python/Python searching</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>2/6</td>
+
+  <td align='left'>From protein domains to PSSMs/HMMs
+  <a href="lects/biol4230_6_pssms.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>2/8</td>
+
+  <td align='left'>Python II - Using dictionaries
+  <a href="lects/biol4230_7_python2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>2/9</td>
+
+  <td align='left'><A HREF="labs/psiblast_demo.html">PSSMs and PSI-BLAST/Scripted Matrix comparison</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td></td>
+<td align=center></td>
+
+  <td align='left'><A HREF="labs/matrix_hwk4.html">Homework -- Properties of scoring matrices</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>2/13</td>
+
+  <td align='left'>Alignment Statistics II / HMMs
+  <a href="lects/biol4230_8_stats2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>2/15</td>
+
+  <td align='left'>Web scripting, python and XML
+  <a href="lects/biol4230_9_web_resources.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>2/16</td>
+
+  <td align='left'><A HREF="labs/hmmer_demo.html">Lab -- searching with HMMs</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td></td>
+<td align=center></td>
+
+  <td align='left'><A HREF="labs/accessions_hwk5.html">Homework -- Accession conversion/XML Parsing</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>2/20</td>
+
+  <td align='left'>Multiple Sequence Alignment I
+  <a href="lects/biol4230_10_multi.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>2/22</td>
+
+  <td align='left'>Searching/statistics/alignment summary
+  <a href="lects/biol4230_11_summary.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>2/23</td>
+
+  <td align='left'>Review Session - (Exam due Monday)
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>2/27</td>
+
+  <td align='left'>Introduction to evolutionary tree reconstruction
+  <a href="lects/biol4230_14_phylo_1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>3/1</td>
+
+  <td align='left'>Evolutionary tree reconstruction II
+  <a href="lects/biol4230_15_phylo_2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>3/2</td>
+
+  <td align='left'><A HREF="labs/phylip_demo.html">Building evolutionary trees</A>
+      
+  <a href="lects/biol4230_16_phylip.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td></td>
+<td align=center></td>
+
+  <td align='left'><A HREF="labs/phylip_demo.html">Homework -- PHYLIP trees and consensus</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>3/13</td>
+
+  <td align='left'>Evaluating evolutionary trees
+  <a href="lects/biol4230_17_bootstrap.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>3/15</td>
+
+  <td align='left'>Positive and Negative Selection
+  <a href="lects/biol4230_18_selection.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>3/16</td>
+
+  <td align='left'><A HREF="labs/mid_term_proj.html">Mid-term project -- protein evolutionary tree</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>3/20</td>
+
+  <td align='left'>The Human Genome Project
+  <a href="lects/biol4230_20_human_genome.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>3/22</td>
+
+  <td align='left'>BED Tools
+  <a href="lects/biol4230_21_BedTools.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>3/23</td>
+
+  <td align='left'><A HREF="labs/ucsc_igv_demo.html">Lab - Genome Browsers, UCSC and IGV</A>
+      
+  <a href="lects/biol4230_22_genome_lab1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>3/27</td>
+
+  <td align='left'>Differential Gene Expression I
+  <a href="lects/biol4230_23_gene_expression_1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>3/39</td>
+
+  <td align='left'>Statistics with 'R'
+  <a href="lects/biol4230_23_Rintro.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>3/30</td>
+
+  <td align='left'><A HREF="labs/R_demo1.html">'R' workshop I</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>4/3</td>
+
+  <td align='left'>Expression Analysis II
+  <a href="lects/biol4230_24_gene_expression_2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>4/5</td>
+
+  <td align='left'>'R' with Bioconductor
+  <a href="lects/biol4230_25_bioconductor.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>4/6</td>
+
+  <td align='left'><A HREF="labs/R_express.html">Bioconductor/edgeR workshop</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>4/10</td>
+
+  <td align='left'>Gene Ontology I
+  <a href="lects/biol4230_27_GO1.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>4/12</td>
+
+  <td align='left'>Gene Ontology II - ORA and Pathway enrichment
+  <a href="lects/biol4230_28_GO2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>4/13</td>
+
+  <td align='left'><A HREF="labs/BEDTools.html">Lab - BEDTools</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>4/17</td>
+
+  <td align='left'>Regulatory Motifs I
+  <a href="lects/biol4230_31_sites.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>4/19</td>
+
+  <td align='left'>Motifs II - high throughput approaches
+  <a href="lects/biol4230_32_sites2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>F</td>
+<td align=center>4/20</td>
+
+  <td align='left'><A HREF="labs/BEDTools2n.html">Motif finding from BED to MEME</A>
+      
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>4/24</td>
+
+  <td align='left'>Motifs II - high throughput approaches
+  <a href="lects/biol4230_32_sites2.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Th</td>
+<td align=center>4/26</td>
+
+  <td align='left'>Clustering/Function prediction
+  <a href="lects/biol4230_33_cluster-function.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+
+
+
+<tr>
+<td>Fr</td>
+<td align=center>4/27</td>
+
+  <td align='left'>Exam review
+  
+  </td>
+  <td></td>
+
+</tr>
+
+
+<tr><td colspan=4><hr /></td></tr>
+<tr>
+<td>Tu</td>
+<td align=center>5/1</td>
+
+  <td align='left'><A HREF="labs/final_project2.html">Wrap-up/Final project</A>
+      
+  <a href="lects/biol4230_33_final.pdf"> Lecture PDF </A>
+  </td>
+  <td></td>
+
+</tr>
+</table>
+<hr />
+<A HREF="biol4230_links.html">Links to other Computational Biology Courses</A>
+<p>
+<A HREF="mailto:wrp@virginia.edu">wrp@virginia.edu</A><br />
+<p>
+<font size=-1>Last modified:&nbsp;Thursday, 28-Jun-2018 05:11:15 EDT</font>
+</body>
+</html>
