@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>
+Biol4230 - GO - the Gene Ontology
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>GO - the Gene Ontology</h2>
+<p>
+<i>Summary</i>
+<p>
+When I put this exercise together, the <a href="http://amigo.geneontology.org/"
+target=amino>amigo.geneontology.org</a> server was down, and
+this is the server that provides one of the simplest interfaces to the
+gene ontology.
+<p>
+Instead, 
+we will use <a href="http://www.ebi.ac.uk/QuickGO/" target=quickgo>www.ebi.ac.uk/QuickGO/</a> to explore the Gene Ontology for my favorite proteins, the Glutathione transferases.  You will use a similar strategy (automated with Python) for your homework.
+<p>
+<i>Overall statistics on GO</i> 
+Go to the <a href="http://www.ebi.ac.uk/QuickGO/"
+target=quickgo>QuickGO</a> website, and explore the coverage and evidence codes for the GO annotaions on mouse, fruitfly (Drosophila), and human.
+<ol>
+<li>
+From the <a href="http://www.ebi.ac.uk/QuickGO/"
+target=quickgo>QuickGO</a> main page, select the <tt>Dataset</tt> icon/link, and look at the different resources contributing to GO.  The list is a mixture of model organism databases, e.g. MGI (Mouse Genome Informatics), Flybase (Drosophila), RGD (Rat Genome Database), and Yeast (SGD, Sacchromyces Genome Database). Ironically, there is no Human Genome Database.
+<p>
+In addition, there are annotations provided by non-genome groups, such
+as Uniprot and InterPro.
+<li>
+Select the Mouse Genome Database (MGI). How many annotations does it provide?  Over how many proteins?  Does this make sense?  How many proteins do you think are in mouse?
+<li>
+Use the filter option to limit the MGI annotations to mouse proteins
+(<tt>taxon</tt>).  Select <tt>Submit</tt> after selecting <tt> Mouse
+10090</tt> taxon.
+<li>
+Select <tt>Statistics</tt> to look at the distribution evidence codes.  What is the most common evidence code?  How many annotations are IEA?
+<p>
+Likewise, use <tt>Aspect</tt> to see how the annotations and proteins are divided across the three GO ontologies. 
+<p>
+Finally, look at <tt>GO Identifier</tt> to see what the most common
+GO-identifiers are for the mouse annotations and mouse proteins.  How
+has the number of proteins annotated in each of the three ontologies
+changed?  Do these numbers agree with the expected number of proteins
+in mouse?
+<p>
+What is the most common GO annotation?  The most common "specific" GO annotation that is not a cellular location?
+<li>
+Go back to the <tt>Data sources</tt> page, and select the Uniprot
+annotations. Again, use the filter option to select Uniprot
+annotations on Mouse. Now how many protein are annotated?  What is the
+distribution of evidence codes?
+<li>
+Which set of GO-annotations on mouse proteins is more comprehensive?  Which do you think is likely to be more reliable?  Why?
+</ol>
+<p>
+<i>Looking up a protein</i>
+<ol>
+<li>
+Go back to the main <a href="http://www.ebi.ac.uk/QuickGO/"
+target=quickgo>QuickGO</a> main page, and search for <tt>P09488</tt>.  How many proteins are returned?  (If you search for <tt>GSTM1_HUMAN</tt>, you get a very different result).
+<li>
+How many GO annotations are associated with <tt>P09488</tt> in each of the three GO ontologies?  How many of the annotations are different?
+<li>
+Click on the <tt>GO:0004364</tt> annotation supported by direct assay (IDA) and traceable author statement (TAS). What are the "parents" of <tt>glutathione transferase activity</tt>.
+<li>
+Looking at the list of functions, are there any that are supported
+only by IEA evidence?  Do you think that this annotation is less
+reliable than the non-IEA assignments?  Why or why not?
+<li>
+Use the <tt>Download</tt> link to download the annotations for this protein.
+Take a look at the downloaded file.
+<li>
+Look up the <tt>P09488</tt> (GSTM1_HUMAN) protein
+at <a href="http://amigo.geneontology.org" target=amigo>Amigo</a>.  How many GO-annotations do you see?  How many are different?  Are they the same as QuickGO?
+<p>
+Which presentation seems more informative?
+</ol>
+<hr />
+<b>Homework</b>
+<p>
+The overall goal of the home work is to re-evaluate, using a protein
+family of your choosing, the results of Nerht et al that argue that
+paralogs are more similar in function than orthologs.
+<ol>
+<li>
+Starting with a human glutathione transferase, or a human protein from
+another protein family (e.g. the one you used to do your mid-term
+project), search the SwissProt database using <tt>fasta36 -m 8</tt>
+or <tt>blastp</tt> with tabular output to get a list of homologs with
+E()<1e-6.
+<li>
+Using <tt>grep</tt>, isolate the <tt>_HUMAN</tt> protein homologs into
+one file, and the <tt>_MOUSE</tt> protein homologs into another.
+<li>
+Write a python script that takes the list of HUMAN or MOUSE paralogs,
+and extracts the Uniprot Accession (<tt>P12345</tt>) without a version number, and then uses the URL:
+<p>
+<tt>
+<a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?protein=P09488&format=tsv" target=down>http://www.ebi.ac.uk/QuickGO/GAnnotation?protein=P09488&format=tsv</a>
+</tt>
+<p>
+to download a tab-delimited file with GO annotations for each protein
+For each protein, capture the GO-identifier, and the evidence codes associated with the GO assignment (there can be multiple codes for one GO assignment).
+<p>
+<li>
+Looking at the human paralogs, make tables that report the number of
+identical GO-identifiers for the most identical paralog, the second
+most identical, etc, one for all GO annotations, and a second only for
+all but IEA, and a third for all annotations (three tables total).  At
+what percent identity do the GO-identifiers begin to differ?
+<li>
+Use your python script to make the same three tables for the set of
+mouse paralogs.
+<li>
+Finally, compare the human protein to the most similar (possibly
+orthologous) mouse protein.  Again, how many GO identifiers are shared
+using only experimental evidence, all but IEA, and all annotations.
+<p>
+</ol>
+<p>Due Wednesday, April 15, at 5 pm.  <hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

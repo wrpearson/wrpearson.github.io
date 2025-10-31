@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Biol4230 - PSSMs/HMMs</title>
+<link href="default.css" type="text/css" rel="stylesheet" />
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+</head>
+<body bgcolor='white' onload='update_modtime();' >
+<h2>Biol4230 - PSSMs/HMMs</h2>
+<h2><a href="http://fasta.bioch.virginia.edu/biol4230/labs/blast_demo2.html">fasta.bioch.virginia.edu/labs/biol4230/hmmer_demo.html</a></h2>
+<hr />
+These exercises use the
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast" target=blast_win>UVa BLAST</A>, 
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>UVa CHAPS</A>, 
+<A HREF="http://fastademo.bioch.virginia.edu/fasta_www3/fasta_www.cgi?rm=mselect" target=pblast_win>UVa PSI-SEARCH2</A>
+WWW pages.
+<p>
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>UVa CHAPS</A>
+allows you to enter a set of sequences, generate a multiple alignment,
+and use that multiple aligment for a <A
+HREF="http://fastademo.bioch.virginia.edu/fasta_www3/fasta_www.cgi?rm=mselect" target=pblast_win>PSI-SEARCH2</A>
+search.
+<p>
+Additional information on the <A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi"
+target=chaps_win>CHAPS</A> program, which takes a set of sequences,
+produces a multiple alignment, and then uses the multiple alignment
+with <A HREF="http://fastademo.bioch.virginia.edu/fasta_www3/fasta_www.cgi?rm=mselect"
+target=pblast_win>PSI-SEARCH2</A>, can be found <a href="http://fasta.bioch.virginia.edu/fasta_www2/chaps_help.html" target=chaps_win>here</A>.
+<hr />
+<b>Looking at HMMs -- the effect of diversity</b>
+<hr />
+<ol type='1'>
+<li>
+<i>Building an HMM</i> (2 sequences)
+Using the <A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>CHAPS WWW
+page</A>, make a multiple alignment and generate a <b>HMM</b> using
+the two sequences: <b>gstm1_human, gstm2_human</b> <A
+HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0Agstm2_human"
+target=chaps_win> run CHAPS [pgm]</A>.
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now' />
+<li>
+Next, go down to the bottom third of the screen and select <input type='submit' value='Generate HMM now' />
+<li>
+Take a look at the HMM.
+<ol type='i'>
+<li>
+What do you think the letters in the row <tt>HMM       A        C ...</tt> indicate?  How many letters are in that row?  What are the numbers down the left side of the window?
+<li>
+There are three rows associated with each nummber on the left, two rows of 20, and one row of 7.  
+  With what part of the HMM are the 7 numbers associated?
+<li>
+In all three rows, do large numbers apprear to be "good" or "bad"?
+</ol>
+<li>
+Now run a HMMSearch search against PIR1 with the HMM you just built using <input type='submit' value='Send HMM to HMMSearch' />
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+What is the E()-value of the most distant glutathione transferase?
+<li>
+HMMSearch does not provide a percent identity.  Why not?
+<li>
+  Go back and also run the MSA of those two sequences against PIR1 using PSI-SEARCH2.  How does HMMSearch compare with PSI-SEARCH2?
+</ol>
+<li>
+<i>Searching with a diverse HMM</i>
+Try the sequences <b>gstm1_human, gstm3_human, gstp1_human, gsta1_human,
+gstt1_human, gsto1_human, hpgds_human</b>,
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0agstm3_human%0agstp1_human%0agsta1_human%0agstt1_human%0agsto1_human%0ahpgds_human"
+target=chaps_win> run CHAPS [pgm]</a>.
+<br />Repeat the previous steps for building a Multiple Sequence Alignment and sending it to HMMSearch.
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now' />.<br />
+Take a quick glance at the multiple sequence alignment; how many large gapped regions do you see?  
+<li>
+Next, select <input type='submit' value='Generate HMM Now' /> in the bottom third of the page.
+<li>
+Examine the HMM in detail.
+<ol type='i'>
+<li>
+Look to the very far right of lettered columns of the HMM.  Does the HMM start at residue 1?  If not, where does it start?
+<li>
+Look back at the multiple sequence alignment, and find some locations with gaps.  (There each block of the multiple sequence alignment is 50 columns wide, so the second block starts at residue 51).
+<li>
+Look through the positions in the HMM at the 7-number rows, which correspond to match/insert/delete transitions.  What happens in that row at positions with gaps?
+</ol>
+<li>
+Now run a HMMSearch search against PIR1 the HMM you just built (<input type='submit' value='Send HMM to HMMSearch' />).
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+What are the E()-value of the most distant glutathione transferase?
+<li>
+Look at the near-significant alignment with <tt>SYEP_HUMAN</tt>.  What is the alignment length?  Do you think <tt>SYEP_HUMAN</tt> is likely to be a homolog?
+</ol>
+<li>
+Using the multiple sequence alignment you just made, also build a PSSM, send it to PSI-SEARCH2, and search against the PIR1 database.  Which strategy is more successful, PSI-SEARCH2 or HMMSearch?
+<li>
+<i>Effects of non-homologs</i>
+Try the sequences <b>gstm1_human, gstp1_human, gstt1_human, narj_eco57, dyr_bpt4, and tpis_rabit</b> (the last three are non-glutathione transferases)
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0agstp1_human%0agstt1_human%0anarj_eco57%0adyr_bpt4%0atpis_rabit" target=chaps_win> run CHAPS [pgm]</a>.<br/>Repeat the previous steps for building a Multiple Sequence Alignment and sending it to PSI-SEARCH2 (or PSI-BLAST if it doesn't work).
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now' />.<br />
+Looking at the multiple sequence alignment, does it look a lot different from the multiple sequence alignment from the previous sequences?
+<li>
+Next, select <input type='submit' value='Send to PSI-SEARCH2' />
+<li>
+Now run an HMMSearch search against PIR1 the HMM you just built (<input type='submit' value='Send HMM to HMMSearch' />).
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+Can you tell the glutathione S-transferase homologs from non-homologs?
+<li>
+What are the E()-value of the most distant glutathione transferase?
+</ol>
+<li>
+Using the contaminated multiple sequence alignment you just made, also build a PSSM, send it to PSI-SEARCH2, and search against the PIR1 database.  Is one method, or the other, less sensitive to non-homologous contamination?
+<p>
+  Why do you think a contaminated PSSM/HMM is so good at finding
+  homologs (producing low E()-values) to sequences in the multiple
+  sequence alignment, but does not produce significant E()-values to
+  other proteins?
+ </ol>
+<hr />
+<p><a href="../index.cgi">biol4230</a></p>
+<p id="last_mod"></p>
+<hr />
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Python/Matrix homework - HWK4
+</title>
+</head>
+<body bgcolor=white onload='update_modtime();'>
+<h2>
+Biol4230 - Python/Matrix homework 4  - DUE Monday, Feb. 12, 5:00 PM
+</h2>
+<p>
+<hr />
+<p>
+In addition to putting the python programs an shell scripts for this homework in <tt>biol4230/hwk4</tt>, also create a file <tt>hwk4.notes</tt> that links the names of your programs with the question and contains the output for each of the python programs.
+<p>
+<hr />
+<a href="./matrix_hwk4_help.html">Possibly helpful suggestions</a>
+<hr />
+<ol>
+<li>
+Answer questions 3e,f,g and 4e,f from Fridays' <a href="psiblast_demo.html" target=lab>PSSM lab</a>.
+<li>
+Download 10: 200 aa and 10: 800 aa random protein sequences from
+<a href="http://www.bioinformatics.org/sms2/random_protein.html" target=alt_win>http://www.bioinformatics.org/sms2/random_protein.html</a>.  You might put
+the two sets of ten random sequences in two different directories, or
+give them file names that distinguish them.
+<p>
+<li>
+Write a python program that does searches with each each of 5 scoring matrices from either ssearch36 (e.g. BL50, BP62, VT160, VT80, VT40)  or blastp (BL45, BL62, BL80, PAM70, PAM30), and calculates three sets of averages from 10 searches (using the 10 shorter sequences) against SwissProt (This exercise is easier with ssearch36).
+<p>
+<ol type='a'>
+<li> calculate the average alignment length and percent identity from the best match (one average)
+<li> the second best match (a second average)
+<li> and the 5th best match (a third average)
+</ol>
+The result should be 5 sets of 3 average alignment lengths, and 5 sets of three average percent identities. (To produce 5 hits from blast, you may need to increase the E()-value threshold.)
+<p>
+<!--
+<li>
+Repeat the analysis, reporting the average alignment length and percent identity of the top 10 hits from one of the 10 shorter query searches. (To produce 10 hits from blast, you should increase the E()-value threshold.)
+<li>
+Are the averages you get in step 2 the same as those in step 3? Why might they be different?
+-->
+<li> Repeat step 2 for the longer query sequences, reporting only the
+averages for the best hit.  Do the average percent identities and
+alignment lengths differ for the longer and shorter query sequences?
+  <p>
+    Why might the alignment lengths differ for some matrices, but not others?
+<li>
+  How do the average alignment lengths and percent identities compare to the values shown <a href="scoring_matrices.html" target=matrix_win>here</a>?
+<li>
+Going back to the alignment lengths and percent identities that you saved from questions 2g, 3g, and 4g, how does the percent identity and alignment length change as the PSSM becomes more diverse?  Estimate the approximate scoring matrix equivalents for the three PSSMs that you searched with.
+</ol>
+<p>
+<hr />
+<a href="./matrix_hwk4_help.html">Possibly helpful suggestions</a>
+<hr>
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<p>
+<hr>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Accession translation/XML homework - HWK5 - help
+</title>
+</head>
+<body bgcolor='white' onload='update_modtime();' >
+<h2>
+Biol4230 - Python/Accession linking homework 5  - help
+</h2>
+<hr />
+<p>
+One of the things you are asked to do in this homework is to compare the length and identity of the NCBI RefSeq sequence with the Uniprot sequence.
+<p>
+  While you can get the length of an NCBI sequence from the NCBI esummary.fcgi function, Uniprot does not have an equivalent function, so it is probably easier to just download the refseq sequence from NCBI and the Uniprot sequence from Uniprot and compare their lengths and identity.
+<p>
+  We have discussed how to download a sequence in FASTA format using urlopen(). For this problem, you do NOT need to use curl to put the sequences in a file, you just want to get the sequences into your program so that you can compare their length and identity.
+<p>
+  Here is part of the code to take a FASTA sequence downloaded from either NCBI or Uniprot and split it into the definition line and the sequence lines, and return the sequence:
+  <pre>
+    up_fasta_entry = urlopen(fasta_url+uni_acc+'.fasta').read()
+
+    fasta_lines = up_fasta_entry.split('\n')
+    sequence = "".join(fasta_lines[1:])   # ignore the '>' definition line, and combine the rest
+
+    refseq_dict[ref_acc]['up_len'] = len(sequence)
+    refseq_dict[ref_acc]['up_seq'] = sequence
+  </pre>
+
+  The code also hints at a strategy for keeping the refseq and uniprot information connected.  There would also be a section that gets the refseq_sequence, and stores it in the same dictionary:
+  <pre>
+    refseq_fasta_entry = get_ncbi_fasta(refseq_acc)
+
+    fasta_lines = refseq_fasta_entry.split('\n')
+    sequence = "".join(fasta_lines[1:])   # ignore the '>' definition line, and combine the rest
+
+    refseq_dict[ref_acc]['ref_seq'] = sequence
+    refseq_dict[ref_acc]['ref_len'] = len(sequence)
+  </pre>
+<hr />
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<hr />
+</body>
+</html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+Biol4230 - Final Project
+</title>
+<link href="default.css" type="text/css" rel="stylesheet" />
+</head>
+<body bgcolor='white'>
+<h2>Final Project - From BEDTools to MEME</h2>
+<p />
+<i>Summary</i>
+<p />
+The final term project (Due Monday, May 7, at 5:00 PM):
+<p />
+The overall goal is to identify the consensus sequence for a
+transcription factor binding site using a variant of the steps we used
+in the <a href="./BEDTools2n.html">BED Tools2</a> lab.
+<p />
+You are not expected to write a <tt>python</tt> program or shell
+script to perform all these steps.  You <b>ARE</b> expected to provide
+a <tt>description.txt</tt> file that contains the necessary shell
+scripts/commands to perform each of the steps, and a
+<tt>files.txt</tt> that describes the contents of the files you
+created during the analysis steps.  At the end the project, you will
+have some <tt>*.html</tt> files from MEME.  The differences between
+the different <tt>*.html</tt> files should also be documented in the
+<tt>files.txt</tt> file, and you should download the <tt>meme.txt</tt> output, as well as the PNG graphics for the domains that you found (remember that your MEME results only persist a week).
+<p />
+  Working with the "polished" set of bed intervals in:,
+  <pre>
+$HPC_SLIB/biol4230/data/bed-tools/wgEncodeRegTfbsClusteredV3.bed
+</pre>
+do the folowing:
+<hr />
+<ol>
+<li>
+Use <tt>grep</tt> to identify the set of ChIP
+peaks for a specific transcription factor in
+the <tt>$HPC_SLIB/data/bed-tools/wgEncodeRegTfbsClusteredV3.bed</tt>
+and save that set of peaks to your <tt>~/biol4230/final/</tt>
+directory.
+<p />
+Note that the <tt>wgEncodeRegTfbsClusteredV3.bed</tt>
+file is not in the <tt>bed</tt> format required by <tt>bedtools</tt> -- it does not have the strand (<tt>+/-</tt>) field.  You can add that
+field, and remove the last two fields, which are also not part of the
+standard bed format, with the command line:<br/>
+<pre>
+cut -f 1-5 your_grepped_factor.bed | awk '{print $0,"\t+"}' > your_factor_fixed.bed
+</pre>
+<p />
+</li>
+<li>
+Also create three sets of <tt>tss</tt> files, one specifying regions
+from -250 to +50 around the TSS site (<tt>tss_m250p50.bed</tt>), and a
+second -125 + 25 (<tt>tss_m125p25.bed</tt>), and a third for intervals
+that are more than 1000 nt upstream, and 500 downstream of a TSS
+(<tt>tss_m1000p500.bed</tt>).  You will use the third set of
+coordinates with the <tt>bedtools intersect -v</tt> option to identify
+binding sites that do NOT intersect with
+the <tt>tss_m1000p500.bed</tt> coordinates.
+<p />
+</li>
+<li>
+With your grep-ed/awk-ed ChIP-seq <tt>.bed</tt> files, do the following:
+<ol type='a'>
+  <li>
+    Write an 'R' script that reads in the BED file for your transcription factor, and do a <tt>summary()</tt> of the lengths of the bed intervals (column 3 minus column 2), and of the intensities (column 5).
+    <p />
+      You can run 'R' on interactive.hpc, or download the bed file to your computer and use 'R' studio.  But provide an 'R' script "bed_stats.r" that provides these summaries.
+</li>
+<li>
+Intersect your one ChIP-seq modified bed file with the three TSS +/- files to produce three ChIP-seq-TSS  (or two TSS and one non-TSS) files.  To get the regions outside the <tt>tss_m1000p500.bed</tt> regions, use the <tt>bedtools intersect -v</tt> command to <i>invert</i> the <tt>bedtools intersect</tt> selection.
+<p>
+For each intersection, look at the beginning of your <tt>tss_m??p??.bed</tt> file and your resulting intersection file to make sure that you are getting the binding sites you expect.
+<p>
+At the end of this process, you should have 3 separate intersection files, one for binding sites that are (1) very close, (2) close, and (3) far from transcription start sites (TSSs).
+<p />
+How many of the ChIP-seq sites are within the TSS ranges you used?
+How many are not? 
+<p />
+(Be certain to use the <tt>uniq</tt> command to ensure that each
+intersected <tt>.bed</tt> file has unique coordinates.
+<p />
+</li>
+<li>
+Use your 'R' script from the previous step to <tt>summarize()</tt> the
+distribution of lengths and binding intensities resulting from the
+intersections to the three TSS interval (closer, close, far) files.
+<p />
+</li>
+<li>
+For each of the three ChIP/TSS intersections, Select the 600 intervals
+with the highest ChIP occupancy scores by sorting the bed file on the
+5-th field using:
+<pre>
+  sort -k 5 -n -r your_bed_file | head -n 600 > your_top600.bed
+</pre>
+<p />
+  Also select the 600 intervals with the lowest scores:
+<pre>
+  sort -k 5 -n -r your_bed_file | tail -n 600 > your_low600.bed
+</pre>
+<p /> If you have fewer than 1200 bed intervals for your transcription
+  factor, then divide your number of bed intervals in two, and
+  separate the top half and bottom half (don't worry if the number in
+  the top and bottom halves is not identical).
+<p>
+Run an <tt>awk</tt> script, as you did in <a href="../BEDtools2n.html">BEDTools2/homework 10</a>, to make certain that you have less than 60.000 nt in each of your sample sets.  If you do not, then either:
+<ol type='i'>
+<li> repeat the <tt>sort | head/tail</tt> step above to get fewer sequences that are likely to add up to 60,000 nt.
+<li> run the <tt>sample_bed.py</tt> program to down sample your 600 sequences from the top and bottom sets.
+</ol>
+You will need to check to make certain that you have less than 60,000 nt for each of the six intersection files (top, bottom vs very-close, close, and far)  you have created.
+</li>
+<li>
+Use the <tt>fastaFromBed</tt> program to extract the sequences from a local copy of the Human genome to extract six sets of fasta sequences from your six transcription-factor/TSS intersection files.
+<pre>
+fastaFromBed -fi $HPC_SLIB/data/hg19/hg19.fa -bed your_chip_tf.bed -fo your_chip_tf.fasta
+</pre>
+You will need to do this six times, for each of your
+ChIP/TSS/top-half/bottom-half bed files.  This output file
+does not need to have the fasta headers edited.
+</li>
+</ol>
+</li>
+<li>
+Go to the <a href="http://meme-suite.org/" target='meme'>MEME</a> site,
+and use both the <a href="http://meme-suite.org/tools/meme"
+target='meme'>MEME</a> tool and the <a
+href="http://meme-suite.org/tools/meme-chip" target='meme'>MEME-ChIP</a>
+tools to identify the consensus sites found in your datasets.
+<p />
+  Download the <tt>meme text output</tt> into your <tt>final/</tt>
+  directory, and submit the PNG files summarizing the binding motifs
+  to the final project page (so that I can see the results after MEME
+  has deleted them).
+<p />
+</li>
+<li>
+In your <tt>description.txt</tt> file, address the following questions:
+<ol type='a'>
+<li>
+Did you find the consensus binding site with both <tt>MEME</tt> and <tt>MEME-ChIP</tt>? (Find the consensus site using Google/Wikipedia).
+</li>
+<li>
+You looked for the consensus binding site in six different datasets -- the top and bottom binding intervals from three distances from TSS's - very close, farther, and not-near a TSS. Make a table 6  rows, and provide
+columns reporting the E()-value for (1) the correct consensus, (2)
+(possibly) significant incorrect consensus, using both MEME and
+MEME-Chip.  If you did not have a significant E()-value for either the correct or an incorrect motif for one of the MEME methods, enter <tt>NA</tt>
+</li>
+<li>
+Based on your results, is the consensus binding site enriched near
+transcription start sites?  Is it nearer (-125/+25) or farther from
+the TSS?  Justify your answer.
+</li>
+</ol>
+<hr />
+</li>
+<li>
+Put the <tt>description.txt</tt>, <tt>files.txt</tt> and the internediate <tt>.bed</tt> and <tt>.fasta</tt> files in <tt>~/biol4230/final</tt> directory.
+</li>
+</ol>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

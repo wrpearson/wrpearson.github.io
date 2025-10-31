@@ -1,0 +1,62 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>Renaming FASTA sequences</title>
+
+</head>
+<body>
+<h2>Renaming FASTA sequences - rename_fastaseq.py</h2>
+<p>
+<tt>tranalign</tt> requires that the sequences in your DNA sequence file have the same names as the sequences in your protein sequence file (at least the first word, or accession, of the sequence).  If the names don't match, you will get an error message.
+<p>
+I have written a short program that takes a list of accessions and renames the sequences in a DNA sequence file using those accessions.
+<pre>
+~wrp/biol4230/proj1/rename_fastaseq.py --acc_file gstm.a_accs gstm.nlib
+</pre>
+Will replace the description lines in gstm.nlib of the form:
+<pre>
+>ref|NM_000561.3| Homo sapiens glutathione S-transferase mu 1 (GSTM1)
+</pre>
+with
+<pre>
+>gstm1_hum >ref|NM_000561.3| Homo sapiens glutathione S-transferase mu 1 (GSTM1)
+</pre>
+if "gstm1_hum" is the first accession in gstm.a_accs
+<p>
+You can use this script to replace the names of either protein OR DNA accessions in any FASTA file, which should make it easier to (1) use informative names, (uniprot ID's) for your sequences and (2) make sure you have the same names for both protein and DNA sequences.
+<p>
+You <b>must</b> provide a  <tt>--acc_file name_file_name</tt> file on the command line with the FASTA file of sequences to be renamed.  This file can simply contain a list of accessions, e.g.:
+<pre>
+GSTM1_HUMAN
+GSTM2_HUMAN
+GSTM1_MOUSE
+...
+</pre>
+Or it can contain the FASTA definition lines from a template (e.g. protein sequence file).  For example:
+<pre>
+grep '^>' gstm.alib > gstm.a_accs
+~/biol4230/proj1/rename_fastaseq.py --acc_file gstm.a_accs gstm.nlib > gstm.nlib_renamed
+</pre>
+will take the text between '>' and the first space as the new set of accession names.  This should make it easier to ensure that the protein names and DNA names are the same by simply running <tt>grep</tt> on the protein FASTA file.
+<p>
+<tt>rename_fastaseq.py</tt> is very simple, it assumes that the order of names in the -acc_file is the same as the order of sequences in the file argument (gstm.nlib).
+<p>
+You can use this script to take a file of NP/XP_ proteins and their corresponding NM/XM_ mRNAs and convert the refseq accessions to consistent Uniprot IDs.
+<hr />
+In addition, <tt>rename_fastaseq.py</tt> can be used to ensure that phylip accessions are less than 10 characters long. 
+<p>
+Unfortunately, the various phylip/fphylip programs are inconsistent about this, but the names (accessions) of the sequences should be 10 characters or less, and not include '.'s ('_' is OK). 
+</hr >
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" -->
+<p>
+</body>
+</html>

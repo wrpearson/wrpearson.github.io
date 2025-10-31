@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>
+Biol4230 - BED Tools for Motifs
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>From BEDTools to MEME</h2>
+<p>
+<hr />
+<i>Summary</i>
+<p>
+In this lab, we take a set of SP1 binding site coordinates, downloaded
+from UCSC and the ENCODE project, This lab goes through the steps for
+the SP1 transcription factor binding data.  In
+the <a href="./final_project2.html">Final Project</a>, you will do
+exactly the same steps, but with a different transcription factor.
+<hr />
+<p>
+<ol>
+<hr />
+<b>Getting started</b>
+<hr />
+<li>
+ Make a new <tt>~/biol4230/hwk10</tt> directory, and link the <tt>${HPC_SLIB}/data/bed-tools/wgEncode_Sp1.bed</tt> file into it:
+<pre>
+mkdir ~/biol4230/hwk10
+cd ~/biol4230/hwk10
+ln -s $HPC_SLIB/data/bed-tools/wgEncode_Sp1.bed .
+</pre>
+<p>
+This file was created extracting the Sp1 sites from the 
+<a href="http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeRegTfbsClustered/">wgEncodeRegTfbsClusteredV3.bed.gz</a> file, which is described more fully in the link.
+<p>
+How many Sp1 binding regions are found in the file?
+<li>
+You can determine the average length of the segments with the command:
+<pre>
+awk '{sum += ($3 - $2); n++} END{print sum/n}' wgEncode_Sp1.bed 
+</pre>
+<p>
+<tt>awk</tt> makes it very easy to isolate the subset of lines with reasonable region lengths.
+<pre>
+awk '{len = $3 - $2; if (len < 250 && len > 10) { print $_}}' wgEncode_Sp1.bed > wgEncode_Sp1_ranged.bed
+</pre>
+Run this command and check the average length of the Sp1 region.
+<p>
+<hr />
+<b>Finding sites near TSS's</b>
+<hr />
+<li>
+We seek to identify an <tt>Sp1</tt> binding site motif from ChIP-Seq
+regions that are near transcription start sites (TSS's).  To do this, you will need the <tt>tss.bed</tt> and <tt>hg19.chromsizes</tt> files you used in last week's exercises.  Then, create a <tt>.bed</tt> file that lists the coordinates -250 - +50 around the <tt>tss.bed</tt> sites:
+<pre>
+bedtools slop -l 250 -r 50 -i tss.bed -g hg19.chromsizes > tss_minus250plus50.bed
+</pre>
+Check the top of the <tt>tss_minus250plus50.bed</tt> file, and <tt>tss.bed</tt> to be sure that the new file is correct using <tt>head tss.bed</tt> and <tt>head tss_minus250plus50.bed</tt>.  (You could also check the average segment length with <tt>awk</tt>.  What should it be?)
+<p>
+<li>
+Now that we have the Sp1 binding regions, and the TSS regions, we can intersect them to get the subset of Sp1 sites near transcription start sites.  We would like to recover the original Sp1 regions, so we will use <tt>-wa</tt>:
+<pre>
+bedtools intersect -a wgEncode_Sp1_ranged.bed -b tss_minus250plus50.bed -wa | uniq > wgEncode_Sp1_tss.bed
+</pre>
+How many Sp1 regions did you start with?  How many do you have now? What is the average length of the Sp1 regions near transcription start sites?
+<hr />
+<b>Isolating the best and worst sites</b>
+<hr />
+<li>
+The MEME program has constrains on how many sequences it allows, and
+how long they are (you cannot have more than 1000 sequences, and the
+total length of sequences cannot be longer than 60,000 nt). In the final project, you will look at 600 sequences with the best and worst transcription factor occupancy scores.  Since we only have 374 sequences in the correct length reange and near TSS's, take the top 150 and the bottom 150:
+<pre>
+sort -n -k 5 -r wgEncode_Sp1_tss.bed | head -n 150 > wgEncode_Sp1_tss_top150.bed
+sort -n -k 5 -r wgEncode_Sp1_tss.bed | tail -n 150 > wgEncode_Sp1_tss_bot150.bed
+</pre>
+<p>
+<li>
+Check to make certain that you have not exceeded the 60,000 nt limit on the lengths of the sequences for MEME:
+<pre>
+awk '{sum += $3 - $2; n++} END{print sum, n}' wgEncode_Sp1_tss_top150.bed
+awk '{sum += $3 - $2; n++} END{print sum, n}' wgEncode_Sp1_tss_bot150.bed
+</pre>
+<p>
+<hr />
+<b>Getting the FASTA sequences from the bed coordinates</b>
+<hr />
+<li>
+Now that we have a set of Sp1 sites near transcription start sites, we
+need to download the genome sequences.  One strategy is to use the UCSC browser, edit the sequences that come down from the browser to make sure they have different names, and then upload the sequences to MEME.
+<p>
+A simpler solution is to use the <tt>fastaFromBed</tt> program to extract the sequences from a local copy of the Human genome:
+<pre>
+fastaFromBed -fi $HPC_SLIB/data/hg19/hg19.fa -bed wgEncode_Sp1_tss_top150.bed  -fo wgEncode_Sp1_tss_top150.fasta
+fastaFromBed -fi $HPC_SLIB/data/hg19/hg19.fa -bed wgEncode_Sp1_tss_bot150.bed  -fo wgEncode_Sp1_tss_bot150.fasta
+</pre>
+</ol>
+<hr />
+<b>Download to and send to MEME</b>
+<hr />
+Now that we have a set of FASTA sequences of Sp1 sites near transcription start sites, we
+need to download the sequences and send those
+sequences to <tt>MEME</tt> to get a consensus site.
+<ol>
+<li>
+Download the <tt>wgEncode_Sp1_tss_top150.fasta</tt> and <tt>wgEncode_Sp1_tss_bot150.fasta</tt> files to a <tt>hwk10</tt> directory on your laptop.
+<li>
+Go to the <a href="http://meme-suite.org/tools/meme" target=meme>MEME</a> site, select the MEME function, and upload your <b>top150</b> Sp1/TSS sequences, looking for zero or one motif per sequence, with motif len
+gths between 4 and 12.
+<p>
+How many significant motifs did you find?
+<p>
+Were any of them close to an Sp1 site: <tt>GGCGGG</tt>?
+<li>
+Do the same thing for your <b>bot150</b> Sp1/TSS sequences.
+<p>
+Again, how many significant motifs, any Sp1 sites?
+</ol>
+<hr />
+Homework 10 (<tt>hwk10</tt>, due Monday, April 23, 5:00 PM.
+<ol>
+<li>
+Create the files listed above.
+<li>
+Report the numbers of segments and average length of segments for the initial Sp1 binding regions, the "_ranged" Sp1 regions, and the Sp1 regions near transcription start sites.
+<li>
+Answer the last two questions above (significant motifs, are they Sp1) for both top150 and bot150 sequences.
+<li>
+Upload the motif images to the Collab web site.
+</ol>
+<hr />
+<b>Final Project - </b>  <a href="./final_project2.html">Project assignment</a>
+<p>
+Due Monday, May 7,  5:00 PM.
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

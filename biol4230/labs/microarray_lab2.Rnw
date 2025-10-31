@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,pstricks,fullpage}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\usepackage{theorem}
+\usepackage{float}
+\usepackage{ifthen}
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+\newcommand{\R}{{\textsf{R}}}
+\newcommand{\code}[1]{{\texttt{#1}}}
+\newcommand{\term}[1]{{\emph{#1}}}
+\newcommand{\Rpackage}[1]{\textsf{#1}}
+\newcommand{\Rfunction}[1]{\texttt{#1}}
+\newcommand{\Robject}[1]{\texttt{#1}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+
+
+\begin{document}
+
+\SweaveOpts{keep.source=TRUE}
+
+%\VignetteDepends{YEAST,GO,annotate,gaschYHS,harbChIP)}
+%\VignetteIndexEntry{GO scoring using various methods}
+%\VignetteKeywords{yeast, gene sets based analysis, gene ontology}
+
+\title{Affymetrix Microarray Data Analysis II}
+
+\author{Stefan Bekiranov\\CS 6014}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+In this lab we will be exploring packages that take sets of differentially expressed genes and attach annotation information including gene names, functional descriptions and links to functional information including Gene Ontology functional categories, pathway information and much more along with the summary statistics of the analysis (i.e., boxplots of normalized expression values, log$_2$ fold changes and adjusted p-values).  Then we'll identify Gene Ontology categories and KEGG Pathways that are significantly enriched with differentially expressed genes using the {\it GOstats} package.  After that, we'll export a file that will be used as input to an online set of tools called ``Onto-Tools'' which contains a great pathway analysis tool called ``Pathway Express''.           
+
+\section{Loading libraries}
+
+Load in the following libraries: (\code{humanStemCell, affycoretools, ReportingTools}):
+<<libraries>>=
+library(humanStemCell)
+library(affycoretools)
+library(ReportingTools)
+library(limma)
+library(GOstats)
+@
+
+\section{Reading in the data}
+
+We can now load the \code{fhesc} object:
+
+<<data>>=
+data(fhesc)
+@
+
+This is a dataset that already exits in the {\it humanStemCell} package.     
+
+\section{classes and methods}
+
+What type of object is \code{fhesc}?  First, let's type it out on the command line:
+
+<<dil>>=
+fhesc
+@
+
+We can get more information using the methods in \code{AffyBatch}.  Type \code{help(AffyBatch)} to get a list of the commands.  What other commands would be most useful for telling us what kind of object \code{fhesc} is?    
+
+<<affybat>>=
+class(fhesc)
+@
+
+Let's get the sample names and their column order and the values in \code{fhesc} in matrix form (note: I'm giving away the answer to my above questions).  
+
+<<samp>>=
+samp_fhesc = pData(fhesc)
+samp_fhesc
+e <- exprs(fhesc)
+e[1:10,]
+@
+
+It's an expression set!  
+
+\section{Reproducibility Analysis}
+
+Let's skip the quality control step and see if (1) the arrays are normalized properly and (2) the reproducibility among replicates is relatively good using \code{mva.pairs} (this is an alternative to MAplot that takes a matrix as input). 
+
+<<maplot, fig=TRUE>>=
+mva.pairs(e, log.it=F)
+@
+
+From this MA plot, can you tell if there will be a low, medium or high number of differentially expressed genes?  If so, what are you basing your decision on?
+
+Now let's check to see if we have a ``differentiation'' effect (and reasonably good reproducibility among replicates) by generating a PCA plot:
+
+<<pca, fig=TRUE>>=
+plotPCA(fhesc)
+@
+
+Do you observe the expected grouping?  Based on this PCA plot, would you expect to detect a low, medium or high number of differentially expressed genes between the ``undifferentiated'' and ``differentiated'' samples? 
+
+\section{Differential expression analysis: {\it limma} package}
+
+We will search for differentially expressed genes between the ``undifferentiated'' and ``differentiated'' samples which I'll call \code{U} and \code{D} respectively.  Let's look at our sample data to get the sample order correctly and then apply the \code{limma} method to the \code{fhesc} expression set object.
+
+<<samp>>=
+samp_fhesc
+@
+
+As before, we'll start with the \code{design} matrix
+
+<<design>>=
+design <- model.matrix(~0+factor(c(1,1,1,2,2,2)))
+colnames(design) <- c("U", "D")
+@
+
+What does the design matrix look like?
+
+<<typedes>>=
+design
+@
+
+Now we'll perform the linear model fit using the \code{design} matrix
+
+<<lmfit>>=
+fit <- lmFit(fhesc, design)
+@
+
+Now let's set up the \code{contrast.matrix}.  We're going to specifically identify the differentially expressed genes between the \code{D} and \code{U} samples. 
+
+<<contrast>>=
+contrast.matrix <- makeContrasts(D-U, levels=design)
+contrast.matrix
+@  
+
+Now let's calculate the differential expression summary statistics including log fold changes and p-values.
+
+<<contrastfit>>=
+fit2 <- contrasts.fit(fit, contrast.matrix)
+ebayes <- eBayes(fit2)
+@
+
+Now let's view the results of the top 20 most significant genes by applying \code{topTable} to the \code{ebayes} object.  As before, type help(topTable) to get some information on its usage and options.
+
+<<toptable>>=
+topTable(ebayes, number=20)
+@
+
+Now let's use top table to see how many differentially expressed genes we find using a 0.05 FDR cutoff.
+
+<<fdr05>>=
+t = topTable(ebayes, number=nrow(e))
+sum(t[,5] <= 0.05)
+@
+
+Is this a surprise?  
+
+\section{Annotation, GO and Pathway Information: {\it ReportingTools} package}      
+
+The {\it ReportingTools} package allows you to display biologically relevant results of your differential expression analysis.  Specifically, a display contains Affy probe id, gene id, gene symbol and gene description.  The gene id is a link to NCBI which contains a wealth of biologically relevant information including Gene Ontology, pathway, gene neighborhood, etc. information about the linked gene.  In addition, your display will contain basic summary statistics associated with your differential expression analysis including boxplots of normalized, log$_2$ gene expression values, estimates of log$_2$ fold change (FC) and adjusted p-values.  I've adapted the \code{ReportingTools} workflow shown in the "Using ReportingTools in an Analysis of Microarry Data" vignette.  Take a look at this vignette and work through the code below.  Before you start, create a "./reports" directory in your current working directory.  
+
+<<reportingtools>>=
+library(hgu133plus2.db)
+deReport2 <- HTMLReport(shortName='de_analysis', 
+title='Differential expresion analysis of differentiated HESCs', 
+reportDirectory="./reports")
+pData(fhesc)
+fhescFactor = factor(c("U","U","U","D","D","D"), levels=c("U","D"))
+fhescFactor
+publish(ebayes, deReport2, eSet=fhesc, factor=fhescFactor, n=1000, 
+pvalueCutoff=0.0001)
+finish(deReport2)
+@
+
+Why did I type \code{pData(fhesc)}?  What did I do differently (compared to the \code{ReportingTools} Microarray vignette) to generate an \code{HTMLReport} for the differential expression analysis of the data in the {\it humanStemCell} package?  Note, we're using a more stringent 0.001 FDR cutoff to work with a manageable gene list.  Now look for the files in your "./reports" directory.  Click on the html page.  Take some time to answer these questions.  We're near the end of a typical gene expression analysis workflow, but this is where the work of a gene expression {\it study} really begins!  Sort the data by logFC.  Do any of the top gene's pathways and/or GO terms make sense give that we're comparing differentiated cells to undifferentiated stem cells?  What are the first genes that you would look for?  Use Google and search terms like ``Induced pluripotent stem cell''.  See if you can find key stem cell genes on your list.  Explore your html page by clicking on the EntrezId links.  Assume this was the first gene expression experiment comparing differentiated and undifferentiated stem cells.  Based on these results, is a microarray experiment capable of identifying the critical gene(s) that you would consider for downstream follow up work?  Would you have guessed which ones were the key genes?  Could you have identified {\it all} the known key stem cell genes from this list?  If not, what is making it difficult?  Is there anything linking them (e.g., functional description, GO terms, KEGG)?  As you go further along in this tutorial, see if any of the tools you apply to this data set can clearly identify these key stem cell genes.    
+
+\section{Significant Enrichment of Genes in GO categories and KEGG pathways: {\it GOstats} package}
+
+The above workflow gave us an html page with annotation information linking each significant gene to GO terms and pathways.  However, using this information alone, we don't know which of the GO categories or KEGG pathways are significantly enriched.  To address this, we will use the {\it GOstats} package.  Browse the vignette by typing \code{openVignette(GOstats)} and select the \code{Hypergeometric Tests Using GOstats} option.  First we need to collect our significant Affy Ids (using the same 0.001 FDR cutoff).  Try to do this using our table \code{t} generated above. 
+
+<<affyid>>=
+affyids = row.names(t[t[,5]<0.0001,])
+affyids[1:10]
+@      
+
+Now we'll follow the {\it GOstats} usage guide to generate over represented ``Biological Processes'' by applying a p-value cutoff of 0.01.  We have to convert all our Affy ids to Entrez Gene ids, and we shouldn't have any duplicates:
+
+<<gostatbp>>=
+selectedEntrezIds = unique(unlist(mget(affyids, hgu133plus2ENTREZID)))
+entrezUniverse = unique(unlist(mget(featureNames(fhesc), hgu133plus2ENTREZID)))
+hgCutoff = 0.01
+params = new("GOHyperGParams", geneIds=selectedEntrezIds,
+universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",
+ontology="BP", pvalueCutoff=hgCutoff, conditional=FALSE,
+testDirection="over") 
+@
+
+Now we'll perform the hypergeometric test
+<<hgbp>>=
+hgOverBP = hyperGTest(params)
+@
+
+Get a summary of the results by typing \code{summary(hgOverBP)}.  Are these over-represented ``Biological Process'' categories what you expect given the samples were differentiated and undifferentiated stem cells?    
+
+We can also create an html file by typing
+
+<<htmlhgbp>>=
+htmlReport(hgOverBP, file= "ScHgbp.html")
+@
+
+Click on the file and then follow a link in your html page.  Does it go to a useful specific GO category?  Cut and paste a GO id into the GO browser search box?  Is this more useful?
+
+Use a subset of the above commands to get the over represented ``Molecular Function'' categories using the \code{ontology="MF"} option in \code{new}, performing the hypergeometric test with the new parameters and then output the results to an html page.
+
+<<hgmf>>=
+mfparams = new("GOHyperGParams", geneIds=selectedEntrezIds,
+universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",
+ontology="MF", pvalueCutoff=hgCutoff, conditional=FALSE,
+testDirection="over")
+hgOverMF = hyperGTest(mfparams)
+htmlReport(hgOverMF, file="ScHgmf.html") 
+@
+
+Are these over-represented ``Molecular Function'' categories what you expect given the samples were differentiated and undifferentiated stem cells?
+
+Finally, let's find the over represented KEGG pathways using a 0.05 p-value cutoff and output the results to an html page by typing\\*
+
+\noindent \code{> kparams = new("KEGGHyperGParams", geneIds=selectedEntrezIds,}\\*
+\code{+ universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",}\\*
+\code{+ pvalueCutoff=0.05, testDirection="over")}\\*
+\code{> hgOverKEGG = hyperGTest(kparams)}\\*
+\code{> htmlReport(hgOverKEGG, file="ScHgkegg.html")}\\* 
+
+Now let's generate a file of the differentially expressed genes (FDR cutoff of 0.001) that can be used as input for Onto-Tools (http://vortex.cs.wayne.edu).  It will have two columns: Affy ids in column 1 and log fold change in column 2 separated by tabs.
+
+<<ontofile>>=
+ontotab <- as.data.frame(cbind(row.names(t[t[,5]<0.001,]), t[t[,5]<0.001,1]))
+write.table(ontotab, file="ScOnto.txt", quote=F, sep="\t", row.names=F, col.names=F)
+@
+
+Check to see if you wrote the correctly formatted file.  Now go to the Onto-Tools web site.  Use the Pathway Express tool.  Along with a hypergeometric analysis which assesses statistical enrichment of genes in pathways, it also ranks pathways using a PageRank-like algorithm (similar to Google's search algorithm).  The Pathway Express algorithm accounts for pathway topology information and ranks pathways according to the likelihood that the output of a pathway is impacted by changes in gene expression of its members.  This is one of many powerful online pathway related tools.  Another really great tool/database is MSigDB.  Look it up and give it a try!      
+
+\end{document}

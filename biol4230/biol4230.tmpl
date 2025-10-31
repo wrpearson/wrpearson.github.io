@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+BIOL4230/BIOL7230
+</title>
+<!-- <base  HREF="https://fasta.bioch.virginia.edu/biol4230/" /> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+</head><body bgcolor=white>
+<h2 align='center'>Biology (BIOL) 4230/7230, Spring 2018</h2>
+<h2 align='center'>Bioinformatics and Functional Genomics</h2>
+<hr/>
+<p align=center>
+Biol4230/Biol7230 - Tues/Thurs 9:30 &ndash; 10:45, Ruffner Hall Rm 175;  Friday 9:00 &ndash; 9:50  Ruffner 173
+<p align=center>
+Course director: William R. Pearson, Pinn (Jordan) Hall Rm 6-057, <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</A><br />
+Office hours, 1:00 - 3:00 PM Monday, or by appt.
+<hr />
+<!--
+<p align=center>
+<font color="red">This page is a place holder from last year's course, so some dates will be adjusted.  The flow of topics is largely correct.</font>
+<hr />
+</p>
+-->
+<p align=center>Course Overview, <a href='policies.html'>Policies</a>
+<hr />
+<h3 align='center'>Texts:</h3>
+<p align='center'>
+<i>Bioinformatics and Functional Genomics (2nd ed)</i> (2009) J. Pevzner, Wiley-Blackwell, ISBN:0470085851
+<!--
+<a href="http://RE5QY4SB7X.search.serialssolutions.com/?V=1.0&L=RE5QY4SB7X&S=JCs&C=TC0000353892&T=marc">EBOOK</a> -->
+<br />
+<i>Practical Computing for Biologists</i> (2010) S. Haddock and C. Dunn, Sinauer, ISBN: 0878933913
+<p align='center'>
+<A HREF="biol4230_text.html">Other texts</A>
+<hr />
+<table align=center>
+<!-- TMPL_LOOP NAME=LECT_LOOP -->
+<!-- TMPL_IF NEW_WEEK --><tr><td colspan=4><hr /></td></tr><!-- /TMPL_IF -->
+<tr>
+<td><!-- TMPL_VAR NAME=DAY --></td>
+<td align=center><!-- TMPL_VAR NAME=DATE --></td>
+<!-- TMPL_IF NAME=SPECIAL -->
+  <td align=center colspan=2><!-- TMPL_VAR NAME=TITLE --></A></td>
+<!-- TMPL_ELSE -->
+  <td align='left'><!-- TMPL_IF NAME=URL --><A HREF="<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=TITLE --></A>
+      <!-- TMPL_ELSE --><!-- TMPL_VAR NAME=TITLE --><!-- /TMPL_IF -->
+  <!-- TMPL_IF PDF --><a href="<!-- TMPL_VAR NAME=PDF -->"> Lecture PDF </A><!-- /TMPL_IF  -->
+  </td>
+  <td><!-- TMPL_VAR NAME=NAME --></td>
+<!-- /TMPL_IF -->
+</tr>
+<!-- TMPL_IF NAME=OTHER -->
+  <tr>
+  <td>&nbsp;</td><td>&nbsp;</td>
+  <td colspan=2><!-- TMPL_VAR NAME=OTHER --></td>
+</tr>
+<!-- /TMPL_IF -->
+<!-- /TMPL_LOOP -->
+</table>
+<hr />
+<!-- <A HREF="perl/perl_intro.html"> Introduction to Unix
+<p>
+-->
+<A HREF="biol4230_links.html">Links to other Computational Biology Courses</A>
+<p>
+<A HREF="mailto:wrp@virginia.edu">wrp@virginia.edu</A><br />
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" --></font>
+</body>
+</html>

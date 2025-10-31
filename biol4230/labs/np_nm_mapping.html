@@ -1,0 +1,76 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>RefSeq NP to NM mapping</title>
+</head>
+<body>
+<h2>Conversion from refseq NP and SwissProt accessions to NM_ (mRNA accessions)</h2>
+<p>
+It turns out that automatically finding NM_ accessions for NP_ accessions is much more difficult than it should be, So I have put up a web script to do the conversion.
+<p>
+Try the URL: 
+<pre>
+https://fastademo.bioch.virginia.edu/fasta_www2/NP_to_NM.cgi?acc=NP_000552,P09488 
+</pre>
+and you should get the result: 
+<pre>
+NP_000552  NP_000552  NM_000561 
+P09488     NP_000552  NM_000561 
+</pre>
+where the first field is the accession you provided, and the second and third are the refseq NP_ and refseq NM_ that match the sequence exactly. Here you can see it done on a larger scale for the a file that includes several NP_ accessions: 
+<pre>
+for n in `cat gst_np.acc`; do 
+curl https://fastademo.bioch.virginia.edu/fasta_www2/NP_to_NM.cgi?acc=$n 
+done 
+</pre>
+produces: 
+<pre>
+NP_666533  NP_666533  NM_146421 
+NP_000552  NP_000552  NM_000561 
+NP_001135840  NP_001135840  NM_001142368 
+NP_000839  NP_000839  NM_000848 
+NP_000840  NP_000840  NM_000849 
+NP_000841  NP_000841  NM_000850 
+NP_000842  NP_000842  NM_000851 
+XP_005270842  XP_005270842  XM_005270785 
+</pre>
+<p>
+The script should <i>always</i> work with refseq NP_'s and XP_'s.  It
+will sometimes work with SwissProt accessions (P09488), but this is
+not reliable. For more reliable mapping of Uniprot accessions to RefSeq NP_'s, you need to use the <a href="https://www.uniprot.org/help/api_idmapping">Uniprot mapping service</a>.
+<p>
+This script uses a database of proteins that I download from the NCBI
+that may not be completely up to date. So not every protein you try
+to map may be found. But the ones it finds should be correct.
+<p>
+<hr />
+Alternatively, I have written a Python program that uses this database at available from:
+<pre>
+~wrp/biol4230/proj1/NP_to_NM.py 
+
+$ ~wrp/biol4230/proj1/NP_to_NM.py NP_000552 P09488 
+NP_000552 NP_000552 NM_000561 
+P09488 NP_000552 NM_000561 
+</pre>
+or
+<pre>
+for n in `cat gst_np.acc`; do 
+~wrp/biol4230/proj1/NP_to_NM.py $n
+done 
+</pre>
+<p>
+It has the same "issues" as the web site, since it uses the same database.
+<hr />
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" -->
+<p>
+</body>
+</html>

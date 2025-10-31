@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Biol4230 - PSSMs/PSI-BLAST</title>
+<link href="default.css" type="text/css" rel="stylesheet" />
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+</head>
+<body bgcolor='white' onload='update_modtime();' >
+<h2>Biol4230 - PSI-BLAST and PSSMs</h2>
+<h2><a href="http://fasta.bioch.virginia.edu/biol4230/labs/blast_demo2.html">fasta.bioch.virginia.edu/labs/biol4230/psiblast_demo.html</a></h2>
+<hr />
+These exercises use the
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast" target=blast_win>UVa BLAST</A>, 
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>UVa CHAPS</A>, 
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=mselect" target=pblast_win>UVa PSI-BLAST</A>
+WWW pages.
+<p>
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>UVa CHAPS</A>
+allows you to enter a set of sequences, generate a multiple alignment,
+and use that multiple aligment for a <A
+HREF="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=mselect" target=pblast_win>PSI-BLAST</A>
+search.
+<p>
+Additional information on the <A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi"
+target=chaps_win>CHAPS</A> program, which takes a set of sequences,
+produces a multiple alignment, and then uses the multiple alignment
+with <A HREF="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=mselect"
+target=pblast_win>PSI-BLAST</A>, can be found <A
+HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps_help.html" target=chaps_win>here</A>.
+<hr />
+<b>I. Watching PSI-BLAST (PSI-SEARCH2) work iteratively</b>
+<hr />
+<ol type='1'>
+<li>
+Using the PSI-SEARCH2 program, compare <tt>GSTM1_HUMAN</tt> against the PIR1 database using the <a href="http://fastademo.bioch.virginia.edu/fasta_www3/fasta_www.cgi?rm=psi2_select&amp;query=gstm1_human&amp;db=p"target="blast_win"> PSI-SEARCH2 [pgm]</a> WWW page.
+<ol type='a'>
+<li>
+How many glutathione transferase homologs do you see after the first iteration?
+<li>
+What is the E()-value of the most distant glutathione transferase?  What is the most distant homolog with significant (E()<0.001) similarity?  In what organism is it found?  What is it's percent identity?
+</ol>
+<li>
+  Continue the search through a second and third iteration.
+<ol type='a'>
+<li>
+  After each iteration, note the number of significant homologs (E()<0.001) and the percent identity of the most distant significant homolog.
+<li>
+Based on the percent identity, guess-timate the equivalent PAM/VT matrix after the first iteration, the second iteration, and the third iteration.
+</ol>
+</ol>
+<hr />
+<b>II. Looking at profiles/PSSMs -- the effect of diversity</b>
+<hr />
+<ol>
+<li>
+<i>Searching with one sequence</i> - Using the BLASTP program, compare <tt>GSTM1_HUMAN</tt> against the PIR1 database using the <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast&amp;query=gstm1_human&amp;db=p"
+target="blast_win"> BLAST [pgm]</a> WWW page.
+<ol type='a'>
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+What is the E()-value of the most distant glutathione transferase?  What is the most distant homolog with significant (E()<0.001) similarity?  In what organism is it found?
+</ol>
+<li>
+<i>Building a PSSM</i> (2 sequences)
+Using the <A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi" target=chaps_win>CHAPS WWW
+page</A>, make a multiple alignment and generate a <b>PSSM</b> using
+the two sequences: <b>gstm1_human, gstm2_human</b> <A
+HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0Agstm2_human"
+target=chaps_win> run CHAPS [pgm]</A>.
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now'/>
+<li>
+Next, select <input type='submit' value='Send to PSI-BLAST'/>
+<li>
+Now run a BLAST search against PIR1 with GSTM1_HUMAN and the Multiple Sequence alignment you just built.
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+What is the E()-value of the most distant glutathione transferase?  What organism is it from?
+<li>
+What is the percent identity of the most distant statistically significant glutathione transferase?
+<li>
+  Go back to the <tt>BLASTP/PSIBLAST</tt> search page with the multiple sequence alignment and search the <tt>shuffled SwissProt</tt> database.  Record the alignment length, percent identity, and E()-value for the highest scoring shuffled sequence.
+  <p>
+    Based on this result, are PSI-BLAST statistical estimates likely to be accurate?  Why or why not?
+</ol>
+<li>
+<i>Searching with a diverse PSSM</i>
+Try the sequences <b>gstm1_human, gstm3_human, gstp1_human, gsta1_human, gstt1_human, gsto1_human, hpgds_human</b>,
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0agstm3_human%0agstp1_human%0agsta1_human%0agstt1_human%0agsto1_human%0ahpgds_human"
+target=chaps_win> run CHAPS [pgm]</a>.
+<br />Repeat the previous steps for building a Multiple Sequence Alignment and sending it to PSI-BLAST.
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now'/>.<br />
+Take a quick glance at the multiple sequence alignment; how many large gapped regions do you see?
+<p>
+  Copy/paste the multiple sequence alignment to another file/document, so that you can compare it to the next multiple alignment.
+<li>
+Next, select <input type='submit' value='Send to PSI-BLAST'/>
+<li>
+Now run a BLAST search against PIR1 with GSTM1_HUMAN and the Multiple Sequence alignment you just built.
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+What are the E()-value  of the most distant glutathione transferase, and the percent identity of the most distant GST with E() < 0.001.?
+<li>
+Look at the near-significant alignment with <tt>SYEP_HUMAN</tt>.  What is the percent identity?  The alignment length?  Do you think <tt>SYEP_HUMAN</tt> is likely to be a homolog?
+<br />
+Examine domain content of <tt>SYEP_HUMAN</tt>  at <a href="http://pfam.xfam.org/protein/SYEP_HUMAN" target='pfam_win'>Pfam</a>.  Does it contain a homologous domain?  Use the "show" domain scores to confirm your conclusion.  Is the domain you found statistically significant?  What is another strategy for confirming the relationship?
+<li>
+  Go back to the <tt>BLASTP/PSIBLAST</tt> search page with the multiple sequence alignment and search the <tt>shuffled SwissProt</tt> database.  Record the alignment length, percent identity, and E()-value for the highest scoring shuffled sequence for this more diverse PSSM.
+</ol>
+<li>
+<i>Effects of non-homologs</i>
+Try the sequences <b>gstm1_human, gstp1_human, gstt1_human, narj_eco57, dyr_bpt4, and tpis_rabit</b> (the last three are non-glutathione transferases)
+<A HREF="http://fasta.bioch.virginia.edu/fasta_www2/chaps.cgi?msa_query=gstm1_human%0agstp1_human%0agstt1_human%0anarj_eco57%0adyr_bpt4%0atpis_rabit" target=chaps_win> run CHAPS [pgm]</a>.<br/>Repeat the previous steps for building a Multiple Sequence Alignment and sending it to PSI-BLAST.
+<ol type='a'>
+<li>
+Build a multiple sequence alignment by selecting <select><option>Clustal W</option></select> and <input type='submit' value='Do multiple alignment now'/>.<br />
+<p>
+Comparing this multiple alignment to the previous one you saved, does one look dramatically better than the other?
+<li>
+Next, select <input type='submit' value='Send to PSI-BLAST'/>
+<li>
+Now run a BLAST search against PIR1 with GSTM1_HUMAN and the Multiple Sequence alignment you just built.
+<li>
+How many glutathione transferase homologs do you see?
+<li>
+Can you tell the glutathione S-transferase homologs from non-homologs?
+<li>
+What are the E()-value of the most distant glutathione transferase?  What is the percent identity of the most distant GST with E()<0.001.
+<li>
+  Go back to the <tt>BLASTP/PSIBLAST</tt> search page with the multiple sequence alignment and search the <tt>shuffled SwissProt</tt> database.  Record the alignment length, percent identity, and E()-value for the highest scoring shuffled sequence for this very  diverse PSSM.
+</ol>
+<!--
+<li>
+Repeat steps <b>3 &mdash; 4</b>, but, rather than run a (PSI)-BLAST search, select the <input type='submit' value='Generate PSSM Now'/> button and look at the resulting PSSM's. The weights of each residue on shown on the right half of the PSSM
+<ol type='a'>
+<li>
+Examine the PSSM (position specific scoring matrix).  Compare the values to <A href="blosum62.html" target="blosum_win">BLOSUM62</a>.
+<li>Try to identify the most conserved positions in the alignment by
+looking at the amino-acid distribution (to the right of the PSSM
+values) <li> What happens to the information content (the second to
+last column, next to "inf"), for the PSSM that includes non-homologous
+sequences?
+</ol>
+-->
+ </ol>
+<hr />
+<a href="../index.cgi">biol4230</a>
+<p id="last_mod"></p>
+<hr />
+</body>
+</html>

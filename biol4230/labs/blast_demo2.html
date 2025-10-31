@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+<!-- updated June, 2013 for Honey bee searches -->
+<script type="text/javascript">
+<!-- 
+    var default_show ='block';
+
+    function set_block() {
+       if (window.location.search) {
+          default_show ='block';
+       }
+       else default_show ='block';
+    }
+
+    function show_hide(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block') { e.style.display = 'none';}
+       else {
+          e.style.display = default_show;
+       }
+    }
+//-->
+<!-- Programming for Biology - Similarity Searching Exercises -->
+<!-- Computational Genomics 2012 - Similarity Searching Exercises -->
+<!-- EBI Bioinformatics Summer School 2014 -->
+<!-- BIMS6000 - Similarity searching exercises -->
+<!-- Molecular Evolution - Similarity Searching Exercises -->
+<!-- Computational Genomics 2014 - Similarity Searching Exercises -->
+</script>
+<title>
+Biol4230 - Similarity Searching II
+</title>
+</head>
+<body bgcolor='white' onload="set_block()">
+<h1><a href="http://fasta.bioch.virginia.edu/biol4230/labs/blast_demo2.html">fasta.bioch.virginia.edu/labs/biol4230/blast_demo2.html</a></h1>
+<h2>
+Biol4230 - Similarity Searching Exercises II
+</h2>
+<hr />
+These exercises use programs on the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml"
+target="fasta_win">FASTA WWW Search page[pgm]</a> and the 
+<!-- Computational Genomics -->
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast"
+target='blast_win'>BLAST WWW Search page [pgm]</a>.
+<p>
+In the links
+below, <a href="http://fasta.bioch.virginia.edu/fasta_www2/" target='fasta_win'>[pgm]</a>
+indicates a link with most of the information filled in; e.g. the
+program name, query, and
+library.  <a href="http://ncbi.nlm.nih.gov/"  target='entrez_win'>[seq]</a> links go to the
+NCBI, for more information about the sequence.  In general, you should
+click <a>[pgm]</a> links, but not <a>[seq]</a> links.
+<hr />
+<b>1.</b> Exploring domains with local alignments --- Calmodulin
+<ol type='a'>
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&amp;amp;pgm=lal&amp;amp;query=calm1_human&amp;q_type=acc&amp;query2=calm1_human&amp;q2_type=acc&annot_seq1=2&annot_seq2=2"
+target="fasta_win">lalign</a> to examine local
+similarities between calmodulin <tt>CALM1_HUMAN</tt> and itself.  (Set <b>Annotate query</b> and <b>Annotate target</b> to <b>Interpro domains</b>.)
+<li> Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lalign&amp;pgm=pal&amp;query=calm1_human&amp;q_type=acc&amp;query2=calm1_human&amp;q2_type=acc" target="fasta_win">plalign</a> to plot the same alignment.  How many repeats are present in this sequence.
+<!--
+<li>
+Would you expect that an aligment of two domains has a higher score
+than an alignment with three domains, if each of the four domains was
+50% identical to the other?  Propose an explanation for the calmodulin
+self-alignment scores.
+-->
+</ol>
+<hr />
+<b>2.</b> Exploring domains and alignment over-extension -- cortactin (<tt>SRC8_HUMAN</tt>)
+<p>Compare <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;pgm=fa&amp;query=SRC8_HUMAN&amp;db=q&amp;annot_seq1=4&amp;annot_seq2=4&amp;hide_align=1"
+target="fasta_win">SRC8_HUMAN [pgm]</a> to compare human cortactin
+<a href="http://www.uniprot.org/uniprot/src8_human" target='uniprot_win'>SRC8_HUMAN [seq]</a> the <b><tt>SwissProt</tt></b> protein sequence database.
+<ol type='a'>
+<li>Looking at the top five alignments, how many cortactin orthologs
+do you see? (ortholog, same protein, different species).
+<li>In the SRC8 HUMAN:CHICK alignment, both the query and the subject (library) sequences align seven cortactin domains and an SH3 domain.  In addition, two regions (one before the cortactin domain cluster and one after) are well conserved, but do not have annotated domains (<tt>NODOM</tt>).  Are these non-domain (NODOM) regions as well conserved as the annotated domains?
+<li>
+Look at the SRC8_HUMAN:HCLS1_MOUSE alignment.  How many cortactin
+domains does <tt>HCLS1_MOUSE</tt> contain?  How much score does the
+NODOM spanning the region between cortactin domains and the SH3 domain
+contribute?  Why is it included in the alignment?  Is it likely to be homologous?
+<li>
+Is the NODOM between the cortactin domains and the SH3 domain likely
+to be homologous in the SRC8_HUMAN:DBNLB_XENLA alignment?
+<li>
+In the SRC8_HUMAN:LASP1_HUMAN alignment, the alignment extends to
+include several Nebulin_repeat domains. Do you think there is a
+Nebulin_repeat domain in SRC8_HUMAN?  Why do you think those
+domains are aligning?
+<li>
+What scoring matrix should be used to reduce over-extension from the SH3 domain? <a href="scoring_matrices.html" target='other_win'>Scoring Matrix Summary</a>
+</ol>
+<hr />
+<b>3.</b> Exploring domains and over-extension with local alignments -- death associated protein kinase (<tt>DAPK1_HUMAN</tt>)
+<ol type="a">
+<li>Look up the domain structure of DAPK1_HUMAN
+at <a href="http://pfam.xfam.org/protein/dapk1_human" target='pfam_win'>Pfam [pgm]</a>.
+<ol type='i'>
+<li>
+What are the major (PfamA) domain regions on the protein?
+<li>
+Which of the domains is repeated?
+<li>
+In a local (LALIGN) alignment, where would you expect to see
+overlapping domains like those in Calmodulin (CALM1_HUMAN) and
+Cortactin (DAPK1_HUMAN)?
+</ol>
+<li>
+Use <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lplalign&amp;pgm=lpal&amp;query=dapk1_human&amp;q_type=acc&amp;query2=dapk1_human&amp;q2_type=acc&amp;annot_seq1=5&amp;annot_seq2=5"
+target="fasta_win">lalign/plalign&nbsp;[pgm]</a> to examine local
+similarities between <tt>DAPK1_HUMAN</tt> and itself.  Check the
+options to "<b>Annotate query</b>" and "<b>Annotate target</b>".  Do
+you see the domains you expected from Pfam?  Do they map in the same
+places?
+<li>
+Repeat the LALIGN/PLALIGN
+analysis <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=lplalign&amp;pgm=lpal&amp;query=dapk1_human&amp;q_type=acc&amp;query2=dapk1_human&amp;q2_type=acc"
+target="fasta_win">lalign/plalign&nbsp;[pgm]</a>, but select the
+subset of the protein where the repeated domains are found (within 50
+residues).  Looking at the first or second non-identical self-alignment:
+<ol type='i'>
+<li>
+What is the overall percent identity of the alignment?
+<li>
+What is the range in identity accross the different aligned Ankryin domains?
+<li>
+Do the ends of the first alignment correspond to the domain boundaries?
+<li>
+How long are the ankyrin domains?
+</ol>
+<li>
+Based on the percent identities you saw in part (c), what would the
+appropriate scoring matrix be to accurately identify the ankyrin
+domains?
+<ol type='i'>
+<li>
+Using a "correct" scoring matrix, are the alignment boundaries more accurate?
+<li>
+What is the percent identity of the alignment (did you pick the right matrix?)
+</ol>
+</ol>
+<hr />
+Where to get the FASTA package: <br />
+<a href="http://faculty.virginia.edu/wrpearson/fasta/">faculty.virginia.edu/wrpearson/fasta/</a>
+<p>
+The "normal" <a href="http://fasta.bioch.virginia.edu/">FASTA WWW site:</a>
+<p>
+Contact Bill Pearson: <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</a>
+<hr />
+</body>
+</html>

@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,pstricks,fullpage}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\usepackage{theorem}
+\usepackage{float}
+\usepackage{ifthen}
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+\newcommand{\R}{{\textsf{R}}}
+\newcommand{\code}[1]{{\texttt{#1}}}
+\newcommand{\term}[1]{{\emph{#1}}}
+\newcommand{\Rpackage}[1]{\textsf{#1}}
+\newcommand{\Rfunction}[1]{\texttt{#1}}
+\newcommand{\Robject}[1]{\texttt{#1}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+
+
+\begin{document}
+
+\SweaveOpts{keep.source=TRUE}
+
+%\VignetteDepends{YEAST,GO,annotate,gaschYHS,harbChIP)}
+%\VignetteIndexEntry{GO scoring using various methods}
+%\VignetteKeywords{yeast, gene sets based analysis, gene ontology}
+
+\title{Introduction to Affymetrix Microarray Data Analysis}
+
+\author{Stefan Bekiranov\\CS 6014}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+In this lab we will be exploring the {\it affy} package which is used to read in the intensity data or CEL files and join them to their library or CDF files.  What is returned to the R session is an object of class {\it AffyBatch}.  We will apply various methods to an {\it AffyBatch} object \code{Dilution} which contains data from 4 microarray hybridizations.  We'll then follow the steps that take you through a ``standard'' analysis of microarray data using Bioconductor: (1) quality control (using {\it affy, affyPLM} and {\it simpleaffy} packages) (2) estimate normalized, background subtracted, affinity corrected gene expression estimates (using \code{rma} from the {\it affy} package) and (3) identify the statistically significant set of differentially expressed genes using the {\it limma} package. 
+
+\section{Loading libraries}
+
+Load in the following libraries: (\code{affy, affydata, affyPLM, limma, simpleaffy, affycoretools, geneplotter, RColorBrewer}):
+<<libraries>>=
+library(affy)
+library(affydata)
+library(affyPLM)
+library(limma)
+library(simpleaffy)
+library(affycoretools)
+library(geneplotter)
+library(RColorBrewer)
+@
+
+\section{Reading in the data}
+
+We can now load the \code{Dilution} {\it AffyBatch} object:
+
+<<data>>=
+data(Dilution)
+@
+
+This is a dataset that already exits in the {\it affydata} package.  It's worth noting that this step will be replaced by
+\code{setwd("\~/myproject/celfiles")} followed by \code{Data <- ReadAffy()} when you actually are starting from CEL file data which you've put in the directory ``\~/myproject/celfiles''.  \code{Data} would also be an {\it AffyBatch} object.  You would treat \code{Data} the same way that we will \code{Dilution} in this tutorial.   
+
+\section{{\it affy} classes and methods}
+
+Type \code{Dilution} on the command line
+
+<<dil>>=
+Dilution
+@
+
+You discover a few things about the data set including the number of genes, number of samples and library file (i.e., CDF file).  But where is the data (e.g., PM, MM data)?
+
+Now type \code{help(AffyBatch)}.  This help page lists a number of methods that can be applied to an object of class {\it AffyBatch}.  Now apply the following methods to \code{Dilution} to learn more about the data set and get PM and MM data in matrix form:
+
+<<affybat>>=
+class(Dilution)
+slotNames(Dilution)
+cdfName(Dilution)
+annotation(Dilution)
+description(Dilution)
+abstract(Dilution)
+nrow(Dilution)
+ncol(Dilution)
+phenoData(Dilution)
+pData(Dilution)
+PM <- pm(Dilution)
+gnames <- geneNames(Dilution)
+@
+
+The RNA that was hybridized came from which tissue?  Using the \code{dim()} command, find out how many PM values there are per  sample.  Which of the above methods lists the Affy IDs?
+
+<<subaffybat>>=
+dim(PM)
+gnames[1:5]
+@
+
+\section{Quality Control}
+
+\subsection{Quality Assessment of Individual Arrays}
+ 
+First we'll load in some colors using the package {\it RColorBrewer}:
+  
+<<cols>>=
+cols <- brewer.pal(4, "Set1")
+@
+ 
+One quality control check is to plot the distribution of sample log base 2 sample intensities ($Y_{i,j} = (log_2PM_{i,j},log_2MM_{i,j})$ for array $i$ and probe $j$) side by side.  This also allows us to assess the extent to which samples are ``un-normalized'' to each other.  Apply the methods \code{hist} and \code{boxplot} directly on the \code{Dilution} object:
+ 
+<<hist, fig=TRUE>>=
+hist(Dilution, col=cols)
+@
+ 
+<<box, fig=TRUE>>=
+boxplot(Dilution, col=cols)
+@
+ 
+Do these arrays need to be normalized to each other?  Does one array stand out as an outlier?
+
+There are a number of simple quality metrics calculated in the \code{simpleaffy} package, which allow us to assess the quality of each array separately and identify a poor quality or outlier array.  Let's calculate these metrics by applying the \code{qc} method on the \code{Dilution} object:       
+
+<<simpaffy>>=
+Dilution.qc = qc(Dilution)
+@
+
+We can view the average backgrounds, scale factors, percent present calls and 3'/5' ratio by applying the methods \code{avbg}, \code{sfs}, \code{percent.present} and \code{ratios} to the \code{Dilution.qc} object: 
+
+<<simpaffy>>=
+avbg(Dilution.qc)
+sfs(Dilution.qc)
+percent.present(Dilution.qc)
+ratios(Dilution.qc)
+@
+
+According to Affymetrix guidelines, the average background values should be comparable to each other.  The scale factors should be within 3-fold of each other.  The precent present should be similar especially among replicates.  Very low values (<20\%) are a possible indicator of a poor quality sample.  Finally, Affymetrix suggests that 3'/5' ratios below 3 show acceptable degradation and recommend caution if that value is exceeded for a given array.
+
+While these quality metrics are simple to interpret and intuitive, a more sensitive set of methods for detecting poor quality arrays is in the \code{affyPLM} package.  This package calculates the expression estimates by fitting the RMA linear model to quantile normalized intensity data using robust regression techniques (methods implemented in \code{rlm} from MASS package) instead of median polish.  First, let's perform the fit: 
+
+<<affyplm>>=
+Pset = fitPLM(Dilution)
+@
+
+Do we see any crop circles?  We can generate pseudo-images of probe level \code{fitPLM} results including weights used to down weight outliers, residuals and sign of residuals.  Let's generate four plots of the second chip in the set of four, 20B, using \code{par} (a basic function in R to generate an array of plots; try \code{help(par)}) and \code{image} in order to write it to an image file named ``dilution\_plm\_images.png'':
+
+<<images>>=
+png("dilution_plm_images.png")
+par(mfrow = c(2,2))
+image(Dilution[,2])
+image(Pset, type="weights", which=2)
+image(Pset, type="resids", which=2)
+image(Pset, type="sign.resids", which=2)
+graphics.off()
+@  
+
+The first image is an image of the intensities.  The other three are the probe level summaries from the PLM analysis.  Which of these highlights hybridization artifacts the best?
+
+We now have an object \code{Pset} that allows estimates of standard errors of the expression values to be displayed.  Let's now generate boxplots of the Relative Log Error, $M_{gi} = \hat{\theta}_{gi} - m_g$ where $\hat{\theta}_{gi}$ is the expression estimate for gene $g$, array $i$ and $m_g$ is the median of $\hat{\theta}_{gi}$ across arrays, $med_i(\hat{\theta}_{gi})$.  We'll do this by applying the method \code{Mbox} to the object \code{Pset}   
+
+<<mbox, fig=TRUE>>=
+Mbox(Pset, ylim=c(-1,1), col=cols, main="RLE")
+@
+
+We should see a relatively narrow distribution about 0 because most genes don't deviate wildly from their typical values.  Is this what you see?  Next we'll generate boxplots of the Normalized Unscaled Standard Error of the expression estimates
+\begin{equation}
+	NUSE(\hat{\theta}_{gi}) = \frac{SE(\hat{\theta}_{gi})}{med_i(SE(\hat{\theta}_{gi}))}
+\end{equation}
+by applying the method \code{boxplot} to the object \code{Pset}:
+
+<<nuse, fig=TRUE>>=
+boxplot(Pset, ylim=c(0.95,1.05), col=cols, main="NUSE")
+@
+
+Here, we should observe a relatively narrow distribution of values about 1.  Is this what you observe?  Performing this on your own data, you should makes notes on any particular array that could be of poor quality or an outlier in the set and then proceed to pairwise reproducibility plots and a principle components analysis.
+
+\subsection{Reproducibility Analysis}
+
+Now we can check the pairwise reproducibility of the arrays using MA plots which plot the log base 2 intensity difference ($M_j=Y_{2,j}-Y_{1,j}$) on the y-axis versus the log base 2 average ($A_j=(Y_{2,j}+Y_{1,j})/2$) on the x axis for every probe $j$ on arrays 1 and 2.  You generate all pairwise MA plots by applying \code{MAplot} to the \code{Dilution} object:
+
+<<maplot, fig=TRUE>>=
+MAplot(Dilution, pairs = TRUE, plot.method = "smoothScatter")
+@
+
+Do all the arrays look reasonably reproducible?  Do they need to be normalized to each other?  Make a note of the y-axis scale, median and IQR values.  We'll compare them to normalized values below.
+
+\section{Expression Estimation (expression set object)}
+
+Let's generate estimates of relative, log 2 gene expression levels (i.e., background subtracted, quantile normalized, affinity corrected) using \code{rma}.  We apply \code{rma} to the \code{Dilution} object
+
+<<rma>>=
+eset <- rma(Dilution)
+@
+
+That's all you do!  Is \code{eset} a matrix?
+<<eset>>=
+eset
+@
+
+No!  But we can get the \code{rma} expression estimates in matrix form
+<<e>>=
+e <- exprs(eset)
+@
+
+Sample the first 10 rows of \code{e} and check the dimensions
+<<esamp>>=
+e[1:10,]
+dim(e)
+@
+
+Are the expression estimates properly normalized?  Let's perform an MA plot on the \code{eset} object.
+
+<<maeset, fig=TRUE>>=
+MAplot(eset, pairs = TRUE, plot.method = "smoothScatter")
+@
+
+Note the difference in y-axis scale, as well as median and IQR values compared to the MA plots of the raw intensities.  Now we can apply a Principle Components Analysis (PCA) to the \code{eset} object which contains our expression estimates to check if samples 20A and 20B are grouped together and separated from samples 10A and 10B which should also be grouped together.
+To generate the PCA plot, apply the method \code{plotPCA} (from the {\it affycoretools} package) to our \code{eset} object:
+
+<<pca, fig=TRUE>>=
+plotPCA(eset)
+@
+
+Do you observe the expected grouping?  Based on this PCA plot, would you expect to detect any statistically significant differentially expressed genes between the 10(A,B) samples (treated as replicates) and the 20(A,B) samples (treated as replicates)? 
+
+\section{Differential expression analysis: \code{limma} package}
+
+Now that we have expression estimates, we can apply \code{limma} to identify differentially expressed genes.  \code{limma} fits the data to linear models and performs a modified t-test to the expression estimates between any samples specified by the user.  Look up the \code{limma} vignette for more details by typing \code{vignette(limma)}.  Take a little time browsing this manual.  We will search for differentially expressed genes between the ``liver 2'' samples which I'll call \code{L20} and ``liver 10'' samples which I'll name \code{L10}.  Let's apply the \code{pData} method to the \code{Dilution} object in order to get sample information.
+
+<<pDat>>=
+pData(Dilution)
+@
+
+First we need to set up a \code{design} matrix
+
+<<design>>=
+design <- model.matrix(~ -1+factor(c(1,1,2,2)))
+colnames(design) <- c("L20", "L10")
+@
+
+What does the design matrix look like?
+
+<<typedes>>=
+design
+@
+
+Now we'll perform the linear model fit using the \code{design} matrix
+
+<<lmfit>>=
+fit <- lmFit(eset, design)
+@
+
+Now let's set up a \code{contrast.matrix} which defines the comparisons that we want to investigate.  We're going to specifically identify the differentially expressed genes between the \code{L20} and \code{L10} samples where we will ignore the \code{scanner} differences (i.e., we're treating the \code{L20} samples as duplicates and \code{L10} samples as duplicates).
+
+<<contrast>>=
+contrast.matrix <- makeContrasts(L20-L10, levels=design)
+contrast.matrix
+@  
+
+Now let's calculate the differential expression summary statistics including log fold changes and p-values.
+
+<<contrastfit>>=
+fit2 <- contrasts.fit(fit, contrast.matrix)
+ebayes <- eBayes(fit2)
+@
+
+Now let's view the results of the top 20 most significant genes by applying \code{topTable} to the \code{ebayes} object.  First type help(topTable) to get some information on its usage and options.
+
+<<toptable>>=
+topTable(ebayes, number=20)
+@
+
+Were there any genes found to be significantly differentially expressed?  Look at the multiple hypothesis testing corrected or adjusted p-values.  Could we have predicted this result from our PCA plot above?  The \code{Dilution} object contained data from 4 samples.  Assuming it contained data from 17 samples, what sections of code in this tutorial would we have to change?  What does this tell you about Bioconductor methods and objects?      
+
+\end{document}

@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>
+Biol4230 - BED Tools for Motifs
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>From BEDTools to MEME</h2>
+<p>
+<i>Summary</i>
+<p>
+<hr />
+<b>NOTICE</b><br />
+This exercise is under revision.  Rather than
+use <tt>scan_bedg.py</tt>, described below, to find ChIP-seq peaks, you should use <tt>macs2</tt>.  But I have not (yet) found or installed <tt>macs2</tt> on <tt>interactive.hpc</tt>, so I cannot provide those instructions yet.  I hope to have this done today, after which this page will be updated and you should use <tt>macs2</tt>.
+<hr />
+
+<p>
+In this lab, we will use the <tt>scan_bedg.py</tt> script to break up
+the Encode Sp1 and reversed ChIP seq files (which are in
+<tt>.bedg</tt> format), and create a standard <tt>.bed</tt> file.  We
+will do a few things to look at that file, but ultimately you will
+upload a version of the BED file(s) to the UCSC browser, and download
+associated DNA sequences, which will then be used to search for
+consensus binding site sequences.
+<hr />
+<b>Getting started; Converting <tt>.bedg</tt> files to <tt>.bed</tt></b>
+<p>
+<ol>
+<li>
+<hr />
+Most of the files you need for this exercise have already been downloaded your <tt>~/biol4230/hwk9</tt> directory.  Make a new <tt>~/biol4230/hwk10</tt> directory, and link the <tt>wgEncode_*.bedg</tt> files into it:
+<pre>
+mkdir ~/biol4230/hwk10
+cd ~/biol4230/hwk10
+ln -s ../hwk9/wgEncode_*.bedg .
+</pre>
+Alternatively, the files are in <tt>/nv/md_rdlib2/biol4230/bed-tools/</tt>, and you can link or copy the files from there.
+
+<li>
+Use the <tt>scan_bedg.py</tt> program to convert the <tt>wgEncode_ChIP_Sp1.bedg</tt> file to a <tt>.bed</tt> file in your <tt>hwk10</tt> directory:
+<pre>
+scan_bedg.py -t 2.0 -w 10 -n Sp1 wgEncode_ChIP_Sp1.bedg > wgEncode_Sp1_020.bed
+</pre>
+The <tt>scan_bed.py</tt> script looks for successive points in the <tt>.bedg</tt> file in a window of <tt>-w 10</tt> (10) residues with an average score of 2.0 in the window (<tt>-t 2.0</tt>) per location.  Where the average has gone above 2.0, it writes a start coordinate.  When the average score in the window drops below 2.0, it ends the segment, and writes out the name, the score across the window, and '+' for the strand.
+<p>
+How many segments are created?
+<li>
+You can determine the average length of the segments with the command:
+<pre>
+awk '{sum += ($3 - $2); n++} END{print sum/n}' wgEncode_Sp1_020.bed 
+</pre>
+This number is very high, because there are a small number of very long regions.  You can get a more sensible value by excluding long regions:
+<pre>
+awk '{len = $3-$2; if (len < 1000) {sum += ($3 - $2); n++}} END{print sum/n}' wgEncode_Sp1_020.bed 
+</pre>
+<tt>awk</tt> makes it very easy to isolate the subset of lines with reasonable region lengths.
+<pre>
+awk '{len = $3 - $2; if (len < 250 && len > 25) { print $_}}' wgEncode_Sp1_020.bed > wgEncode_Sp1_ranged.bed
+</pre>
+Run this command and check the average length of the Sp1 region.
+<p>
+<li>
+We seek to identify an <tt>Sp1</tt> binding site motif from ChIP-Seq
+regions that are near transcription start sites (TSS's).  To do this, you will need the <tt>tss.bed</tt> and <tt>hg19.chromsizes</tt> files you used in last week's exercises.  Then, create a <tt>.bed</tt> file that lists the coordinates -250 - +50 around the <tt>tss.bed</tt> sites:
+<pre>
+bedtools slop -l 250 -r 50 -i tss.bed -g hg19.chromsizes > tss_minus250plus50.bed
+</pre>
+Check the top of the <tt>tss_minus250plus50.bed</tt> file, and <tt>tss.bed</tt> to be sure that the new file is correct using <tt>head tss.bed</tt> and <tt>head tss_minus250plus50.bed</tt>.  (You could also check the average segment length with <tt>awk</tt>.  What should it be?)
+<p>
+<li>
+Now that we have the Sp1 binding regions, and the TSS regions, we can intersect them to get the subset of Sp1 sites near transcription start sites.  We would like to recover the original Sp1 regions, so we will use <tt>-wa</tt>:
+<pre>
+bedtools intersect -a wgEncode_Sp1_ranged.bed -b tss_minus250plus50.bed -wa | uniq > wgEncode_Sp1_tss.bed
+</pre>
+How many Sp1 regions did you start with?  How many do you have now? What is the average length of the Sp1 regions near transcription start sites?
+</ol>
+<hr />
+Now that we have a set of Sp1 sites near transcription start sites, we
+need to download the genome sequences using UCSC, and then send those
+sequences to <tt>MEME</tt> to get a consensus site.  We will use the <a target=ucsc href="http://genome.ucsc.edu/cgi-bin/hgCustom">Add Custom Tracks page</a> at UCSC to get the FASTA sequences we need.
+<ol>
+<li>
+Transfer your file <tt>wgEncode_Sp1_tss.bed</tt> file to your local computer.
+<li>
+Go to the <a target=ucsc
+href="http://genome.ucsc.edu/cgi-bin/hgCustom">Add Custom Tracks
+page</a> at UCSC and on the <b>Paste URLs or data:</b> line, select
+<b>Choose File</b>.
+<p>
+<li>
+Once the file is successfully uploaded, you can use the <a href="http://genome.ucsc.edu/cgi-bin/hgTables" target=ucsc>Table Browser</a> to download the FASTA sequences associated with your regions.
+<p>
+Select:<br/>
+<b>group:</b> Custom Tracks<br />
+<b>output format:</b> sequence</br>
+<b>output file:</b> sp1.fasta</br>
+<p>
+Download the file to your laptop, and take a look at it.
+<p>
+<hr />
+Now we have a file of FASTA sequences from Sp1 sites near transcription start sites.
+<p>
+For MEME to work, each of the FASTA entries must have a different "name".  By default, all the sequences downloaded from the UCSC browser custom track have headers of the form:
+<pre>
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:567551-567600 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:569896-569940 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:1334695-1334759 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:1334782-1334913 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:1850756-1850804 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:2245833-2245867 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:2245887-2245928 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:2245964-2245990 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+>hg19_ct_UserTrack_3545_Xfactor range=chr1:2322970-2323022 5'pad=0 3'pad=0 strand=+ repeatMasking=none
+</pre>
+You need to remove the constant text between ">" and "range=".  On <tt>franklin</tt>, this can be done with:
+<pre>
+cat sp1.fasta | sed -e 's/hg19_ct_UserTrack_3545_Sp1 range=//g' > sp1_fixed.fasta
+</pre>
+<p>
+<li>
+Go to the <a href="http://meme-suite.org/tools/meme" target=meme>MEME</a> site, select the MEME function, and upload your Sp1/TSS sequences, looking for zero or one motif per sequence, with motif lengths between 4 and 12.
+</ol>
+<hr />
+Homework 10 (<tt>hwk10</tt>, due Monday, April 25, 5:00 PM.
+<ol>
+<li>
+Create the files listed above.
+<li>
+Report the numbers of segments and average length of segments for the initial Sp1 binding regions, the Sp1 binding regions < 1000 nt, the "_ranged" Sp1 regions, and the Sp1 regions near transcription start sites.
+<li>
+In addition to the MEME analysis on TSS adjacent Sp1 binding regions, do the same analysis on the <tt>rev</tt> dataset (start with <tt>wgEncode_ChIP_rev.bedg</tt> and follow the same steps).
+<li>
+Provide links to the MEME results, or upload the images of the motif plots.
+</ol>
+<hr />
+<b>Final Project - </b>  <a href="./final_project.html">Project assignment</a>
+<p>
+Due Monday, May 9,  5:00 PM.
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

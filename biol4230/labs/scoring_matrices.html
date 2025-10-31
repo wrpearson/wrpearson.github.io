@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>
+Scoring matrix properties
+</title>
+</head>
+<link href="default.css" type="text/css" rel="stylesheet">
+<body bgcolor='white'>
+<h2>Scoring matrix properties</h2>
+<table>
+<tr>
+<th>Matrix </th><th>gap<sup>1</sup><br/>penalty</th><th> %<br />identity</th><th> bits /<br />pos. </th><th> random<br />aln. len. </th><th> 50 bit<br />length</th></tr>
+<tr><td colspan=6><hr /></td></tr>
+<tr><td colspan=6 align='center'>SSEARCH 36.3.6</td></tr>
+<tr><td>BLOSUM50<sup>2</sup></td><td> 10/2</td><td> 25.3</td><td> 0.21</td><td> 160</td><td> 238 </td></tr>
+<tr><td>BLOSUM62</td><td> 11/1</td><td> 28.9</td><td> 0.40</td><td> 86</td><td> 125 </td></tr>
+<tr><td>VTML 160<sup>2</sup></td><td> 12/2</td><td> 23.9</td><td> 0.25</td><td> 139</td><td> 200 </td></tr>
+<tr><td>VTML 140</td><td> 10/1</td><td> 28.4</td><td> 0.44</td><td> 82</td><td> 114 </td></tr>
+<tr><td>VTML 120</td><td> 11/1</td><td> 32.1</td><td> 0.54</td><td> 62</td><td> 93 </td></tr>
+<tr><td>VTML 80</td><td> 10/1</td><td> 40.5</td><td> 0.74</td><td> 47</td><td> 68 </td></tr>
+<tr><td>VTML 40</td><td> 13/1</td><td> 64.7</td><td> 1.92</td><td> 18</td><td> 26 </td></tr>
+<tr><td>VTML 20</td><td> 15/2</td><td> 86.1</td><td> 3.30</td><td> 11</td><td> 15 </td></tr>
+<tr><td>VTML 10</td><td> 16/2</td><td> 90.9</td><td> 3.87</td><td> 9</td><td> 13 </td></tr>
+<tr><td colspan=6><hr /></td></tr>
+<tr><td colspan=6 align='center'>BLAST 2.2.27+</td></tr>
+<tr><td>BLOSUM45<sup>2</sup></td><td> 13/2</td><td> 29.4</td><td> 0.39</td><td> 85</td><td> 128 </td></tr>
+<tr><td>BLOSUM62</td><td> 11/1</td><td> 29.6</td><td> 0.41</td><td> 82</td><td> 122 </td></tr>
+<tr><td>BLOSUM80</td><td> 10/1</td><td> 32.0</td><td> 0.48</td><td> 69</td><td> 104 </td></tr>
+<tr><td>PAM70</td><td> 10/1</td><td> 33.9</td><td> 0.58</td><td> 56</td><td> 86 </td></tr>
+<tr><td>PAM30</td><td> 9/1</td><td> 45.9</td><td> 0.90</td><td> 34</td><td> 56 </td></tr>
+</table>
+<p>
+<sup>1</sup> Gap open/extend penalty, where the total penalty is <tt>open + r * extend</tt>, where <tt>r</tt> is the number of residues in the gap. Thus, a 10/2 penalty produces a penalty of 12 for a one residue
+gap, 14 for two residues, etc.
+<p>
+<sup>2</sup> Scaled in <tt>1/3</tt>-bit units; all other matrices are scaled in <tt>1/2</tt>-bit units.
+
+<hr>
+</body>
+</html>

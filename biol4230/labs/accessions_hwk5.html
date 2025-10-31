@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Accession translation/XML homework - HWK5
+</title>
+</head>
+<body bgcolor='white' onload='update_modtime();' >
+<h2>
+Biol4230 - Python/Accession linking homework 5  - DUE Monday, Feb. 19, 5:00 PM
+</h2>
+<hr />
+In addition to putting the python programs for this homework in <tt>biol4230/hwk5</tt>, also create a file <tt>hwk5.notes</tt> that links the names of your programs with the question and contains the output for each of the python programs.
+<hr />
+<a href="./accessions_hwk5_help.html">Possibly helpful suggestions</a>
+<hr />
+<ol>
+<li>
+Answer questions 2 and 5 from the <a href='hmmer_demo.html' target='hmmer_lab'>lab</a> in <tt>hwk5.notes</tt>
+<li>
+Write a python script that uses <tt>esearch.fcgi</tt> to do a search
+at the NCBI and download all the human refseq protein accessions for
+<tt>GSTM*</tt> Use the search term:
+<pre>
+GSTM*+AND+human[organism]+AND+srcdb_refseq[prop]
+</pre>
+and the strategy shown in <a
+href="../lects/biol4230_9_web_resources.pdf" target='pdf'>Thursday's handout</a>, slide 33.
+<ol type='a'>
+<li>
+Combine the <tt>esummary</tt> strategy to get protein lengths (on
+slide 31 of the revised <a
+href="../lects/biol4230_9_web_resources.pdf" target=pdf>Thursday
+handout</a>) with the XML based <tt>esearch</tt> strategy (handout,
+slide 33) to print the Accession <tt>['Caption']</tt>, length
+<tt>['Length']</tt>, and description <tt>['Title']</tt> for each of the sequences found by the search.
+<li>
+Use regular expressions to restrict the print out to Accessions from 
+proteins that contain "glutathione" in their ['Title'], and
+do not contain <tt>PREDICTED</tt> in their ['Title'].
+</ol>
+<li>
+Map each of the genuine "glutathione" containing (not "PREDICTED") Refseq accessions to Uniprot accessions at the Uniprot ID mapping site
+<ol type='a'>
+<li>
+are all the human proteins present in Uniprot?
+<li>
+are the mapped proteins the same length?
+<li>
+are the mapped proteins the same identical sequence?
+</ol>
+<li>
+Look up the domain content for each of the Uniprot accessions in Pfam.
+<p>
+For each of the human proteins that can be mapped to Uniprot and Pfam,
+how many of the proteins have Pfam domains that are less than 50% of
+the Pfam family model length?
+</ol>
+<hr />
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<hr />
+</body>
+</html>

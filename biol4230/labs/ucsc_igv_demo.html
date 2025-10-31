@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>
+Biol4230 - Using Genome Browers
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>Genome Browsers -- UCSC and IGV</h2>
+<p>
+The goal of this exercise is to gain some experience with the UCSC Genome browser (<a href="http://genome.ucsc.edu/" target='genome'>genome.ucsc.edu</a>), and the Integrated Genome Viewer (<a href="https://www.broadinstitute.org/igv/" target='igv'>IGV</a>).
+<ol>
+<li>
+Go to the UCSC Genome browser <a href="http://genome.ucsc.edu/cgi-bin/hgGateway" target='ucsc'>UCSC</a> and find the human GSTM1 gene.
+<ol type='a'>
+<li>
+How many different versions of the human genome are available?
+<li>
+Which one are you using?
+<li>
+Pick one of the human genes (e.g. <a href="http://genome.ucsc.edu/cgi-bin/hgTracks?position=chr1:109687796-109693745&hgsid=661303971_ETwZGMz2Gtog7T0wanhQ6C4XKVyQ&ncbiRefSeqCurated=pack&ncbiRefSeqCurated_sel=1&ncbiRefSeqView_sel=1&hgFind.matches=NM_000561.3," target=ucsc>Refseq NM_000561</a>, and click on it to see the genome browser) 
+</ol>
+<p>
+<li>Zooming in and out:
+<ol type='a'>
+<li>
+How much Human Genomic DNA are you seeing?  How many GSTM genes?
+<li>
+Use the <tt>zoom out</tt> option to see the next closest GSTM gene.  Now how much DNA are you seeing?
+<li>
+Use the <tt>&lt;&lt;</tt> to move to the left (towards the GSTM2 gene).  How much DNA are you seeing.
+<li>
+All the GSTM1-5 genes have 8 exons, with the termination codon in the 8-th exon.  GSTM2 is also annotated to have a 9th exon.  Click on the exon to see the evidence.
+<li>
+Expand out the view of the GSTM1 cluster until you can see all five GSTM1-5 genes.  How long is the DNA sequence range being displayed?
+</ol>
+<li>
+Use the options below the genome display to turn some of the lanes on and off.
+<ol type='a'>
+<li>
+In the section titled <tt>Genes and Gene Predictions</tt>, turn on <tt>Augustus</tt>, <tt>CCDS</tt>, <tt>Geneid Genes</tt>, and <tt>Genescan Genes</tt>.  Do you see any additional genes?  Do some of the genes have a different structure?  What has changed?  <tt>CCDS</tt> are probably the most reliable gene predictions.  Which gene models differ from CCDS?
+<li>
+  Take a look at the GSTM1/GSTM2 predictions using the <a href='https://www.ncbi.nlm.nih.gov/gene/2944' target=ncbi_win>NCBI genome browser.</a>.  Which GSTM2 transcripts does NCBI support?  Which GSTM1 transcripts?
+
+<li>
+Looking in the <tt>Regulation</tt> section, turn on <tt>Encode Regulation</tt>.  What new lanes appear?
+</ol>
+<li>
+Download some sets of data from the UCSC browser.
+<ol type='a'>
+<li>
+Select the <tt>Tools</tt> menu option from the top of the page, and select <tt>Table Browser</tt>.
+<li>
+Use the <tt>group:</tt> drop-down menu to select <tt>regulation</tt>
+<li>
+Without specifying an output file, use <tt>get output</tt> to download the coordinates of the CpG islands.  How many are there?  Do they agree with the map you were looking at?  Download the CpG islands to a file using GTF format (be certain to name the file ".gtf").
+<li>
+Also look at the <tt>Layered H3K4Me1</tt> track.  This data is in a different format (wiggle) for displaying continuous curves.  Download it to a wiggle (".wig") file.
+</ol>
+<li>
+Download the Integrated Genome Viewer from <a href="https://www.broadinstitute.org/software/igv/download" target='igv'>IGV Downloads</a>
+<ol type='a'>
+<li>
+Which version of the Human Genome assembly are you using? (Different versions have different associated annotation information.  hg18 and hg19 seem to have much more associated data than hg38.
+<li>
+Again, look up the GSTM1 gene.  How many tracks do you see (where is the GSTM1 gene)?
+<li>
+Mouse over some of the exon boxes to see the additional information available.
+<li>
+Either click on the red box on the chromosome, or on the zoom scale on the upper right, to zoom in on the gene.  What is the greatest amount of detail you can see?
+<li>
+Zoom out from the gene using the zoom scale until you can see a non-GSTM gene in the gene view.
+<li>
+Add some additional tracks using the <tt>File</tt> Menu to <tt>Load from Server</tt>.  If you are using hg38, Click on the Annotation box, then add some Annotation tracks (e.g. <tt>Common SNPs</tt> and <tt>PhastCons</tt> from <tt>Annotations</tt>). If you are using hg18 or hg19, you will see Annotations/Phenotype and Disease Associations.)  Make sure to add one or two lanes at a time, not sets of lanes.
+<p>
+Zoom into the GSTM1 gene, and mouse-over some of the SNPs.  What information is available?
+<li>
+Load some data from File/Ga4gh/Google/1000Genomes/HG01440.
+<p>
+Look for the GSTM1 gene again, then zoom in to see the boxes in the HG01440 panel, and mouse over the boxes. What are they showing?
+<p>
+Move left and right to the adjacent GSTM genes.  How many boxes do you see?  Why do you think there are so many fewer boxes in the  GSTM1 region?  If you are correct, why are there any boxes?
+<li>
+Add some of the data files you downloaded from UCSC by using the <tt>File</tt> and <tt>Load from File</tt> menu.
+</ol>
+</ol>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

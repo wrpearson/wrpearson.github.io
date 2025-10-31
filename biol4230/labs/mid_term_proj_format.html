@@ -1,0 +1,78 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Mid-term project format
+</title>
+</head>
+<body bgcolor=white>
+<h2>
+Biol4230 Mid-term - due 5:00 PM, Monday, April 2 (revised)<br />
+Project submission format 
+</h2>
+<p>
+For the mid-term project, please put together a PowerPoint
+presentation with the following slides and submit it associated with
+the Mid-term project assignment.
+<ol>
+<li>
+A title slide (with your name on it) that names the protein family you choose, and provides some information on the family (what does it do, what domains does it contain, etc).  Just a few sentences.
+<p>
+<li>
+A slide showing a similarity search with your initial protein, highlighting the E()-values and percent identities of the proteins you choose for the multiple sequence alignment (include the domain structures if you used the fasta web site).  You can make a "custom" similarity search result at the fasta web site (fasta.bioch.virginia.edu) by selecting "compare sequences" and putting your query sequence in the first box, and a set of accessions in the second box.
+<p>
+<li>
+A slide showing the multiple sequence alignment for your protein set
+<p>
+<li>
+A list of the protein accessions, mRNA accessions, and names that were used in the final trees
+<p>
+If you chose an "outgroup", highlight your outgroup sequence.
+<p>
+<li>
+The protein parsimony and  distance trees, with the taxa ordered to make it easy to compare the two trees (use retree) (shown as a drawgram tree, perhaps with an outgroup).
+<p>
+<li>
+The DNA parsimony, distance, and maximum likelihood trees, again ordered for consistency (shown as a drawgram tree, perhaps with an outgroup).
+<p>
+<li>
+The consensus tree of the 5 phylogenetic methods (shown as a drawgram tree, perhaps with an outgroup).
+<p>
+<li>
+The two consensus trees from the two bootstraps (protein distance and DNA maximum likelihood bootstrap) (drawgram  trees)
+<p>
+<li>
+A final consensus tree, in Newick format, for the consensus of consensus trees (5 phylogenetic methods + 1 protein distance bootstrap + 1 DNA maximum likelihood bootstrap) (drawgram).
+<p>
+<li>
+Final protein distance or DNA maximum likelihood tree using the consensus of consensus tree and the --intree.  Report on that slide the difference in fit quality (RMS or LogLikelihood) between the fitted consensus tree and the best distance/maximum likelihood tree (drawgram).
+<p>
+<li>
+(optional) -- any interesting biological insights you would like to share
+</ol>
+<hr .>
+Graduate students should prepare the following additional slides:
+<hr />
+<ol>
+<li>
+A slide of the protein MSA that you used for the evolutionary rate analysis
+<p>
+<li>
+the codon.ctl file you used for the analysis
+<p>
+<li>
+The probabilities, LogLikelihoods, and omega's for models M0,1,2,7,8 for the classes of residues, and whether the paired models (M1,M2), (M7,M8) show a statistically significant difference using the likelihood ratio test.
+</ol>
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" -->
+<p>
+</body>
+</html>

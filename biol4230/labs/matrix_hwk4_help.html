@@ -1,0 +1,46 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Python/Matrix homework - HWK4 -- Suggestions
+</title>
+</head>
+<body bgcolor=white onload='update_modtime();'>
+<h2>
+Biol4230 - Python/Matrix homework 4  - DUE Monday, Feb. 12, 5:00 PM
+</h2>
+<p>
+<hr />
+<p>
+Strategies for question 3 -- looking a scoring matrix effects on alignment length and percent identity.
+<p>
+<ol type='a'>
+<li>
+It is useful to separate the search problem from the data analysis problem.  Once you have the appropriate search results, you do not need to keep re-running searches.  And, since most of the search work is done from a shell command, it may be easier to write a shell script that runs the 10 searches for each matrix, storing the results in appropriate files.
+<p> One way to get this program working is to have it print the ssearch or blastp command, rather than actually running it.  Then, you can save the resulting set of commands to a file, and try running one or two lines from that file.  Once you have lines that run and produce results, you will know that your sshell script will work.
+<li>
+  Likewise, your first version of the python data analysis program might simply analize one matrix with one set of queries.
+<li>
+  When writing this program, remember that not all searches will have 5 results, so you will need to check to count how many results are in each of the averages. (And, while you are debugging the program, you should report how many samples you had.  When I wrote my first version of the program, I only had one value in the average, not 10, because of an error.)
+<li>
+  you will need to pay attention to converting the strings from the results file into either integers (for alignment length) or floats (for percent identity), and make sure that values are converted to floats() when dividing by the number of samples to get the average.
+<li>
+  And, it is important to check that you are not dividing by zero when calculating the averaages.
+<li>
+  Once you have the program working for one matrix, you can either modify it by taking the code and embedding it in a for loop that works with each matrix, or you could get the matrix name from the command line (see sys.argv()) and use the matrix name to open the appropriate results files.
+</ol>
+<p>
+<hr>
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<p>
+<hr>
+</body>
+</html>

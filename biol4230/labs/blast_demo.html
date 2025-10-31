@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+<!-- updated June, 2013 for Honey bee searches -->
+<script type="text/javascript">
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+<!-- 
+    var default_show ='block';
+
+    function set_block() {
+       if (window.location.search) {
+          default_show ='block';
+       }
+       else default_show ='block';
+    }
+
+    function show_hide(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block') { e.style.display = 'none';}
+       else {
+          e.style.display = default_show;
+       }
+    }
+//-->
+<!-- Programming for Biology - Similarity Searching Exercises -->
+<!-- Computational Genomics 2012 - Similarity Searching Exercises -->
+<!-- EBI Bioinformatics Summer School 2014 -->
+<!-- BIMS6000 - Similarity searching exercises -->
+<!-- Molecular Evolution - Similarity Searching Exercises -->
+<!-- Computational Genomics 2014 - Similarity Searching Exercises -->
+</script>
+<title>
+Biol4230 - Similarity Searching I
+</title>
+</head>
+<body bgcolor=white  onload='update_modtime()'>
+<h1><a href="http://fasta.bioch.virginia.edu/biol4230/labs/blast_demo.html">fasta.bioch.virginia.edu/biol4230/labs/blast_demo.html</a></h1>
+<h2>
+Biol4230 - Similarity Searching Exercises
+</h2>
+<hr />
+These exercises use programs on the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml"
+target="fasta_win">FASTA WWW Search page[pgm]</a> and the 
+<!-- Computational Genomics -->
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=blast"
+target='blast_win'>BLAST WWW Search page [pgm]</a>.
+<p>
+In the links
+below, <a href="http://fasta.bioch.virginia.edu/fasta_www2/" target='fasta_win'>[pgm]</a>
+indicates a link with most of the information filled in; e.g. the
+program name, query, and
+library.  <a href="https://ncbi.nlm.nih.gov/"  target='entrez_win'>[seq]</a> links go to the
+NCBI, for more information about the sequence.  In general, you should
+click <a>[pgm]</a> links, but not <a>[seq]</a> links.
+<hr />
+<b> Identifying homologs and non-homologs; using domain annotations</b>
+<hr />
+<ol>
+<li>Use the <a
+href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;pgm=fa&amp;query=NP_001171499&amp;db=p&amp;annot_seq2=4"
+target="fasta_win">FASTA search page [pgm]</a> to compare Honey bee
+glutathione transferase D1 (GSTD1) <a href="https://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&amp;id=NP_001171499&amp;dopt=fasta" TARGET=entrez_win>NP_001171499/ H9KLY5_APIME [seq]</a> to the PIR1 Annotated protein sequence database.  Be sure to press <input type='submit' value='Search Database' />, not <input type='submit' value='Compare Sequences'/>.  
+<p>Take a look at the output.
+<ol type='a'>
+<li>
+How long is the query sequence? 
+<li> How many sequences are in the PIR1 database?
+<li> What scoring matrix was used?
+<li> What were the gap penalties? (what is the penalty for a one-residue gap? two residues?)
+<li> What are each of the numbers after the description of the library sequence?  Which one is best for inferring homology?
+<li> How similar is the highest scoring sequence?  What is the difference between %_id and %_sim? Why is there no 100% identity match?
+<li> Looking at an alignment, where are the boundaries of the alignment (the best local region)?  How many gaps are in the best alignment?  The second best?
+<li> What is the E()-value, percent identity, and alignment length of the worst scoring sequence shown? Are there sequences in the database with worse scores?
+</ol>
+<li>
+Homology (and non-homology) can also be inferred from domain
+relationships. There are three parts to the domain display, the domain structure of
+the query (top) sequence (if available), the domain structure of the library (bottom)
+sequence, and the domain alignment boundaries in the middle (inside the
+alignment box).  The boundaries and color of the alignment domain
+coloring match the <tt>Region:</tt> sub-alignment scores.  
+<ol type='a'>
+
+<li>
+Ignoring the domain annotations, what is the highest scoring
+non-homologous sequence (the highest scoring -- lowest E()-value --
+sequence that is unlikely to share any structural similarity with the
+honey bee query sequence?
+
+<li>
+Test your candidate non-homolog(s) by comparing it to SwissProt using the
+<tt>General re-search</tt> link.  Does it show significant similarity
+to any glutathione transferases?
+
+<li>
+Is your testing by re-searching consistent with the domain annotation coloring?
+
+<li>
+Note that the alignment of Honey bee <tt>GSTD1</tt> and
+<tt>SSPA_ECO57</tt> includes portions of both the N-terminal and
+C-terminal domains, but neither domain is completely aligned. Why do
+might the alignments not include the complete domains?
+
+<li>
+Is your explanation for the partial domain alignment consistent the
+the argument that domains have a characteristic length? How might you
+test whether a complete domain is present?
+
+</ol>
+<li>
+Repeat the
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;pgm=fa&amp;query=NP_001171499&amp;db=p&amp;annot_seq1=4&amp;annot_seq2=4&amp;hide_align=1"
+target="fasta_win">honeybee GSTD1 search [pgm]</a> using the BLASTP62/-11/-1
+scoring matrix <select><option>BlastP62 (30%)</option></select> that
+BLAST uses.  Re-examine the <tt>GSTD1:SSPA_ECO57</tt> alignment.  Are
+both glutathione transferase domains present?  Look at the alignments
+to the homologs above and below <tt>SSPA_ECO57</tt>.  Based on those
+aligments, do you think the Glutathione-S-Trfase C-like domain is
+really missing?  Why did the alignment become so much shorter?
+<li>
+One of the candidate non-homologs is <tt>sp|Q9SI20|EF1D2_ARATH</tt>,
+with an E()-value of 0.11.
+<ol type='a'>
+<li>
+Does the domain structure of <tt>EF1D2_ARATH</tt> suggest that it could be a glutatione transferase homolog?
+<li>
+Use the 
+<a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;query=Q9SI20&amp;q_type=acc&amp;db=Protein&amp;lib=Q&amp;pgm=fa&amp;start=8&amp;stop=60&amp;n1=231&amp;o_pgm=fa&amp;annot_seq2=2&amp;hide_align=1">
+General Research</a> to explore the domains contained
+in <tt>EF1D2_ARATH</tt> homologs found in SwissProt.
+<li>
+Does this second search support homology or non-homology?
+</ol>
+<!--
+<li>
+Compare the Drosophila glutathione transferase <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_www.cgi?rm=select&amp;pgm=fa&amp;query=GSTT1_DROME&amp;db=p&amp;annot_seq1=4&amp;annot_seq2=4&amp;hide_align=1"
+target="fasta_win">GSTT1_DROME [pgm]</a> sequence to the sequences with solved 3D structures (<b>Library:</b> <select><option>PDB structures (NCBI)</option></select> making certain that the <b>Annotations:</b> <select><option>CATH structural domains</option></select> is set.)
+<ol type='a'>
+<li> Are the structural domains in GSTT1_DROME consistent with the InterPro domains?
+<li> Looking <tt>pdb|2DSAA</tt> or <tt>pdb|1EV4A</tt>, how many "Glutaredoxin" domains appear to be present?
+<li> Looking at <tt>pdb|3NIVA</tt>, what do you think the "correct" structural domain annotation should be?  How could you confirm you hypothesis?
+</ol>
+-->
+<hr />
+<b> <tt>blastp</tt> and <tt>fasta36</tt> on the command line</b>
+<hr />
+<li>Command line (script-able) similarity searching;
+<p>
+Login (ssh) to <tt>interactive.hpc.virginia.edu</tt>
+<p>
+We will use a customized <tt>.bashrc</tt> initialization file to provide access the <tt>blast</tt> programs and sequence databases.
+<ol type='a'>
+<li>
+Copy the customized <tt>.bashrc</tt> and <tt>.bash_profile</tt> files to your account.
+<p>
+If you already have a <tt>.bashrc</tt> (<tt>ls -la .bashrc</tt>, then
+you should make a copy of it before replacing it with the
+<tt>biol4230</tt> version.  Later, you can merge the new and old files
+using an editor. If your existing <tt>.bash_profile</tt> file
+"sources" <tt>.bashrc</tt>, you do not need to change it.
+<pre>
+cd    # make sure you are in your home directory
+cp ~wrp/biol4230/bash/.bash_profile .
+cp ~wrp/biol4230/bash/.bashrc .
+source ~/.bashrc
+echo $PATH
+</pre>
+Once you have copied these files, when you login
+to <tt>interactive.hpc</tt>, you will be running on a separate host
+machine.<br/>
+As a result, <b>YOU MUST LOGOUT (^D) TWICE</b> to fully
+logout.  If you see <tt>udc-</tt> in your prompt, you are not fully logged out.
+<li>
+Once the customized .bashrc is working on  <tt>interactive.hpc</tt> your <tt>$PATH</tt> should include
+<tt>/nv/md_rdlib/seqprg/bin</tt>, which is where the <tt>blast</tt> and
+<tt>fasta</tt> reside.
+<pre>
+echo $PATH | grep -i seqprg
+</pre>
+</ol>
+<li>
+Create a <tt>biol4230/hwk2</tt> directory (<tt>mkdir</tt>) and <tt>cd</tt> into it.
+<li>
+Download the Honey Bee sequence from the NCBI using <tt>curl</tt>:
+<pre>
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&amp;id=NP_001171499&amp;rettype=fasta&amp;retmode=text" > honeybee_gst.aa
+</pre>
+Or copy the <tt>~wrp/biol4230/hwk2/honeybee_gst.aa</tt> file
+into your own homework (<tt>biol4230/hwk2</tt>) directory.
+<li>
+The following databases are available for searching with both
+the <tt>fasta36 / ssearch36</tt> and <tt>blastp</tt> programs.
+All <tt>blast</tt> names must be preceeded
+by <tt>${BLAST_DB}/</tt>, e.g. <tt>pir1</tt> is referred to
+as <tt>${BLAST_DB}/pir1</tt>.
+<table>
+<tr><th>Database</th><th>Blast<br />name</th><th>FASTA<br />abbreviation</th><th># sequences</th></tr>
+<tr><td>PIR1</td><td><tt>pir1</tt></td><td>a</td><td> ~13,000</td></tr>
+<tr><td>SwissProt</td><td><tt>uniprot_sprot</tt></td><td>s</td><td> ~500,000</td></tr>
+<tr><td>QFO78</td><td><tt>qfo78</tt></td><td>q</td><td> ~1,000,000</td></tr>
+<tr><td>
+</table>
+<p>
+You can see the names of some of the <tt>blastp</tt> databases by looking in the <tt>/data/slib/bl_dbs</tt> directory: (but pir1 does not have this format)
+<pre>
+ls ${BLAST_DB}/*.pal  # protein databases
+ls ${BLAST_DB}/*.nal  # DNA databases
+</pre>
+<p>
+You can see the list of libraries that <tt>fasta36</tt> knows about either by
+looking for <tt>${FASTA_DB}/*.lseg</tt> files:
+<pre>
+ls ${FASTA_DB}/*.lseg # protein databases only
+</pre>
+or by running the program in the <i>interactive</i> (<tt>fasta36 -I</tt>)
+mode, or by In interactive 
+After you enter the name of your query sequence
+(<tt>honeybee_gst.aa</tt>), you will be given a list of sequence
+libraries, and their abbreviations. (<tt>-I</tt> interactive
+mode is useful for learning about available sequence libraries, but
+normally you should run in non-interactive mode.)
+<li>
+Running <tt><b>fasta36</b></tt> and <tt><b>blastp</b></tt> non-interactively.
+<ol type='a'>
+<li>
+Look at the help commands.  To see how to run the programs, and the various command line options, type:
+<pre>
+fasta36 -h
+fasta36 -help > fasta.help
+</pre>
+Likewise:
+<pre>
+blastp -h
+blastp -help > blastp.help
+</pre>
+<li>
+Do the same FASTA search you did on the web site by typing:
+<pre>fasta36 honeybee_gst.aa a > honeybee_v_pir1.fa_result</pre>
+<p>
+Look at the <tt>honeybee_v_pir1.fa_result</tt> file.  Does the library
+hit summary look exactly the same? How it is different?
+<li>
+Do the search with <tt>blastp</tt>:
+<pre>
+blastp -query honeybee_gst.aa -db ${BLAST_DB}/pir1 > honeybee_v_pir1.bp_result
+</pre>
+<p>
+Note that with <tt>blastp</tt>, the query and library sequence files
+are specified with arguments (<tt>-query</tt>, <tt>-db</tt>).  With
+<tt>fasta36</tt> (and the other <tt>FASTA</tt> programs), they are
+specified as the first and second non-option commands.  With
+<tt>fasta</tt>, all options <i>must</i> precede the query and library
+file names.
+<li>
+Both <tt>fasta36</tt> and <tt>blastp</tt> can display search results
+in different formats.  The simplest format to parse with other
+programs is <tt>tabular</tt> format:
+<pre>
+fasta36 -m 8 query.file library > fasta_output.tab
+blastp -outfmt 6 -query query.file -db library.file > blast_output.tab
+</pre>
+Run the <tt>fasta36</tt> and <tt>blastp</tt> <tt>honeybee_gst.aa</tt>
+vs PIR1 searches producing tabular output and saving it to a file.
+<p>
+You will parse these <tt>tabular</tt> results files for this weekend's <a href="blast_hwk2.html"> homework </a>
+</ol>
+<hr>
+<b>blastp output parsing tricks for your homework:</b>
+<ol type='a'>
+<li>
+By default, the <tt>fasta36 -m 8</tt> output looks like this:
+<pre>
+NP_001171499.1	sp|P20432|GSTT1_DROME	58.05	206	86	1	3	208	2	206	1.2e-56	215.0
+NP_001171499.1	sp|P04907|GSTF3_MAIZE	35.10	170	98	19	2	158	3	166	2e-09	58.2
+</pre>
+While the <tt>blastp -outfmt 6</tt> output looks like this:
+<pre>
+NP_001171499.1	P20432	57.767	206	86	1	3	208	2	206	3.19e-87	255
+NP_001171499.1	P04907	27.381	168	107	2	2	158	3	166	6.51e-11	58.5
+</pre>
+To get <tt>blastp</tt> output that looks the same as <tt>fasta36</tt> output, use the command option:
+<pre>
+blastp -outfmt '6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore' -query ... -db ...
+</pre>
+<li>
+You can use the <tt>"cut -f 2"</tt> command to isolate the second column, and pipe (|) it to <tt>"cut -d \|"</tt> again to separate the parts of <tt>sp|P20432
+|GSTT1DROME</tt>:
+<pre>
+  cut -f 2 fasta_output.file | cut -d \| -f 2
+</pre>
+Produces a set of accessions.  If you do a search against SwissProt, you may need to remove the version number with <tt>"| cut -d . -f 1"</tt>.
+<li>
+You can use the <tt>"awk"</tt> command to isolate the subset of hits that you want (<tt>$11</tt> has the E()-value; <tt>$2</tt> has the subject sequence id):
+<pre>
+awk '{if ($11 > 0.1 && $11 <= 2.0) print $2}' output_file.name | cut -d \| -f 2
+</pre>
+</ol>
+</ol>
+<hr />
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<hr />
+</body>
+</html>

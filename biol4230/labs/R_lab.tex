@@ -1,0 +1,729 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,pstricks,fullpage}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\usepackage{theorem}
+\usepackage{float}
+\usepackage{ifthen}
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+\newcommand{\R}{{\textsf{R}}}
+\newcommand{\code}[1]{{\texttt{#1}}}
+\newcommand{\term}[1]{{\emph{#1}}}
+\newcommand{\Rpackage}[1]{\textsf{#1}}
+\newcommand{\Rfunction}[1]{\texttt{#1}}
+\newcommand{\Robject}[1]{\texttt{#1}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+
+
+\usepackage{Sweave}
+\begin{document}
+
+
+
+%\VignetteDepends{YEAST,GO,annotate,gaschYHS,harbChIP)}
+%\VignetteIndexEntry{GO scoring using various methods}
+%\VignetteKeywords{yeast, gene sets based analysis, gene ontology}
+
+\title{Introduction to R}
+
+\author{Stefan Bekiranov\\CS 6014}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+In this lab, we will be exploring how to use R.  We will work on generating and accessing elements/components from R objects including vectors, matrices, lists, factors, data frames and functions (both built in and user defined).  We will also explore R's basic graphics utilities including \code{plot}, \code{hist}, and \code{boxplot}.  Finally, we'll introduce you to R's control structures: \code{if}-\code{else}, \code{for} and \code{while} loops.  Have fun!
+  
+\section{Vectors}
+
+Create a numerical vector of all the integers from 11 to 20 named \code{num} using the sequence generating operator \code{:}.  Use this vector to generate 6 logical vectors named \code{lg1}...\code{lg6} by applying conditions using comparison operators \code{>}, \code{>=}, \code{<}, \code{<=}, \code{==} and \code{!=}.  Generate a character vector named \code{char} using the concatenate function \code{c(...)}.  Use this vector to create 2 logical vectors, \code{lg7} and \code{lg8}, using the comparison operators \code{==} and \code{!=}.  View the elements of all these vectors by typing their names and hitting ``enter'' on your keyboard.  Create a mixed vector named \code{mix1} that contains values with a decimal point and integers using the \code{c(...)} function.  What type of vector is produced?  Check by typing \code{mix1} and hitting ``enter'' on your keyboard as well as using the \code{mode(...)} function.  Create a mixed vector named \code{mix2} that contains values with a decimal point, integers and characters with the \code{c(...)} function.  What type of vector is produced?  Again, check by typing \code{mix2} and hitting ``enter'' on your keyboard as well as using the \code{mode} function.    
+
+Extract a subset of elements from \code{num} using the \code{:} operator, \code{c(...)} as well as all 6 of the logical vectors \code{lg1}...\code{lg6}.  Extract the elements of \code{char} by using \code{lg7} and \code{lg8}.  Extract subsets of \code{mix1} and \code{mix2} using negative indexes together with the \code{:} operator and the \code{c(...)} function.
+
+Perform the following mathematical operations on \code{num}: \code{num/num}, \code{num*num}, \code{num**2}, \code{num + num}, \code{2*num} and \code{num - num}.  Are these standard matrix operations?          
+
+%\newpage
+
+\begin{Schunk}
+\begin{Sinput}
+> num = 11:20
+> num # components of num
+\end{Sinput}
+\begin{Soutput}
+ [1] 11 12 13 14 15 16 17 18 19 20
+\end{Soutput}
+\begin{Sinput}
+> lg1 = num > 15
+> lg1 # components of lg1
+\end{Sinput}
+\begin{Soutput}
+ [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+\end{Soutput}
+\begin{Sinput}
+> lg2 = num < 12
+> lg3 = num >= 16
+> lg4 = num <= 10
+> lg5 = num == 20
+> lg6 = num != 11
+> char = c("R", "Perl", "stats", "bioconductor", "ChIP-Seq")
+> lg7 = char == "R"
+> lg8 = char != "Perl"
+> mix1 = c(1, 2, 3.3)
+> mix1 # doubles
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 2.0 3.3
+\end{Soutput}
+\begin{Sinput}
+> mode(mix1)
+\end{Sinput}
+\begin{Soutput}
+[1] "numeric"
+\end{Soutput}
+\begin{Sinput}
+> mix2 = c(1, 2, 3.3, "R") 
+> mix2 # character
+\end{Sinput}
+\begin{Soutput}
+[1] "1"   "2"   "3.3" "R"  
+\end{Soutput}
+\begin{Sinput}
+> mode(mix2)
+\end{Sinput}
+\begin{Soutput}
+[1] "character"
+\end{Soutput}
+\begin{Sinput}
+> num[2:6]
+\end{Sinput}
+\begin{Soutput}
+[1] 12 13 14 15 16
+\end{Soutput}
+\begin{Sinput}
+> num[c(1,3,5)]
+\end{Sinput}
+\begin{Soutput}
+[1] 11 13 15
+\end{Soutput}
+\begin{Sinput}
+> num[lg1]
+\end{Sinput}
+\begin{Soutput}
+[1] 16 17 18 19 20
+\end{Soutput}
+\begin{Sinput}
+> num[lg2]
+\end{Sinput}
+\begin{Soutput}
+[1] 11
+\end{Soutput}
+\begin{Sinput}
+> num[lg3]
+\end{Sinput}
+\begin{Soutput}
+[1] 16 17 18 19 20
+\end{Soutput}
+\begin{Sinput}
+> num[lg4]
+\end{Sinput}
+\begin{Soutput}
+integer(0)
+\end{Soutput}
+\begin{Sinput}
+> num[lg5]
+\end{Sinput}
+\begin{Soutput}
+[1] 20
+\end{Soutput}
+\begin{Sinput}
+> num[lg6]
+\end{Sinput}
+\begin{Soutput}
+[1] 12 13 14 15 16 17 18 19 20
+\end{Soutput}
+\begin{Sinput}
+> char[lg7]
+\end{Sinput}
+\begin{Soutput}
+[1] "R"
+\end{Soutput}
+\begin{Sinput}
+> char[lg8]
+\end{Sinput}
+\begin{Soutput}
+[1] "R"            "stats"        "bioconductor" "ChIP-Seq"    
+\end{Soutput}
+\begin{Sinput}
+> mix1[-(3:4)]
+\end{Sinput}
+\begin{Soutput}
+[1] 1 2
+\end{Soutput}
+\begin{Sinput}
+> mix2[-c(3,4)]
+\end{Sinput}
+\begin{Soutput}
+[1] "1" "2"
+\end{Soutput}
+\begin{Sinput}
+> num/num
+\end{Sinput}
+\begin{Soutput}
+ [1] 1 1 1 1 1 1 1 1 1 1
+\end{Soutput}
+\begin{Sinput}
+> num*num
+\end{Sinput}
+\begin{Soutput}
+ [1] 121 144 169 196 225 256 289 324 361 400
+\end{Soutput}
+\begin{Sinput}
+> num**2
+\end{Sinput}
+\begin{Soutput}
+ [1] 121 144 169 196 225 256 289 324 361 400
+\end{Soutput}
+\begin{Sinput}
+> num+num
+\end{Sinput}
+\begin{Soutput}
+ [1] 22 24 26 28 30 32 34 36 38 40
+\end{Soutput}
+\begin{Sinput}
+> 2*num
+\end{Sinput}
+\begin{Soutput}
+ [1] 22 24 26 28 30 32 34 36 38 40
+\end{Soutput}
+\begin{Sinput}
+> num-num
+\end{Sinput}
+\begin{Soutput}
+ [1] 0 0 0 0 0 0 0 0 0 0
+\end{Soutput}
+\end{Schunk}
+ 
+
+\section{Matrices}
+
+Create a 5 column matrix named \code{mat} from \code{num} using the \code{matrix()} function and filling in the values by row first.  What are the dimensions of \code{mat}?  Type \code{mat} at the prompt then ``enter'' and use the \code{dim()} function to find out.  Extract the element in the second row and third column of \code{mat}.  Extract the full first row and, separately, the full fourth column of \code{mat}.  Extract all rows and the 4th and 5th columns of \code{mat} using the \code{:} operator and \code{c()} command.   Create a logical vector \code{lg9} by checking to see which elements in the first row of \code{mat} are \code{<=} 14.  Apply \code{lg9} to the columns of \code{mat}.  Perform the following mathematical operations on \code{mat}: \code{mat/mat}, \code{mat*mat}, \code{mat**2}, \code{mat + mat}, \code{2*mat} and \code{mat - mat}.      
+
+\begin{Schunk}
+\begin{Sinput}
+> mat = matrix(num, ncol=5, byrow=T)
+> mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   11   12   13   14   15
+[2,]   16   17   18   19   20
+\end{Soutput}
+\begin{Sinput}
+> dim(mat)
+\end{Sinput}
+\begin{Soutput}
+[1] 2 5
+\end{Soutput}
+\begin{Sinput}
+> mat[2,3]
+\end{Sinput}
+\begin{Soutput}
+[1] 18
+\end{Soutput}
+\begin{Sinput}
+> mat[1,]
+\end{Sinput}
+\begin{Soutput}
+[1] 11 12 13 14 15
+\end{Soutput}
+\begin{Sinput}
+> mat[,4]
+\end{Sinput}
+\begin{Soutput}
+[1] 14 19
+\end{Soutput}
+\begin{Sinput}
+> mat[,4:5]
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2]
+[1,]   14   15
+[2,]   19   20
+\end{Soutput}
+\begin{Sinput}
+> mat[,c(4,5)]
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2]
+[1,]   14   15
+[2,]   19   20
+\end{Soutput}
+\begin{Sinput}
+> lg9 = mat[1,] <= 14
+> lg9
+\end{Sinput}
+\begin{Soutput}
+[1]  TRUE  TRUE  TRUE  TRUE FALSE
+\end{Soutput}
+\begin{Sinput}
+> mat[,lg9]
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4]
+[1,]   11   12   13   14
+[2,]   16   17   18   19
+\end{Soutput}
+\begin{Sinput}
+> mat/mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    1    1    1    1
+[2,]    1    1    1    1    1
+\end{Soutput}
+\begin{Sinput}
+> mat*mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]  121  144  169  196  225
+[2,]  256  289  324  361  400
+\end{Soutput}
+\begin{Sinput}
+> mat**2
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]  121  144  169  196  225
+[2,]  256  289  324  361  400
+\end{Soutput}
+\begin{Sinput}
+> mat + mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   22   24   26   28   30
+[2,]   32   34   36   38   40
+\end{Soutput}
+\begin{Sinput}
+> 2*mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   22   24   26   28   30
+[2,]   32   34   36   38   40
+\end{Soutput}
+\begin{Sinput}
+> mat-mat
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    0    0    0    0    0
+[2,]    0    0    0    0    0
+\end{Soutput}
+\end{Schunk}
+
+\section{Lists and Data Frames}
+
+Generate a list named \code{ExpList} with three components: ExpLevel (3 numeric elements), Exp (3 logical elements with at least one \code{TRUE}) and GeneName (3 character elements).  Type \code{ExpList} and hit ``enter''.  Extract the GeneName component using the \code{\$} operator, double brackets,\code{[[]]}, and single brackets, \code{[]}, after \code{ExpList}.  Do you notice any differences in the outputs?  Extract the third element of the GeneName component.  Extract the ExpLevel and GeneName components in one view using single brackets after \code{ExpList}, \code{[]}.  Generate a character vector of length 3 named \code{ids}.  Type \code{help(as.data.frame)}.  Read the help page.  Apply the function \code{as.data.frame} on the list \code{ExpList} to generate a data frame named \code{ExpData} with row names \code{ids} (setting \code{stringsAsFactors=F}).  Type \code{ExpData} and hit ``enter''. Extract the first row and then the third column (two separate operations) of \code{ExpData} using indexes.  Use the \code{\$} operator to extract the Exp column.  Extract the rows that are \code{TRUE} in the \code{Exp} column.  Check the attributes of \code{ExpData} by applying the \code{dim()} and \code{mode()} functions.
+
+\begin{Schunk}
+\begin{Sinput}
+> ExpList = list(ExpLevel=c(1,2,3), Exp=c(F,T,T), GeneName=c("p53", "cMyc", "Sp1"))
+> ExpList
+\end{Sinput}
+\begin{Soutput}
+$ExpLevel
+[1] 1 2 3
+
+$Exp
+[1] FALSE  TRUE  TRUE
+
+$GeneName
+[1] "p53"  "cMyc" "Sp1" 
+\end{Soutput}
+\begin{Sinput}
+> ExpList$GeneName
+\end{Sinput}
+\begin{Soutput}
+[1] "p53"  "cMyc" "Sp1" 
+\end{Soutput}
+\begin{Sinput}
+> ExpList[[2]]
+\end{Sinput}
+\begin{Soutput}
+[1] FALSE  TRUE  TRUE
+\end{Soutput}
+\begin{Sinput}
+> ExpList[2]
+\end{Sinput}
+\begin{Soutput}
+$Exp
+[1] FALSE  TRUE  TRUE
+\end{Soutput}
+\begin{Sinput}
+> ExpList$GeneName[3]
+\end{Sinput}
+\begin{Soutput}
+[1] "Sp1"
+\end{Soutput}
+\begin{Sinput}
+> ExpList[c(1,3)]
+\end{Sinput}
+\begin{Soutput}
+$ExpLevel
+[1] 1 2 3
+
+$GeneName
+[1] "p53"  "cMyc" "Sp1" 
+\end{Soutput}
+\begin{Sinput}
+> ids = c("id1", "id2", "id3")
+> ExpData = as.data.frame(ExpList, row.names=ids, stringsAsFactors=F)
+> ExpData
+\end{Sinput}
+\begin{Soutput}
+    ExpLevel   Exp GeneName
+id1        1 FALSE      p53
+id2        2  TRUE     cMyc
+id3        3  TRUE      Sp1
+\end{Soutput}
+\begin{Sinput}
+> ExpData[1,]
+\end{Sinput}
+\begin{Soutput}
+    ExpLevel   Exp GeneName
+id1        1 FALSE      p53
+\end{Soutput}
+\begin{Sinput}
+> ExpData[,3]
+\end{Sinput}
+\begin{Soutput}
+[1] "p53"  "cMyc" "Sp1" 
+\end{Soutput}
+\begin{Sinput}
+> ExpData$Exp
+\end{Sinput}
+\begin{Soutput}
+[1] FALSE  TRUE  TRUE
+\end{Soutput}
+\begin{Sinput}
+> ExpData[ExpData$Exp,]
+\end{Sinput}
+\begin{Soutput}
+    ExpLevel  Exp GeneName
+id2        2 TRUE     cMyc
+id3        3 TRUE      Sp1
+\end{Soutput}
+\begin{Sinput}
+> dim(ExpData)
+\end{Sinput}
+\begin{Soutput}
+[1] 3 3
+\end{Soutput}
+\begin{Sinput}
+> mode(ExpData)
+\end{Sinput}
+\begin{Soutput}
+[1] "list"
+\end{Soutput}
+\end{Schunk}
+
+\section{Reading and Writing Data}
+
+Now we're going to learn to read and write data into and out of R respectively.  We're going to start by writing so that we have files to read in.  First, we're going to write the matrix \code{mat} to a file named ``mat.txt''.  We'll use the \code{write()} function which writes a vector or matrix to a file.  Type \code{help(write)}.  You'll see that \code{write} requires you to transpose your matrix (i.e., switch rows and columns).  So try the following:
+
+\begin{Schunk}
+\begin{Sinput}
+> t(mat) #transpose mat matrix
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2]
+[1,]   11   16
+[2,]   12   17
+[3,]   13   18
+[4,]   14   19
+[5,]   15   20
+\end{Soutput}
+\begin{Sinput}
+> write(t(mat), file="matrix.txt", ncol=5, sep="\t")
+\end{Sinput}
+\end{Schunk}
+
+Check to see if the file ``matrix.txt'' is in the same directory in which you called R by typing \code{system("ls")}.  If it is, view its contents using the command \code{system("less matrix.txt")}.  Was it written correctly?  What if we had omitted the \code{t()} function?  Try it.
+
+Next, we'll write our data frame ExpData to a file named ``ExpData.txt'' using the \code{write.table()} function:
+
+\begin{Schunk}
+\begin{Sinput}
+> write.table(ExpData,file="ExpData.txt",quote=F,sep="\t",row.names=T,col.names=T)
+\end{Sinput}
+\end{Schunk}
+
+Let's use \code{system("ls")} to see if the file was written and \code{system("less ExpData.txt")} to view the contents.  Is the output what you expected?  Note, I normally don't include row names in my output files (i.e., I set \code{row.names=F}).
+
+Now we'll try to read in our matrix \code{mat} and data frame \code{ExpData}.  There are two major function that allow you to read text files into R: \code{scan()} which returns a vector and \code{read.table} which returns a data frame.  If we want to read our file ``matrix.txt'' in as a matrix using \code{scan} we also have to use the \code{matix} function.   
+
+\begin{Schunk}
+\begin{Sinput}
+> mat2 = scan("matrix.txt")
+> mat2 # This is a vector, not a matrix!
+\end{Sinput}
+\begin{Soutput}
+ [1] 11 12 13 14 15 16 17 18 19 20
+\end{Soutput}
+\begin{Sinput}
+> mat2 = matrix(scan("matrix.txt"), byrow=T, ncol=5)
+> mat2 # This is correct.
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   11   12   13   14   15
+[2,]   16   17   18   19   20
+\end{Soutput}
+\end{Schunk}
+
+Now let's read our file ``ExpData.txt'' into a data frame called ExpData2 using \code{read.table}.
+
+\begin{Schunk}
+\begin{Sinput}
+> ExpData2 = read.table("ExpData.txt", header=T, sep="\t")
+> ExpData2 # This is correct.
+\end{Sinput}
+\begin{Soutput}
+    ExpLevel   Exp GeneName
+id1        1 FALSE      p53
+id2        2  TRUE     cMyc
+id3        3  TRUE      Sp1
+\end{Soutput}
+\end{Schunk}
+
+\section{Graphics}
+
+Now we'll explore some of R's graphics functions.  The function \code{plot} is R's basic plotting function.  Type \code{help(plot)}.  If you look at all the parameters available to \code{plot} by typing help(par), you'll see that we could spend hours leaning all the details of \code{plot} alone.  Instead, I'll just take you through a few examples of generating a scatter plot and a line:
+
+\begin{Schunk}
+\begin{Sinput}
+> x = seq(0,1,by=0.01) # a vector of values from 0 to 1 in increments of 0.01.
+> y = x + rnorm(length(x), mean=0, sd=0.1) # add a little Gaussian noise to x.
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> plot(x,y,xlab="x",ylab="y",main="L",xlim=c(0,1),ylim=c(0,1),pch=18,col="red")
+> lines(x,x,col="blue")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-plot}
+
+Redraw the above plot by using the \code{type="l"} option in \code{plot} and \code{points} command instead of \code{line} below plot.
+
+\begin{Schunk}
+\begin{Sinput}
+> plot(x,y,type="l",xlab="x",ylab="y",main="L",xlim=c(0,1),ylim=c(0,1),col="red")
+> points(x,x,col="blue")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-plot2}
+
+Make a plot with two lines and two sets of corresponding scatter points (similar to the first plot; use 4 colors): one with slope equal to one and another with slope equal to two using the \code{plot}, \code{seq}, \code{points}, \code{lines} and \code{rnorm} functions.
+
+\begin{Schunk}
+\begin{Sinput}
+> z = 2*x + rnorm(length(x), mean=0, sd=0.5)
+> plot(x,y,main="2 Lines",xlim=c(0,1),ylim=c(0,1),pch=18,col="red")
+> points(x,z,pch=18,col="green")
+> lines(x,x,col="blue")
+> lines(x,2*x,col="purple")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-plot3}
+
+Can we see all the ``green'' data points?  If not, how would get them all in the plot?  Try it.
+
+Now let's generate a plot of the histogram (using the function \code{hist}), smoothed density (using the function \code{density} in \code{plot}) and boxplot (using the function \code{boxplot}) of a random vector \code{r} which is normally distributed with a mean of 2 and standard deviation of 1.  First we have to generate the random vector (using \code{rnorm}) and then the plots:
+
+\begin{Schunk}
+\begin{Sinput}
+> r = rnorm(1000,mean=2, sd=1)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> hist(r, main="Hist of r")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-hist}
+
+\begin{Schunk}
+\begin{Sinput}
+> plot(density(r), "Density of r")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-density}
+
+\begin{Schunk}
+\begin{Sinput}
+> boxplot(r, main="Boxplot of r")
+\end{Sinput}
+\end{Schunk}
+\includegraphics{R_lab-boxplot}
+
+\section{Control Structures}
+
+R's control structures are very similar to those of other programming languages.  We will return to our numerical vector \code{num} to illustrate the use of the \code{if} statement, \code{for} loop and \code{while} loop:
+
+\begin{Schunk}
+\begin{Sinput}
+> if (length(num) > 2) {
++ long = TRUE
++ variance = var(num)
++ } else {
++ long = FALSE
++ variance = NA
++ }
+> long
+\end{Sinput}
+\begin{Soutput}
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> variance
+\end{Sinput}
+\begin{Soutput}
+[1] 9.166667
+\end{Soutput}
+\end{Schunk}
+
+What does the chunk of code written above do?
+
+\begin{Schunk}
+\begin{Sinput}
+> squareRoot = numeric()
+> for (i in 1:length(num)) {
++ squareRoot = c(squareRoot, sqrt(num[i]))
++ }
+> squareRoot
+\end{Sinput}
+\begin{Soutput}
+ [1] 3.316625 3.464102 3.605551 3.741657 3.872983 4.000000 4.123106 4.242641
+ [9] 4.358899 4.472136
+\end{Soutput}
+\end{Schunk}
+
+Why did I declare \code{squareRoot} as a numeric vector before the loop?  Remove the vector \code{squareRoot} by typing \code{rm(squareRoot)} and try the loop again without declaring the variable.  Did you get an error message?  What was the problem?  Could we have done this another, much simpler, way?
+
+\begin{Schunk}
+\begin{Sinput}
+> i = 1
+> sumSqrt = 0
+> while (squareRoot[i] <= 4) {sumSqrt = sumSqrt + squareRoot[i]; i=i+1}
+> sumSqrt
+\end{Sinput}
+\begin{Soutput}
+[1] 22.00092
+\end{Soutput}
+\end{Schunk}
+
+What does the chunk of code written above do?  Why did I set the variable \code{i} before the \code{while} loop?
+
+\section{Functions}
+
+R's strength are the thousands of powerful functions that allow you to apply the latest computational statistics algorithms to your data.  In our case, the Bioconductor suite of tools is extremely powerful for array analysis and more.  So, take a little time and explore some of the basic functions that I listed on the ``R Functions and Packages'' slide of the ``Introduction to R'' lecture.  Use the \code{help} function to understand proper usage/input requirements and apply some of these basic functions to your R objects.  Next, read the ``Calling Conventions for Functions'' slide to get a feel for applying a t-test and then type \code{t.test} and read the help page.  Generate two vectors named \code{x} and \code{y} of length 10 whose elements are normally distributed with zero mean and standard deviation equal to one using the function \code{rnorm}.  Next, create a vector of length 10 named \code{z} with mean two and standard deviation one.  Apply a \code{t.test} between (1) \code{x} and \code{y} and (2) \code{x} and \code{z} using the ``greater'' \code{alternative} option.  Given what you know about how you created \code{x}, \code{y}, and \code{z}, order the vectors in \code{t.test} to yield the lowest possible p-value.  
+
+\begin{Schunk}
+\begin{Sinput}
+> x = rnorm(10)
+> y = rnorm(10)
+> z = rnorm(10, mean=2)
+> t.test(x,y,alternative="greater") # ordering doesn't matter
+\end{Sinput}
+\begin{Soutput}
+	Welch Two Sample t-test
+
+data:  x and y
+t = 0.2816, df = 17.996, p-value = 0.3907
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -0.7395678        Inf
+sample estimates:
+ mean of x  mean of y 
+-0.2477925 -0.3911699 
+\end{Soutput}
+\begin{Sinput}
+> t.test(z,y,alternative="greater") # correct ordering
+\end{Sinput}
+\begin{Soutput}
+	Welch Two Sample t-test
+
+data:  z and y
+t = 6.2827, df = 13.356, p-value = 1.247e-05
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 1.809634      Inf
+sample estimates:
+ mean of x  mean of y 
+ 2.1267588 -0.3911699 
+\end{Soutput}
+\begin{Sinput}
+> t.test(y,z,alternative="greater") # incorrect ordering
+\end{Sinput}
+\begin{Soutput}
+	Welch Two Sample t-test
+
+data:  y and z
+t = -6.2827, df = 13.356, p-value = 1
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -3.226223       Inf
+sample estimates:
+ mean of x  mean of y 
+-0.3911699  2.1267588 
+\end{Soutput}
+\end{Schunk}
+
+We'll end with learning how to write our own functions.  We're going to write a function called \code{medmean} that calculates the median of a vector if its length is below a user defined value \code{n} and the \code{mean} otherwise.  We'll apply it to two vectors of different length which include a bad outlier.
+
+\begin{Schunk}
+\begin{Sinput}
+> medmean = function(x, n) {if (length(x) > n) {mean(x)} else {median(x)}}
+> fewdata = c(rnorm(3),100)
+> manydata = c(rnorm(1000),100)
+> medmean(fewdata,10)    # case 1
+\end{Sinput}
+\begin{Soutput}
+[1] 0.9401635
+\end{Soutput}
+\begin{Sinput}
+> medmean(fewdata,3)     # case 2
+\end{Sinput}
+\begin{Soutput}
+[1] 25.58711
+\end{Soutput}
+\begin{Sinput}
+> medmean(manydata,10)   # case 3   
+\end{Sinput}
+\begin{Soutput}
+[1] 0.1100558
+\end{Soutput}
+\begin{Sinput}
+> medmean(manydata,1001) # case 4
+\end{Sinput}
+\begin{Soutput}
+[1] 0.001653773
+\end{Soutput}
+\end{Schunk}
+
+For each of the four cases, which branch of the \code{if} statement did we execute?  Can you draw any conclusions about applying the mean or median to data with outliers?
+
+We'll continue next with more R and Bioconductor.  Hope you had some fun learning R.  
+
+\end{document}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet" />
+<!-- updated June, 2013 for Honey bee searches -->
+<script type="text/javascript">
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Scripting Cheat Sheet
+</title>
+</head>
+<body bgcolor=white  onload='update_modtime()'>
+<h2>
+Biol4230 - Scripting Cheat Sheet
+</h2>
+<hr />
+Quick tips for making sequence downloads/searches easier:
+<p>
+<ol>
+<p><b>Downloading sequences</b>
+<li>
+<b>From Uniprot</b>:
+<pre>
+curl https://www.uniprot.org/uniprot/PXXXYY.fasta > PXXXYY_file.aa
+</pre>
+<tt>PXXXYY</tt> should be an accession number, without a version number
+In a script:
+<pre>
+curl https://www.uniprot.org/uniprot/$acc.fasta > ${acc}_file.aa
+</pre>
+<p>
+<li>
+<b>From NCBI</b>
+<pre>
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&rettype=fasta&retmode=text&id=P09488" > P09488_file.aa
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&rettype=fasta&retmode=text&id=$acc" > ${acc}_file.aa
+</pre>
+In this case, the URL <i>must</i> be surrounded by <tt>"quotes"</tt>,
+so that the special characters in the string (?, &amp;), are sent
+properly.
+<p>
+mRNA sequences can be downloaded by specifying <tt>db=nucleotide</tt>:
+<pre>
+curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&retmode=text&id=NM_000561" > NM_000561.nt
+</pre>
+<p>
+  <li><b>Setting variables</b>
+    <p>
+Shell variables should <i>never</i>
+have a '$' when on the left of an <tt>=</tt>, or when being set
+by <tt>"for n in ..."</tt> and should <i>always</i> have a '$' when
+being referred to in a command.  Thus, in the command below, <tt>acc</tt> has no '$' in <tt>"for acc in ..."</tt>, but does have a '$' in <tt>"echo $acc"</tt>.
+<p>
+<li><b>Simple <tt>for ...</tt> loops:</b>
+<pre>
+for acc in $(cat list.acc); do
+  echo $acc
+done
+</pre>
+<tt>$(cat list.acc)</tt> is an alternative to <tt>backtics: `</tt>, which can be hard to recognize.
+<p>
+Getting a list of accessions from a set of <tt>*.aa</tt> files:
+<pre>
+for f in *.aa; do
+  acc=${f%.*}
+  echo $acc
+done
+</pre>
+Whenever a <tt>for</tt> loop is not working, use <tt>echo $f</tt>, where <tt>$f</tt> is the loop variable, to see if it is being set properly.
+</ol>
+<hr />
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+</body>
+</html>

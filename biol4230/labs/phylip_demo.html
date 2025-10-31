@@ -1,0 +1,152 @@
+<html>
+<head>
+<style type="text/css">
+<!--
+.tab {margin-left: 20 px;}
+-->
+</style>
+<title>
+Biol4230 - PHYLIP Exercises (Using EMBOSS)
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>PHYLIP Exercises</h2>
+<p>
+PHYLIP (Phylogenetic Inference Package) provides a set of "classic"
+phylogeny programs that have been available since 1980
+<a href="http://evolution.genetics.washington.edu/phylip.html"
+target=phylip>Phylip Home Page</a>.
+<p>
+Unfortunately, in part because they were written in the 80's, the user
+interface is quite primitive, and in some ways somewhat hostile.
+Fortunately, the PHYLIP programs have been repackaged as part of the
+<a href="http://emboss.sourceforge.net"
+target=emboss>EMBOSS</a> software package, which provides a much more modern command
+line interface around the PHYLIP programs.  In addition, EMBOSS
+provides some other very helpful programs for producing files in the
+correct format.
+<p>
+This workshop will use the EMBOSS programs on <tt>interactive.hpc</tt> to construct evolutionary
+trees using protein and DNA sequences.  It is possible to run the workshop on <tt>hpc</tt>, but you will NOT be able to use the EMBOSS versions of the programs.
+<p>
+This series of exercises will be your homework for Wednesday, March
+14. Please do the exercises in a new <tt>biol4230/hwk6</tt> directory.
+Though we will do this exercise interactively today, please create a
+<tt>phylip.sh</tt> shell script file that shows <i>exactly</i> the
+steps you used to do the analyses.
+<p>
+<ol>
+<li>
+Before you can use the EMBOSS programs, you will need to ensure that
+<tt>seqprg/emboss/bin</tt> is in your path.
+<!--
+Edit your .bashrc file and change the <tt>export PATH</tt> line, or <pre>
+cp /data/slib/biol4230/bash/.bashrc ~/.
+source ~/.bashrc
+</pre>
+<p>
+-->
+Check to see that the EMBOSS programs are in your path by looking at help on one of them:
+<pre>
+seqret -help -verbose
+</pre>
+All of the EMBOSS programs have a <tt>-help</tt> option, that you will need to use to learn how to specify the program input and output file names, and other options.
+
+<li>
+On <tt>interactive.hpc.virginia.edu</tt>, copy the files <tt>gstm.alib</tt> and
+<tt>gstm.nlib</tt> from <tt>${SLIB2}/biol4230/data/phylip</tt> to a new <tt>hwk6</tt> directory.
+<br />
+<li>
+Align the <tt>gstm.alib</tt> sequences using
+<pre>muscle -stable -in gstm.alib -out gstm.a_aln
+</pre>
+(the <tt>-stable</tt> option ensures that the output alignment is in the same sequence order as the input)
+<p>
+By default, <tt>muscle</tt> writes out the result in <tt>FASTA</tt>
+format, which you can use to produce the DNA alignment.  You may also
+want to write out the alignment in <tt>Clustalw</tt> format (option
+<tt>-clw</tt>) to look at alignment conservation.
+<p>
+Looking at either the <tt>FASTA</tt> or <tt>ClustalW</tt> format multiple sequence alignment, how many gaps do you see?  Do you think a different alignment program would produce a different multiple sequence alignment?
+<p>
+<li>
+Use <tt>tranalign</tt> program to align the protein sequences in <tt>gstm.alib</tt> to the DNA sequences in <tt>gstm.nlib</tt>.
+<br />
+<p>
+<code>tranalign -asequence gstm.nlib -bsequence gstm.a_aln -outseq gstm.n_aln</code>
+<br />
+Look at the <tt>gstm.n_align</tt> file. Is it in PHYLIP format?
+<li>
+Use the <tt>seqret</tt> program:
+<pre>
+seqret  -osformat2 phylip -sequence gstm.a_aln -outseq gstm.a_phy
+</pre>
+to reformat <tt>gstm.a_aln</tt> and <tt>gstm.n_aln</tt> alignments in FASTA format into PHYLIP format (<tt>gstm.a_phy</tt>, <tt>gstm.n_phy</tt>).
+<p>
+<li>
+Use the <tt>fprotdist</tt> program to build a matrix of protein distances
+from <tt>gstm.a_phy</tt>.
+<p>
+Use the <tt>fdnadist</tt> program to build a matrix of DNA distances from
+<tt>gstm.n_phy</tt>
+<pre>
+fprotdist -sequence gstm.a_phy -outfile gstm.a_dist
+fdnadist -sequence gstm.n_phy -outfile gstm.n_dist -method f
+</pre>
+<p>
+<li>
+Use the <tt>ffitch</tt> and <tt>fkitsch</tt> programs to build trees from the
+protein and DNA distance files.  For <tt>fitch</tt> (but not <tt>fkitsch</tt>), you should specify an outgroup: <tt>-outgrno 19</tt>
+<pre>
+ffitch -datafile gstm.a_dist -outtreefile gstm.a_dist_tree -outfile gstm.a_dist_log -outgrno 19
+</pre>
+When you run the program, it will ask for an (optional) -intreefile, which you do not need (or have). Just hit return, or create a file with a blank line in it (not empty, it must have one newline).  If you call it "<tt>blank-line.txt</tt>", you can run:
+<pre>
+ffitch -datafile gstm.a_dist -outtreefile gstm.a_dist_tree -outfile gstm.a_dist_log -outgrno 19 < blank-line.txt
+</pre>
+And the program will run properly.
+<p>
+<ol type='a'>
+<li>
+Looking at the program output (<tt>-outfile</tt> option), do both the
+protein distance and DNA distance trees look the same?  Do the
+<tt>ffitch</tt> and <tt>fkitsch</tt> trees look the same?
+<li>
+The data set includes several paralogous human, mouse, and rat glutathione S-transferases.
+Can you identify the mouse/rat orthologs?
+<li>
+Can you identify any mouse/human orthologs?  What evolutionary events might cause the human/mouse orthologs to be more difficult to identify?
+</ol>
+<p>
+<li>
+Use the <tt>fprotpars</tt> and <tt>fdnapars</tt> programs to build trees from the
+protein and DNA alignment files.
+<p>
+<li>
+Use the <tt>fdnaml</tt> and <tt>fdnamlk</tt> programs to build trees from the DNA
+alignment file.
+<p>
+<li>
+Use the <tt>fconsense</tt> program to compare the trees.  To do this, you must combine all the tree files you produced with the different programs into one:
+<pre>
+cat gst_m.pdist_tree gst_m.ddist_tree gst_m.ppars_tree gst_m.dpars_tree gst_m.dml_tree > gst_m.all_trees
+fconsense -intreefile gst_m.all_trees
+</pre>
+<p>
+<ol type='a'>
+<li>
+Which parts of the tree are found by all 3 methods on both DNA and protein datasets?
+<li>
+Does one method (distance/parsimony/maximum likelihood) do a better job of assigning mouse/human orthologs than the others?
+</ol>
+</ol>
+<hr />
+Homework 6 (<tt>hwk6</tt>) due Wednesday, March 14, at noon, should provide a script, with comments, that does each of the analyses listed above.  A second file, <tt>answers.txt</tt> should answer the additional questions in parts:
+<p class="tab"><b>&nbsp;3</b>. &mdash; multiple alignment and gaps</p>
+<p class="tab"><b>&nbsp;7</b>. &mdash; are the trees the same, which are the orthlogs</p>
+<p class="tab"><b>10</b>. &mdash; which parts of tree are consistent, which method identifies more orthologs</p>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

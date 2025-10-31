@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>
+Biol4230 - BED Tools
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+<meta http-equiv="refresh" content="30">
+</head>
+<body bgcolor=white>
+<h2>BEDTools</h2>
+<p>
+<i>Summary</i>
+<p>
+In this lab, we will be following the protocols outlined in <a href="https://collab.itc.virginia.edu/access/content/group/715bead9-f6c2-40fa-a377-610a6b8bd82c/BED-Tools/bi1112.pdf" target=pdf>BEDTools: The Swiss-Army Tool for Genome Feature Analysis"</a>. The steps labeled below come from this protocol.
+<p>
+The data files required for this project are available on <tt>interactive.hpc.virginia.edu</tt>
+<p>
+The goal of this lab is to use BEDTools to identify a set of
+genome coordinates, and then to download the sequences associated with
+those coordinates for later use in motif finding.  The
+<tt>bedtools</tt> program should be in your path.  Double check by typing:
+<pre>
+which bedtools
+</pre>
+<!--
+If its not there, you need to add <tt>/nv/md_rdlib/seqprg/bin</tt> to your <tt>$PATH</tt>, or run <tt>bedtools</tt> as <tt>/nv/md_rdlib/seqprg/bin/bedtools</tt>.
+-->
+<p>
+This exercise will follow the examples provided in Quinlan's Current
+Protocols in Bioinformatics (CBPI) Unit on BEDTools, available <a
+href="https://collab.itc.virginia.edu/access/content/group/6e3a1333-f064-4387-8d97-1f9fe6f7f275/BED-Tools/bi1112.pdf" target=cpbi>here</a>
+(collab).  We will be starting with Basic Protocol 2.
+<p>
+<hr />
+<b>Getting started; Intersecting CpG islands and Exons</b>
+<p>
+<ol>
+<li>
+<i>Download BED files</i> - The BED files used in the CPBI protocols are available at <tt>$HPC_SLIB/data/bed-tools</tt>.  Type the command:
+<pre>
+bedtools_file_setup.sh
+</pre>
+To create a <tt>~/biol4230/hwk9</tt> directory and transfer the
+necessary files to it.  After running this script, you should not need
+to copy or link the files listed below.
+
+<!-- Copy the <tt>cpg.bed</tt>, <tt>exons.bed</tt>, and <tt>hg19.chromsizes</tt> files to a new <tt>~/biol4230/hwk9/</tt> directory. --> 
+<p>
+<li>
+Take a look at each of the files with the <tt>head</tt> command.  Are
+all of the files <tt>.bed</tt> files?  (Basic Protocol 2, steps 1 and
+2).  How many of the BED fields do they have?
+<p>
+How many CPG islands are there (<tt>wc cpg.bed</tt>).  How many exons?
+<li>
+(Step 3a): Identify the CpG (file 'A') coordinates that overlap exons (file 'B'):
+<pre>
+bedtools intersect -a cpg.bed -b exons.bed | head -n 5
+</pre>
+<p>
+Would you expect exons and CPG islands to intersect? Should some types of exons
+intersect more than others (what kinds of exons are there)?  Which ones?
+<p>
+<li>
+(Step 3b) Ask <tt>bedtools</tt> to show the labels on the cpg islands and exons
+using the <tt>-wa</tt> (write 'a') and <tt>-wb</tt> (write 'b') options:
+<pre>
+bedtools intersect -a cpg.bed -b exons.bed -wa -wb | head -n 5
+</pre>
+You can also write out the overlap amount with the '-wo' option.
+<pre>
+bedtools intersect -a cpg.bed -b exons.bed -wo | head -n 5
+</pre>
+Look at the overlap amount for the first intersection of exons and CpG
+islands. Where is the overlap length coming from, the CpG island, the
+exon, or some combination?
+<p>
+Save the intersection of cpg.bed and exons.bed to a file, and then
+count the total number of cpg/exon intersections usig <tt>wc</tt> on
+the file.  Count the number of intersections with exons0,1,2,3 using
+<tt>grep -c exon_X_</tt> (where X=0,1,2,3) on the file.
+Are cpg islands enriched in early exons?  What assumption does this simple calculation make about the
+number of exons per gene?  How could you normalize for the number of exon_0_'s, exon_1_'s, etc.?
+<p>
+</ol>
+<hr />
+<b>Arithmetic on ChIP-Seq data, transcription start sites</b>
+<ol>
+<li>
+Copy  <tt>$HPC_SLIB/data/bed-tools/wgEncode_ChIP_rev.bedg</tt> and <tt>
+wgEncode_ChIP_Sp1.bedg</tt> (converted from BigWig according to
+Basic Protocol 5, steps 1 - 3) to your <tt>hwk9</tt> directory.
+Also copy <tt>tss.bed</tt>.
+<p>
+<li>
+Look at the first lines of the <tt>tss.bed</tt> file.  How long is
+each Transcription Start Site?
+Look at <tt>*_ChIP_*.bedg</tt> files.  What are the numbers in the last column?
+<p>
+<li>
+Since we are interested in transcription factor occupancy both
+upstream and downstream of the TSS, we must extend the single base
+pair of each TSS by, for example, 1000 base pairs upstream and
+downstream of the TSS. To do this, we will use the BEDTools slop
+command to add 1000 base pairs to both (<tt>-b</tt>) the upstream and
+downstream regions:
+<pre>
+bedtools slop -b 1000 -i tss.bed -g hg19.chromsizes > tss.plusminus.1kb.bed
+</pre>
+Look at the first lines of the new file to see what happened.
+<p>
+<li>
+(Step 8) To provide greater resolution to the plot we will produce, we will
+break up each 2000-bp (TSS ± 1000-bp) interval flanking each TSS into
+400, 5-bp “sub-windows.” One can easily do this with the BEDTools
+makewindows command. Create 5-bp BED “sub-records” across each 2-kb TSS and its flanks.
+<p>
+(The sort in this pipeline takes a very long time, so do not run this
+command. Instead, make a link from the sorted
+<tt>$HPC_SLIB/data/bed-tools/tss.plusminus.1kb.5bp.windows.bed</tt>
+to your <tt>hwk9</tt> directory.
+<pre>
+ln -s $HPC_SLIB/data/bed-tools/tss.plusminus.1kb.5bp.windows.bed .    # don't forget the '.'
+</pre>
+<!--
+<pre>
+# skip this command and link to the file as described above
+bedtools makewindows -b tss.plusminus.1kb.bed  -w 5 -i srcwinnum \ 
+| sort -k1,1 -k2,2n | tr "_" "\t" > tss.plusminus.1kb.5bp.windows.bed
+</pre>
+-->
+Take a look at the beginning of the new <tt>tss.plusminus.1kb.5bp.windows.bed</tt> file.
+How many fields/columns are present?  What are the offsets on the chromosome intervals?
+<p>
+<li>
+(Steps 9-11): I have already converted the Sp1 bigWig file, and the
+reversed crosslink control, into two <tt>.bedg</tt> files in
+<tt>$HPC_SLIB/data/bed-tools/wgEncode_ChIP_Sp1.bedg</tt> and
+<tt>wgEncode_ChIP_rev.bedg</tt>.  Copy these files to your
+directory, and take a look at the beginning of one of them.  What is the resolution of the transcription factor binding signal?
+<p>
+<li>
+(Steps 12, 13): Next, we will use the map tool to summarize both the Sp1
+and negative control ChIP-seq intensities. Note that the BigWig file
+is converted to BEDGRAPH “on the fly” via a Unix FIFO, so that we
+don’t have to store the data redundantly as both a BigWig and a
+BEDGRAPH file. Secondly, if there are no overlaps between a given 5-bp
+window and the BigWig file, we default that window’s value to 0 using
+the -null option.  12. Map the Sp1 transcription factor to the 5-bp
+windows flanking TSS loci (these commands differ slightly from the Protocol, because the <tt>.bedGraph</tt> file has already been created).
+<pre>
+bedtools map -a tss.plusminus.1kb.5bp.windows.bed -b wgEncode_ChIP_Sp1.bedg \
+  -c 4 -o mean  -null 0  > sp1.tss.window.coverage.bedg
+</pre>
+Do the same map of the <tt>tss</tt> file against <tt>wgEncode_ChIP_rev.bedg</tt> producing <tt>rev.tas.window.coverage.bedg</tt>.
+<p>
+The <tt>map</tt> function calculates summary statistics (mean, max) on
+the <tt>*.bedg</tt> intervals that intersect with the <tt>.tss</tt>
+file.  Take a look at the resulting <tt>*.bedg</tt> files, and identify each of the fields/columns.
+<p>
+<li>
+(Step 14).  At this point, we have summarized the ChIP-seq signal for
+both Sp1 and the negative control for each 5-bp interval flanking each
+transcript’s TSS. Our goal, however, is to summarize the transcription
+factor occupancy across all TSS in the entire genome. Recall that when
+creating the 5-bp windows for each TSS, we added a 5th column
+reflecting which of the 400 distinct 5-bp windows each interval
+represents. We can now take advantage of this by using the BEDTools
+groupby tool, which will group input data by a particular column (or
+columns), and for each distinct group, it will summarize the values
+observed in other columns for each group. In this case, we want to
+calculate the sum of all mean ChiP-seq intensity values observed for
+each of the 400 5-bp windows measured for each TSS. The window number
+is the 5th column and represents our “grouping” column, and the mean
+ChiP-seq intensity values are in the 6th column and reflect the column
+that we want to summarize for each group (i.e., 5-bp window
+number). In order to group the data efficiently, the groupby tool
+requires that the input data be pre-sorted by the grouping column.
+<p>
+Sum the Sp1 ChIP-seq signal observed for each 5-bp window at each TSS start site:
+<pre>
+sort -t$'\t' -k5,5n sp1.tss.window.coverage.bedg \
+  | bedtools groupby -i - -g 5 -c 6  -o sum > sp1.tss.window.counts.txt
+</pre>
+<p>
+(Step 15) Then do the same thing for the <tt>rev</tt> control file:
+<pre>
+sort -t$'\t' -k5,5n rev.tss.window.coverage.bedg \
+  | bedtools groupby -i - -g 5 -c 6  -o sum > rev.tss.window.counts.txt
+</pre>
+At this point, the resulting files will contain the 401 5-bp windows
+describing summary of all 2000-bp intervals surrounding (and
+including) every TSS. Since the TSS themselves will always be window
+number 200, we can compare the ChIP-seq signal at the TSS from both
+the Sp1 and negative control experiments.
+<p>
+<li>
+(Step 16, 17) Use the <tt>grep -C</tt> command to look at the density
+of binding in the <tt>Sp1</tt> and control (<tt>rev</tt>) files.
+<pre>
+grep -C 10 '^200' *.tss.window.counts.txt
+</pre>
+<p>
+(Step 18) Transfer the <tt>*.tss.window.counts.txt</tt> files to your laptop, and print out a graph of binding vs TSS coordinates using 'R' (see the protocol).
+</ol>
+<hr />
+<b>Homework - <tt>hwk9</tt></b>
+<p>
+Due Monday, 5:00 PM.
+<p>
+Finish mapping Sp1 binding sites to transcription start sites.  Produce the following files:
+<p>
+(1,2) The sp1.tss.window.counts.txt, rev.tss.window.counts.txt (in <tt>biol4230/hwk9</tt>)
+<p>
+(3) A shell script that produces files (1) and (2). (in <tt>biol4230/hwk9</tt>)
+<p>
+(4) submit on collab, an 'R' plot of the distribution of Sp1 and control binding 1000 nt before and after transcription start sites.
+<p>
+(5) The file of 'R' commands used to produce  (in <tt>biol4230/hwk9</tt>)
+<p>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

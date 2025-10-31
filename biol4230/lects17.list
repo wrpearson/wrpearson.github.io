@@ -1,0 +1,126 @@
+>Course Overview/Molecular Biology Review/Bioinformatics Overview
+pdf::lects/biol4230_0_intro.pdf
+
+>Unix command line lab
+pdf::lects/biol4230_1_unix.pdf
+url::labs/unix_demo0.html
+
+>Protein structure, homology, and similarity searching
+pdf::lects/biol4230_2_blast1.pdf
+
+>Unix II - shell scripting and Bioinformatics databases
+pdf::lects/biol4230_3_unix2db.pdf
+
+>Similarity Searching Lab
+url::labs/blast_demo.html
+
+>Similarity Searching II
+pdf::lects/biol4230_4_blast2.pdf
+
+>Programming in Python
+pdf::lects/biol4230_5_python1.pdf
+
+>Similarity Searching Lab II 
+url::labs/blast_demo2.html
+
+>From protein domains to PSSMs/HMMs
+pdf::lects/biol4230_6_pssms.pdf
+
+>Python II - Using dictionaries
+pdf::lects/biol4230_7_python2.pdf
+
+>PSSMs and PSI-BLAST/Scripted Matrix comparison
+url::labs/psiblast_demo.html
+
+>Alignment Statistics II / HMMs
+pdf::lects/biol4230_8_stats2.pdf
+
+>Web scripting, python and XML
+pdf::lects/biol4230_9_web_resources.pdf
+
+>Lab -- searching with HMMs
+url::labs/hmmer_demo.html
+
+>Multiple Sequence Alignment I
+pdf::lects/biol4230_10_multi.pdf
+
+>Searching/statistics/alignment summary
+pdf::lects/biol4230_11_summary.pdf
+
+>Review Session - (Exam due Monday)
+
+>Introduction to evolutionary tree reconstruction
+pdf::lects/biol4230_14_phylo_1.pdf
+
+>Evolutionary tree reconstruction II
+pdf::lects/biol4230_15_phylo_2.pdf
+
+>Building evolutionary trees
+pdf::lects/biol4230_16_phylip.pdf
+url::labs/phylip_demo.html
+
+>Evaluating evolutionary trees
+pdf::lects/biol4230_17_bootstrap.pdf
+
+>Positive and Negative Selection
+pdf::lects/biol4230_18_selection.pdf
+
+>Mid-term project -- protein evolutionary tree
+url::labs/mid_term_proj.html
+
+>The Human Genome Project
+pdf::lects/biol4230_20_human_genome.pdf
+
+>Differential Gene Expression I
+pdf::lects/biol4230_22_gene_expression_1.pdf
+
+>Lab - Genome Browsers, UCSC and IGV
+pdf::lects/biol4230_21_genome_lab1.pdf
+url::labs/ucsc_igv_demo.html
+
+>Expression Analysis II
+pdf::lects/biol4230_24_gene_expression_2.pdf
+
+>Statistics with 'R'
+pdf::lects/biol4230_23_Rintro.pdf
+
+>'R' workshop I
+url::labs/R_demo1.html
+
+>'R' with Bioconductor
+pdf::lects/biol4230_25_bioconductor.pdf
+
+>Bioconductor/edgeR workshop
+url::labs/R_express.html
+
+>No class
+
+>Gene Ontology and Pathway Enrichment
+pdf::lects/biol4230_27_GO12.pdf
+
+>BED Tools
+pdf::lects/biol4230_29_BedTools.pdf
+
+>Lab - BEDTools
+url::labs/BEDTools.html
+
+>Regulatory Motifs I
+pdf::lects/biol4230_31_sites.pdf
+
+>Motif finding lab
+url::labs/BEDTools2.html
+
+>No class
+
+>Motifs II - high throughput approaches
+pdf::lects/biol4230_32_sites2.pdf
+
+>Clustering/Function prediction
+pdf::lects/biol4230_33_cluster-function.pdf
+
+>Exam review
+
+
+>Wrap-up/Final project
+pdf::lects/biol4230_33_final.pdf
+url::labs/final_project2.html

@@ -1,0 +1,69 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Python homework (hwk3)
+</title>
+</head>
+<body bgcolor=white onload='update_modtime();'>
+<h2>
+Biol4230 - Python homework - DUE Monday, Feb. 5, 5:00 PM
+</h2>
+<p>
+<hr />
+<p>
+In addition to putting the python programs an shell scripts for this homework in <tt>biol4230/hwk3</tt>, also create a file <tt>hwk3.notes</tt> that links the names of your programs with the question and contains the output for each of the python programs.
+<hr />
+<ol>
+<li>
+Arrays of random numbers
+<ol type='a'>
+<li>
+A write a program to generate 10 random integers between 1 and 100 (1
+<= x <= 100), calculate the mean (average) as a floating point number.  Print both the random
+numbers and the mean.
+<pp>
+<li>
+write a program that calculates the average of 100 random "real" (float) numbers between 0 and 100 (0 <= x < 100)
+<pp>
+<li>
+write a program that generates 101 random integers, stores them in an array, and calculates the median (hint, use the sort function to sort the array).
+</ol>
+<pp>
+<li>
+write a program that reads a file of Uniprot accession strings and downloads the sequences in FASTA format to "stdout" (use urllib).
+<pp>
+<li>
+repeat some of last week's homework using Python:
+<p>
+<ol type='a'>
+<li>
+Using one of the blastp (or ssearch36) tabular output files you
+generated for last week's homework, write a program that extracts the
+accession and E()-value from the output file.
+<li>
+modify the program to extract the accessions, but only for results
+with E() < 0.001 (remember that the tabular output files are ordered
+by E()-value)
+<li>
+write a program that downloads sequences for the blastp or ssearch36
+accessions with 0.1 < E() <= 2.0, and runs another blastp
+search (tabular format) with the downloaded sequences, saving the
+results of each search in a separate file.
+</ol>
+</ol>
+<p>
+<hr>
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<p>
+<hr>
+</body>
+</html>

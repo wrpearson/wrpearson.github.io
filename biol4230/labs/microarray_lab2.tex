@@ -1,0 +1,427 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,pstricks,fullpage}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\usepackage{theorem}
+\usepackage{float}
+\usepackage{ifthen}
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+\newcommand{\R}{{\textsf{R}}}
+\newcommand{\code}[1]{{\texttt{#1}}}
+\newcommand{\term}[1]{{\emph{#1}}}
+\newcommand{\Rpackage}[1]{\textsf{#1}}
+\newcommand{\Rfunction}[1]{\texttt{#1}}
+\newcommand{\Robject}[1]{\texttt{#1}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\textit{#1}}}
+\newcommand{\Rfunarg}[1]{{\textit{#1}}}
+
+
+\usepackage{Sweave}
+\begin{document}
+
+
+
+%\VignetteDepends{YEAST,GO,annotate,gaschYHS,harbChIP)}
+%\VignetteIndexEntry{GO scoring using various methods}
+%\VignetteKeywords{yeast, gene sets based analysis, gene ontology}
+
+\title{Affymetrix Microarray Data Analysis II}
+
+\author{Stefan Bekiranov\\CS 6014}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+In this lab we will be exploring packages that take sets of differentially expressed genes and attach annotation information including gene names, functional descriptions and links to functional information including Gene Ontology functional categories, pathway information and much more along with the summary statistics of the analysis (i.e., boxplots of normalized expression values, log$_2$ fold changes and adjusted p-values).  Then we'll identify Gene Ontology categories and KEGG Pathways that are significantly enriched with differentially expressed genes using the {\it GOstats} package.  After that, we'll export a file that will be used as input to an online set of tools called ``Onto-Tools'' which contains a great pathway analysis tool called ``Pathway Express''.           
+
+\section{Loading libraries}
+
+Load in the following libraries: (\code{humanStemCell, affycoretools, ReportingTools}):
+\begin{Schunk}
+\begin{Sinput}
+> library(humanStemCell)
+> library(affycoretools)
+> library(ReportingTools)
+> library(limma)
+> library(GOstats)
+\end{Sinput}
+\end{Schunk}
+
+\section{Reading in the data}
+
+We can now load the \code{fhesc} object:
+
+\begin{Schunk}
+\begin{Sinput}
+> data(fhesc)
+\end{Sinput}
+\end{Schunk}
+
+This is a dataset that already exits in the {\it humanStemCell} package.     
+
+\section{classes and methods}
+
+What type of object is \code{fhesc}?  First, let's type it out on the command line:
+
+\begin{Schunk}
+\begin{Sinput}
+> fhesc
+\end{Sinput}
+\begin{Soutput}
+ExpressionSet (storageMode: lockedEnvironment)
+assayData: 15524 features, 6 samples 
+  element names: exprs 
+protocolData: none
+phenoData
+  sampleNames: 1_Hu-hESC-Undiff-I 2_Hu-hESC-Undiff-II ...
+    6_Hu-hESC-Diff-III (6 total)
+  varLabels: SampleID Diff
+  varMetadata: labelDescription
+featureData: none
+experimentData: use 'experimentData(object)'
+Annotation: hgu133plus2 
+\end{Soutput}
+\end{Schunk}
+
+We can get more information using the methods in \code{AffyBatch}.  Type \code{help(AffyBatch)} to get a list of the commands.  What other commands would be most useful for telling us what kind of object \code{fhesc} is?    
+
+\begin{Schunk}
+\begin{Sinput}
+> class(fhesc)
+\end{Sinput}
+\begin{Soutput}
+[1] "ExpressionSet"
+attr(,"package")
+[1] "Biobase"
+\end{Soutput}
+\end{Schunk}
+
+Let's get the sample names and their column order and the values in \code{fhesc} in matrix form (note: I'm giving away the answer to my above questions).  
+
+\begin{Schunk}
+\begin{Sinput}
+> samp_fhesc = pData(fhesc)
+> samp_fhesc
+\end{Sinput}
+\begin{Soutput}
+                                 SampleID  Diff
+1_Hu-hESC-Undiff-I     1_Hu-hESC-Undiff-I FALSE
+2_Hu-hESC-Undiff-II   2_Hu-hESC-Undiff-II FALSE
+3_Hu-hESC-Undiff-III 3_Hu-hESC-Undiff-III FALSE
+4_Hu-hESC-Diff-I         4_Hu-hESC-Diff-I  TRUE
+5_Hu-hESC-Diff-II       5_Hu-hESC-Diff-II  TRUE
+6_Hu-hESC-Diff-III     6_Hu-hESC-Diff-III  TRUE
+\end{Soutput}
+\begin{Sinput}
+> e <- exprs(fhesc)
+> e[1:10,]
+\end{Sinput}
+\begin{Soutput}
+          1_Hu-hESC-Undiff-I 2_Hu-hESC-Undiff-II 3_Hu-hESC-Undiff-III
+229819_at           6.634201            6.837222             6.790419
+206797_at           7.270406            7.128205             6.578742
+204639_at           8.097060            8.332051             8.061477
+237305_at           5.451947            6.071870             4.846257
+222880_at           4.886782            5.472600             5.211108
+207078_at           6.369096            6.145032             5.929464
+222161_at           6.485382            7.282340             6.108696
+207895_at           6.160413            6.192975             6.369928
+228647_at           5.988103            5.815403             5.884408
+236514_at           6.640552            6.116874             6.521454
+          4_Hu-hESC-Diff-I 5_Hu-hESC-Diff-II 6_Hu-hESC-Diff-III
+229819_at         7.274817          7.425670           7.981183
+206797_at         6.024275          6.685059           6.099222
+204639_at        10.018849          9.744103           9.535229
+237305_at         5.009192          4.701406           6.118533
+222880_at         7.529902          6.547299           7.381049
+207078_at         5.949664          5.144191           5.759211
+222161_at         8.874806         10.075211          10.264125
+207895_at         5.782714          5.815221           5.537283
+228647_at         6.145427          6.821758           5.786947
+236514_at         5.448950          5.914922           5.043120
+\end{Soutput}
+\end{Schunk}
+
+It's an expression set!  
+
+\section{Reproducibility Analysis}
+
+Let's skip the quality control step and see if (1) the arrays are normalized properly and (2) the reproducibility among replicates is relatively good using \code{mva.pairs} (this is an alternative to MAplot that takes a matrix as input). 
+
+\begin{Schunk}
+\begin{Sinput}
+> mva.pairs(e, log.it=F)
+\end{Sinput}
+\end{Schunk}
+\includegraphics{microarray_lab2-maplot}
+
+From this MA plot, can you tell if there will be a low, medium or high number of differentially expressed genes?  If so, what are you basing your decision on?
+
+Now let's check to see if we have a ``differentiation'' effect (and reasonably good reproducibility among replicates) by generating a PCA plot:
+
+\begin{Schunk}
+\begin{Sinput}
+> plotPCA(fhesc)
+\end{Sinput}
+\end{Schunk}
+\includegraphics{microarray_lab2-pca}
+
+Do you observe the expected grouping?  Based on this PCA plot, would you expect to detect a low, medium or high number of differentially expressed genes between the ``undifferentiated'' and ``differentiated'' samples? 
+
+\section{Differential expression analysis: {\it limma} package}
+
+We will search for differentially expressed genes between the ``undifferentiated'' and ``differentiated'' samples which I'll call \code{U} and \code{D} respectively.  Let's look at our sample data to get the sample order correctly and then apply the \code{limma} method to the \code{fhesc} expression set object.
+
+\begin{Schunk}
+\begin{Sinput}
+> samp_fhesc
+\end{Sinput}
+\begin{Soutput}
+                                 SampleID  Diff
+1_Hu-hESC-Undiff-I     1_Hu-hESC-Undiff-I FALSE
+2_Hu-hESC-Undiff-II   2_Hu-hESC-Undiff-II FALSE
+3_Hu-hESC-Undiff-III 3_Hu-hESC-Undiff-III FALSE
+4_Hu-hESC-Diff-I         4_Hu-hESC-Diff-I  TRUE
+5_Hu-hESC-Diff-II       5_Hu-hESC-Diff-II  TRUE
+6_Hu-hESC-Diff-III     6_Hu-hESC-Diff-III  TRUE
+\end{Soutput}
+\end{Schunk}
+
+As before, we'll start with the \code{design} matrix
+
+\begin{Schunk}
+\begin{Sinput}
+> design <- model.matrix(~0+factor(c(1,1,1,2,2,2)))
+> colnames(design) <- c("U", "D")
+\end{Sinput}
+\end{Schunk}
+
+What does the design matrix look like?
+
+\begin{Schunk}
+\begin{Sinput}
+> design
+\end{Sinput}
+\begin{Soutput}
+  U D
+1 1 0
+2 1 0
+3 1 0
+4 0 1
+5 0 1
+6 0 1
+attr(,"assign")
+[1] 1 1
+attr(,"contrasts")
+attr(,"contrasts")$`factor(c(1, 1, 1, 2, 2, 2))`
+[1] "contr.treatment"
+\end{Soutput}
+\end{Schunk}
+
+Now we'll perform the linear model fit using the \code{design} matrix
+
+\begin{Schunk}
+\begin{Sinput}
+> fit <- lmFit(fhesc, design)
+\end{Sinput}
+\end{Schunk}
+
+Now let's set up the \code{contrast.matrix}.  We're going to specifically identify the differentially expressed genes between the \code{D} and \code{U} samples. 
+
+\begin{Schunk}
+\begin{Sinput}
+> contrast.matrix <- makeContrasts(D-U, levels=design)
+> contrast.matrix
+\end{Sinput}
+\begin{Soutput}
+      Contrasts
+Levels D - U
+     U    -1
+     D     1
+\end{Soutput}
+\end{Schunk}
+
+Now let's calculate the differential expression summary statistics including log fold changes and p-values.
+
+\begin{Schunk}
+\begin{Sinput}
+> fit2 <- contrasts.fit(fit, contrast.matrix)
+> ebayes <- eBayes(fit2)
+\end{Sinput}
+\end{Schunk}
+
+Now let's view the results of the top 20 most significant genes by applying \code{topTable} to the \code{ebayes} object.  As before, type help(topTable) to get some information on its usage and options.
+
+\begin{Schunk}
+\begin{Sinput}
+> topTable(ebayes, number=20)
+\end{Sinput}
+\begin{Soutput}
+                logFC   AveExpr         t      P.Value    adj.P.Val        B
+228038_at   -8.099065  9.075915 -58.03245 5.237840e-11 8.131223e-07 14.60960
+231381_at   -9.276446  9.116353 -45.61781 3.028639e-10 1.882359e-06 13.59491
+211896_s_at  8.374680  9.425271  42.96882 4.682700e-10 1.882359e-06 13.30623
+202291_s_at  7.560804  8.140508  42.15174 5.385356e-10 1.882359e-06 13.21060
+210905_x_at -5.797215  9.061263 -41.47141 6.062739e-10 1.882359e-06 13.12842
+214532_x_at -5.218711 10.162854 -39.55461 8.556043e-10 2.213733e-06 12.88364
+206012_at   -4.908710  9.002830 -35.96503 1.709427e-09 3.791020e-06 12.36634
+212942_s_at  4.209314  6.492543  35.11274 2.035079e-09 3.949070e-06 12.23082
+242128_at   -7.155084  7.097707 -33.85628 2.652214e-09 4.574774e-06 12.02112
+220668_s_at -4.887244 11.003155 -32.83801 3.311086e-09 5.140131e-06 11.84195
+206653_at   -4.908581  8.055427 -32.19898 3.819113e-09 5.389810e-06 11.72505
+230916_at   -5.189175  9.157998 -31.06562 4.954039e-09 6.408875e-06 11.50875
+219454_at    5.982173  9.999817  30.25637 6.000117e-09 6.670097e-06 11.34689
+237192_at   -5.121418  6.918476 -29.75056 6.780857e-09 6.670097e-06 11.24242
+235845_at   -4.584628  8.687886 -29.69553 6.872557e-09 6.670097e-06 11.23089
+210265_x_at -6.344977  9.603710 -29.69430 6.874617e-09 6.670097e-06 11.23064
+227443_at    4.216152  7.248650  28.32640 9.677976e-09 8.837700e-06 10.93378
+204469_at   -6.366177  7.229323 -28.04585 1.040207e-08 8.971210e-06 10.87033
+227850_x_at  4.960584  7.018259  27.81690 1.103879e-08 9.019275e-06 10.81787
+206268_at   -7.573005  8.091277 -26.85896 1.422950e-08 1.056516e-05 10.59161
+\end{Soutput}
+\end{Schunk}
+
+Now let's use top table to see how many differentially expressed genes we find using a 0.05 FDR cutoff.
+
+\begin{Schunk}
+\begin{Sinput}
+> t = topTable(ebayes, number=nrow(e))
+> sum(t[,5] <= 0.05)
+\end{Sinput}
+\begin{Soutput}
+[1] 9502
+\end{Soutput}
+\end{Schunk}
+
+Is this a surprise?  
+
+\section{Annotation, GO and Pathway Information: {\it ReportingTools} package}      
+
+The {\it ReportingTools} package allows you to display biologically relevant results of your differential expression analysis.  Specifically, a display contains Affy probe id, gene id, gene symbol and gene description.  The gene id is a link to NCBI which contains a wealth of biologically relevant information including Gene Ontology, pathway, gene neighborhood, etc. information about the linked gene.  In addition, your display will contain basic summary statistics associated with your differential expression analysis including boxplots of normalized, log$_2$ gene expression values, estimates of log$_2$ fold change (FC) and adjusted p-values.  I've adapted the \code{ReportingTools} workflow shown in the "Using ReportingTools in an Analysis of Microarry Data" vignette.  Take a look at this vignette and work through the code below.  Before you start, create a "./reports" directory in your current working directory.  
+
+\begin{Schunk}
+\begin{Sinput}
+> library(hgu133plus2.db)
+> deReport2 <- HTMLReport(shortName='de_analysis', 
++ title='Differential expresion analysis of differentiated HESCs', 
++ reportDirectory="./reports")
+> pData(fhesc)
+\end{Sinput}
+\begin{Soutput}
+                                 SampleID  Diff
+1_Hu-hESC-Undiff-I     1_Hu-hESC-Undiff-I FALSE
+2_Hu-hESC-Undiff-II   2_Hu-hESC-Undiff-II FALSE
+3_Hu-hESC-Undiff-III 3_Hu-hESC-Undiff-III FALSE
+4_Hu-hESC-Diff-I         4_Hu-hESC-Diff-I  TRUE
+5_Hu-hESC-Diff-II       5_Hu-hESC-Diff-II  TRUE
+6_Hu-hESC-Diff-III     6_Hu-hESC-Diff-III  TRUE
+\end{Soutput}
+\begin{Sinput}
+> fhescFactor = factor(c("U","U","U","D","D","D"), levels=c("U","D"))
+> fhescFactor
+\end{Sinput}
+\begin{Soutput}
+[1] U U U D D D
+Levels: U D
+\end{Soutput}
+\begin{Sinput}
+> publish(ebayes, deReport2, eSet=fhesc, factor=fhescFactor, n=1000, 
++ pvalueCutoff=0.0001)
+> finish(deReport2)
+\end{Sinput}
+\begin{Soutput}
+[1] "./reports/de_analysis.html"
+\end{Soutput}
+\end{Schunk}
+
+Why did I type \code{pData(fhesc)}?  What did I do differently (compared to the \code{ReportingTools} Microarray vignette) to generate an \code{HTMLReport} for the differential expression analysis of the data in the {\it humanStemCell} package?  Note, we're using a more stringent 0.001 FDR cutoff to work with a manageable gene list.  Now look for the files in your "./reports" directory.  Click on the html page.  Take some time to answer these questions.  We're near the end of a typical gene expression analysis workflow, but this is where the work of a gene expression {\it study} really begins!  Sort the data by logFC.  Do any of the top gene's pathways and/or GO terms make sense give that we're comparing differentiated cells to undifferentiated stem cells?  What are the first genes that you would look for?  Use Google and search terms like ``Induced pluripotent stem cell''.  See if you can find key stem cell genes on your list.  Explore your html page by clicking on the EntrezId links.  Assume this was the first gene expression experiment comparing differentiated and undifferentiated stem cells.  Based on these results, is a microarray experiment capable of identifying the critical gene(s) that you would consider for downstream follow up work?  Would you have guessed which ones were the key genes?  Could you have identified {\it all} the known key stem cell genes from this list?  If not, what is making it difficult?  Is there anything linking them (e.g., functional description, GO terms, KEGG)?  As you go further along in this tutorial, see if any of the tools you apply to this data set can clearly identify these key stem cell genes.    
+
+\section{Significant Enrichment of Genes in GO categories and KEGG pathways: {\it GOstats} package}
+
+The above workflow gave us an html page with annotation information linking each significant gene to GO terms and pathways.  However, using this information alone, we don't know which of the GO categories or KEGG pathways are significantly enriched.  To address this, we will use the {\it GOstats} package.  Browse the vignette by typing \code{openVignette(GOstats)} and select the \code{Hypergeometric Tests Using GOstats} option.  First we need to collect our significant Affy Ids (using the same 0.001 FDR cutoff).  Try to do this using our table \code{t} generated above. 
+
+\begin{Schunk}
+\begin{Sinput}
+> affyids = row.names(t[t[,5]<0.0001,])
+> affyids[1:10]
+\end{Sinput}
+\begin{Soutput}
+ [1] "228038_at"   "231381_at"   "211896_s_at" "202291_s_at" "210905_x_at"
+ [6] "214532_x_at" "206012_at"   "212942_s_at" "242128_at"   "220668_s_at"
+\end{Soutput}
+\end{Schunk}
+
+Now we'll follow the {\it GOstats} usage guide to generate over represented ``Biological Processes'' by applying a p-value cutoff of 0.01.  We have to convert all our Affy ids to Entrez Gene ids, and we shouldn't have any duplicates:
+
+\begin{Schunk}
+\begin{Sinput}
+> selectedEntrezIds = unique(unlist(mget(affyids, hgu133plus2ENTREZID)))
+> entrezUniverse = unique(unlist(mget(featureNames(fhesc), hgu133plus2ENTREZID)))
+> hgCutoff = 0.01
+> params = new("GOHyperGParams", geneIds=selectedEntrezIds,
++ universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",
++ ontology="BP", pvalueCutoff=hgCutoff, conditional=FALSE,
++ testDirection="over") 
+\end{Sinput}
+\end{Schunk}
+
+Now we'll perform the hypergeometric test
+\begin{Schunk}
+\begin{Sinput}
+> hgOverBP = hyperGTest(params)
+\end{Sinput}
+\end{Schunk}
+
+Get a summary of the results by typing \code{summary(hgOverBP)}.  Are these over-represented ``Biological Process'' categories what you expect given the samples were differentiated and undifferentiated stem cells?    
+
+We can also create an html file by typing
+
+\begin{Schunk}
+\begin{Sinput}
+> htmlReport(hgOverBP, file= "ScHgbp.html")
+\end{Sinput}
+\end{Schunk}
+
+Click on the file and then follow a link in your html page.  Does it go to a useful specific GO category?  Cut and paste a GO id into the GO browser search box?  Is this more useful?
+
+Use a subset of the above commands to get the over represented ``Molecular Function'' categories using the \code{ontology="MF"} option in \code{new}, performing the hypergeometric test with the new parameters and then output the results to an html page.
+
+\begin{Schunk}
+\begin{Sinput}
+> mfparams = new("GOHyperGParams", geneIds=selectedEntrezIds,
++ universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",
++ ontology="MF", pvalueCutoff=hgCutoff, conditional=FALSE,
++ testDirection="over")
+> hgOverMF = hyperGTest(mfparams)
+> htmlReport(hgOverMF, file="ScHgmf.html") 
+\end{Sinput}
+\end{Schunk}
+
+Are these over-represented ``Molecular Function'' categories what you expect given the samples were differentiated and undifferentiated stem cells?
+
+Finally, let's find the over represented KEGG pathways using a 0.05 p-value cutoff and output the results to an html page by typing\\*
+
+\noindent \code{> kparams = new("KEGGHyperGParams", geneIds=selectedEntrezIds,}\\*
+\code{+ universeGeneIds=entrezUniverse, annotation="hgu133plus2.db",}\\*
+\code{+ pvalueCutoff=0.05, testDirection="over")}\\*
+\code{> hgOverKEGG = hyperGTest(kparams)}\\*
+\code{> htmlReport(hgOverKEGG, file="ScHgkegg.html")}\\* 
+
+Now let's generate a file of the differentially expressed genes (FDR cutoff of 0.001) that can be used as input for Onto-Tools (http://vortex.cs.wayne.edu).  It will have two columns: Affy ids in column 1 and log fold change in column 2 separated by tabs.
+
+\begin{Schunk}
+\begin{Sinput}
+> ontotab <- as.data.frame(cbind(row.names(t[t[,5]<0.001,]), t[t[,5]<0.001,1]))
+> write.table(ontotab, file="ScOnto.txt", quote=F, sep="\t", row.names=F, col.names=F)
+\end{Sinput}
+\end{Schunk}
+
+Check to see if you wrote the correctly formatted file.  Now go to the Onto-Tools web site.  Use the Pathway Express tool.  Along with a hypergeometric analysis which assesses statistical enrichment of genes in pathways, it also ranks pathways using a PageRank-like algorithm (similar to Google's search algorithm).  The Pathway Express algorithm accounts for pathway topology information and ranks pathways according to the likelihood that the output of a pathway is impacted by changes in gene expression of its members.  This is one of many powerful online pathway related tools.  Another really great tool/database is MSigDB.  Look it up and give it a try!      
+
+\end{document}

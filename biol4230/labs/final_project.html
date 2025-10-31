@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>
+Biol4230 - Final Project
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>Final Project - From BEDTools to MEME</h2>
+<p>
+<i>Summary</i>
+<p>
+The final term project (Due Monday, May 7, at 5:00 PM):
+<p>
+The overall goal is to identify the consensus sequence for a
+transcription factor binding site using the steps we used
+in the <a href="./BEDTools2n.html">BED Tools2</a> lab.
+<p>
+You are not expected to write a <tt>python</tt> program to perform all
+these steps.  You <b>ARE</b> expected to provide a
+<tt>description.txt</tt> file that contains the necessary shell
+scripts/commands to perform each of the steps, and a
+<tt>files.txt</tt> that describes the contents of the files you
+created during the analysis steps.  At the end the project, you will
+have some <tt>*.html</tt> files from MEME.  The differences between
+the different <tt>*.html</tt> files should also be documented in the
+<tt>files.txt</tt> file.
+<p>
+Working with a new set of transcription factor ChIP-seq data, 
+do the folowing:
+<hr />
+<ol>
+<li>
+(Option 1 of 2):<br />
+Pick a transcription factor ChIP-seq data set from the
+<tt>/nv/md_rdlib2/biol4230/ChIP-seq/</tt> directory.  Datasets are
+available for: <tt>Atf2</tt>, <tt>Ctcf</tt>, <tt>Egr1Atf2</tt>,
+<tt>Fos1</tt>, <tt>Jund</tt>, <tt>Taf1</tt>, and <tt>Yy1</tt>.  Note
+that all of these datasets have replicates, and the analysis should be
+done on <b>both</b> of the replicate datasets.
+<p>
+Copy the two replicate files to your <tt>~/biol4230/final</tt> directory.
+<p>
+<li>
+I do not know what the best thresholds are for peak finding for these
+datasets.  You will need to use the <tt>/seqprg/bin/scan_bedg.py</tt>
+to partition the <tt>.bedg</tt> file into potential binding regions,
+but before you do this, you should run the <tt>/seqprg/bin/stat_bedg.py</tt> program to 
+get a sense of the distribution of scores in the <tt>10 nt</tt> windows.  For <tt>wgEncode_Atf2_Rep1.bedg</tt>, the numbers are:
+<pre>
+ 3 $ stat_bedg.py wgEncode_Atf2_Rep1.bedg 
+nlines:  1244240
+window:  10
+sum_score:  586526.53499
+min_win_score:  1.641222
+max_win_score:  1963.678
+ave_win_score:  4.7139340882
+</pre>
+Either modify the stat_bedg.py program, or use 'R', to look window
+score deciles.  Pick a window score theshold that suppresses 50%, or
+90% of the ChIP-seq peaks.  Report the distribution of window scores in <tt>description.txt</tt>.
+<p>
+<li>
+Run <tt>/seqprg/bin/scan_bedg.py -t xx wgEncode_yyy_Rep1.bedg</tt>,
+where <tt>xx</tt> is your threshold, and <tt>yyy</tt> is the
+abbreviation for your transcription factor.  Record the threshold you
+used in your <tt>description.txt</tt> file.
+<p>
+<li>
+Check to see how many binding regions are created, and calculate the
+average length of your regions using the <tt>awk</tt> script from the
+<a href="./BEDTools2.html">BED Tools2</a> lab. Use the related script
+to calculate the average length selecting only segments shorter than
+500 nt.
+<p>
+Finally, create two sets of ChIP-seq <tt>.bed</tt> files, one with
+regions that are between 25 and 100 nt long, and a second betwee 25
+and 200 nt.  Since you are doing this for both replicates of the
+ChIP-seq data, you will have four files to analyze.
+<p>
+<li>
+<br /> Use <tt>grep</tt> to identify the set of ChIP
+peaks for a specific transcription factor in
+the <tt>/nv/md_rdlib2/biol4230/bed-tools/wgEncodeRegTfbsClusteredV3.bed</tt>
+and save that set of peaks to your <tt>~/biol4230/final/</tt>
+directory.  Note that the <tt>wgEncodeRegTfbsClusteredV3.bed</tt>
+file is not in the <tt>bed</tt> format required by <tt>bedtools</tt>.
+It does not have the strand (<tt>+/-</tt) field.  You can add that
+field, and remove the last two fields, which are also not part of the
+standard bed format, with the command line:
+<pre>
+cut -f 1-5 your_grepped_factor.bed | awk '{print $0,"\t+"}' > your_factor_fixed.bed
+</pre>
+<p>
+<li>
+Also create two sets of <tt>tss</tt> files, one specifying regions
+from -250 to +50 around the TSS site, and a second -125 + 25.
+<p>
+<li>
+With each of the ChIP-seq <tt>.bed</tt> files, do the following:
+<ol type='a'>
+<li>
+<b>Option 1:</b> Intersect the four <tt>.bed</tt> files with the two <tt>+/-tss</tt>
+files, to produce eight <tt>.bed</tt> bed files of ChIP-seq sites near
+TSS sites,
+<p>
+<b>Option 2:</b>  intersect your one ChIP-seq modified bed file with the two TSS +/- files to produce two ChIP-seq-TSS files.
+<p>
+How many of the ChIP-seq sites are within the TSS ranges you used?
+How many are not?  Build a third set of ChIP-seq sites that are more
+than 1000 nt upstream or 500 nt downstream, of a TSS site (not near
+any TSS site) (now 10 files total for option 1, and 3 for option 2).
+<p>
+(Be certain to use the <tt>uniq</tt> command to ensure that each
+intersected <tt>.bed</tt> file has unique coordinates.
+<li>
+If there are more than 600 <tt>.bed</tt> file entries in any of these
+files (the maximum for MEME),  use the
+<tt>sample_bed.py</tt> program to sample <tt>-n 600</tt> or fewer
+bed regions at random:
+<pre>
+sample_bed.py -n 600 wgEncode_yy1_tss.bed > wgEncode_yy1_tss_1K.bed
+</pre>
+Alternatively, select the 600 with the highest ChIP occupancy scores by sorting the bed file on the 5-th field using:
+<pre>
+  sort -k 5 -n your_bed_file | head -n 600 > your_top500.bed
+</pre>
+<li>
+<b>(Skip to next step, do not do this.)</b><br />
+Now use these <tt>.bed</tt> files to download a set of FASTA sequences from the UCSC browser.
+<p>
+If you download the sequences from UCSC, you will need to run run the
+<tt>/seqprg/bin/trim_ucsc_header.py</tt> program to remove the
+constant region of the FASTA description line.
+<p>
+<li>
+Instead of downloading the FASTA sequences through the UCSC table interface, I have downloaded the <tt>hg19.fa</tt> sequence to <tt>/nv/md_rdlib2/data/hg19/hg19.fa</tt>, so you should be able to use the BEDTools program:
+<pre>
+fastaFromBed -fi /nv/md_rdlib2/biol4230/data/hg19/hg19.fa -bed your_chip_tf.bed -fo your_chip_tf.fasta
+</pre>
+Note that this output file does not need to have the fasta headers edited.
+This should make it much easier to script a solution to the final project.
+</ol>
+<li>
+Go to the <a href="http://meme-suite.org/" target=meme>MEME</a> site,
+and use both the <a href="http://meme-suite.org/tools/meme"
+target=meme>MEME</a> tool and the <a
+href="http://meme-suite.org/tools/meme-chip" target=meme>MEME-ChIP</a>
+tools to identify the consensus sites found in your datasets.
+<p>
+<li>
+In your <tt>description.txt</tt> file, address the following questions:
+<ol type='a'>
+<li>
+Did you find the consensus binding site with both <tt>MEME</tt> and <tt>MEME-ChIP</tt>? (Find the consensus site using Google/Wikipedia).
+<li>
+You looked for the consensus binding site in 10 (option 1) or three (option 2) different datasets.
+Make a table with 10 or 3  rows for each of your datasets, and provide
+columns reporting the E()-value for (1) the correct consensus, (2)
+(possibly) significant incorrect consensus, using both MEME and
+MEME-Chip.  If you did not have a significant E()-value for either the correct or an incorrect motif for one of the MEME methods, enter <tt>NA</tt>
+<li>
+Based on your results, is the consensus binding site enriched near
+transcription start sites?  Is it nearer (-125/+25) or farther from
+the TSS?  Justify your answer.
+</ol>
+<p>
+<hr />
+<li>
+Put the <tt>description.txt</tt>, <tt>files.txt</tt> and the internediate <tt>.bed</tt> and <tt>.fasta</tt> files in <tt>~/biol4230/final</tt> directory.
+</ol>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

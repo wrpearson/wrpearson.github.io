@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>
+BIOL4320
+</title>
+<base  HREF="http://www.people.virginia.edu/~wrp/biol4559/">
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<p>
+<h2 align=center>BIOL4320, Spring 2016</h2>
+<h2 align=center></h2>
+<hr/>
+<p align=center>
+BIOL4320 - Tues/Thurs - 9:30 -- 10:45 ????; Friday 9:00 - 9:50  ????
+<br>
+Course director: William R. Pearson, Jordan Hall Rm 6-057, <a href="mailto:wrp@virginia.edu">wrp@virginia.edu</A></p>
+Office hours, 1:00 - 3:00 PM Monday, or by Appt.
+<hr />
+<!-- TMPL_LOOP NAME=LECT_LOOP -->
+<!-- TMPL_IF NEW_WEEK --><tr><td colspan=4><hr></td></tr><!-- /TMPL_IF -->
+<tr>
+<td><!-- TMPL_VAR NAME=DAY --></td>
+<td align=center><!-- TMPL_VAR NAME=DATE --></td>
+<!-- TMPL_IF NAME=SPECIAL -->
+  <td align=center colspan=2><!-- TMPL_VAR NAME=TITLE --></A></td>
+<!-- TMPL_ELSE -->
+  <td align='left'><!-- TMPL_IF NAME=URL --><A HREF="<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=TITLE --></A>
+      <!-- TMPL_ELSE --><!-- TMPL_VAR NAME=TITLE --><!-- /TMPL_IF -->
+  <!-- TMPL_IF PDF --><a href="<!-- TMPL_VAR NAME=PDF -->"> Lecture PDF </A><!-- /TMPL_IF  -->
+  </td>
+  <td><!-- TMPL_VAR NAME=NAME --></td>
+<!-- /TMPL_IF -->
+</tr>
+<!-- TMPL_IF NAME=OTHER -->
+  <tr>
+  <td>&nbsp;</td><td>&nbsp;</td>
+  <td colspan=2><!-- TMPL_VAR NAME=OTHER --></td>
+</tr>
+<!-- /TMPL_IF -->
+<!-- /TMPL_LOOP -->
+</table>
+<hr>
+<p>
+<A HREF="perl/perl_intro.html">Introduction to Perl</A>
+<p>
+<A HREF="bioch508_links.html">Links to other Computational Biology Courses</A>
+<p>
+<A HREF="mailto:wrp@virginia.edu">wrp@virginia.edu</A><br>
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" -->
+<p>
+</body>
+</html>

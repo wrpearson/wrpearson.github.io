@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>
+Biol4230 - The 'R' programming environment
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+</head><body bgcolor=white>
+<h2>The 'R' programming environment</h2>
+<p>
+<i>Summary</i> - Run 'R', do some basic data manipulations, import a dataset and plot some results.
+<p>
+To run these excercises, you will need to have the 'R' statistics package installed on your laptop computer:
+<p>
+<a href="http://cran.r-project.org" target=rdown>http://cran.r-project.org</A>
+<p>
+<a href="http://www.rstudio.com/products/rstudio/download/" target=rdown>http://www.rstudio.com/products/rstudio/download/</a>
+<hr />
+In this lab, we will be exploring how to use R.  We will work on generating and accessing elements/components from R objects including vectors, matrices, lists, factors, data frames and functions (both built in and user defined).  We will also explore R's basic graphics utilities including <code>plot</code>, <code>hist</code>, and <code>boxplot</code>.
+<p>
+<b>Vectors</b>
+<ol>
+<li>
+Create a numerical vector <tt>num</tt> of all the integers from 11 to 20 named <code>num</code> using the sequence generating operator <code>:</code>.  Look at the vector.
+<p>
+<li>
+Use this vector to generate some logical vectors
+(<code>lg1</code>...<code>lg?</code>) by specifying conditions using
+comparison operators <code>lg1 <- &gt;15</code>, <code>lg2
+<- &gt;=16</code>, <code>lg3 <- &lt;12</code>, etc.
+Look at the logical
+(<code>lg1...lg?</code>) vectors.  Use the logical vectors to extract
+entries from <code>num[]</code>
+<p>
+<li>
+Generate a character vector named <code>char</code> using the concatenate function <code>c(...)</code> with the strings <tt>'R'</tt>, <tt>'Python'</tt>, <tt>'Bioconductor'</tt>, and <tt>'RNA-seq'</tt>.   Use this vector to create 2 logical vectors, <code>lg7</code> and <code>lg8</code>, using the comparison operators <code>== 'Python'</code> and <code>!='R'</code>.  Again, look at the vectors and use them to extract the contents of <code>char[]</code>.
+<p>
+<li>
+Create a mixed vector named <code>mix1</code> that contains values with a decimal point and integers using the <code>c(...)</code> function.  View the types of all the vectors you have produced using the <code>mode()</code> function, or the <code>str()</code> function.
+<p>
+<li>
+Create a mixed vector named <code>mix2</code> that contains values with a decimal point, integers and characters with the <code>c(...)</code> function.  What type of vector is produced?  Again, check by typing <code>mix2</code> and hitting ``enter'' on your keyboard as well as using the <code>mode</code> function.    
+<p>
+<li>
+Extract subsets of <code>mix1</code> and <code>mix2</code> using negative indexes together with the <code>:</code> operator and the <code>c(...)</code> function.
+<p>
+<li>
+Perform the following mathematical operations
+on <code>num</code>: <code>num/num</code>, <code>num*num</code>, <code>num**2</code>, <code>num
++ num</code>, <code>2*num</code> and <code>num - num</code>.  Try
+doing some arithmetic on the <code>mix1</code> vector.
+</ol>
+<hr />
+<b>Matrices</b>
+<ol>
+<li>
+Create a 5 column matrix named <code>mat</code> from <code>num</code> using the <code>matrix()</code> function and filling in the values by row first.
+<pre>
+mat <- matrix(num,ncol=5,byrow=T)
+</pre>
+<p>
+Look at the matrix, look at <code>str(mat)</code>, and <code>dim(mat)</code>)
+<p>
+<li>
+Extract the element in the second row and third column of <code>mat</code>. 
+<p>
+Extract the full first row.
+<p>
+Extract the full fourth column of <code>mat</code>.
+<p>
+Extract all rows and the 4th and 5th columns of <code>mat</code> using the <code>:</code> operator and <code>c()</code> command.
+<p>
+<li>
+Create a logical vector <code>lgm</code> by checking to see which elements in the first row of <code>mat</code> are <code>&lt;=</code> 14. Use <code>lgm</code> to extract the columns of <code>mat</code>  <code>&lt;=14</code>.
+<p>
+<li>
+Perform the following mathematical operations on <code>mat</code>: <code>mat/mat</code>, <code>mat*mat</code>, <code>mat**2</code>, <code>mat + mat</code>, <code>2*mat</code> and <code>mat - mat</code>.      
+</ol>
+<hr />
+<b>Lists and data.frames</b>
+<ol>
+<li>
+Generate a list named <code>ExpList</code> with three components: ExpLevel
+(3 numeric elements), Exp (3 logical elements with at least one
+<code>TRUE</code>) and GeneName (3 character elements).
+<pre>
+ExpList <- list(ExpLevel=c(1,2,3), Exp=c(F,T,T), GeneName=c("p53","cMyc", "GSTM1"))
+</pre>
+View <code>ExpList</code>
+<p>
+<li>
+Extract the GeneName component using the <code>$</code>
+operator and single brackets, <code>[]</code>,
+after <code>ExpList</code>.  Do you notice any differences in the outputs?
+<p>
+<li>
+Extract the third element of the GeneName component.  Extract the
+ExpLevel and GeneName components in one view using single brackets
+after <code>ExpList</code>, <code>[]</code>.
+<p>
+<li>
+Generate a character vector of
+length 3 named <code>ids</code>, e.g "Gene1", "Gene2", "Gene3". 
+<p>
+<li>
+Type <code>help(as.data.frame)</code>.  Read the
+help page. 
+<p>
+<li>
+Use the function <code>as.data.frame</code> on the list
+<code>ExpList</code> to generate a data frame named
+<code>ExpData</code> with row names <code>ids</code> (setting
+<code>stringsAsFactors=F</code>).  View <code>ExpData</code>.
+<p>
+<li>
+Extract the first row and then the third column (two separate operations) of <code>ExpData</code> using
+indexes.  Use the <code>$</code> operator to extract the Exp column.
+<p>
+<li>
+Extract the rows that are <code>TRUE</code> in the <code>Exp</code> column.
+<p>
+<li>
+Check the attributes of <code>ExpData</code> using <code>dim()</code> and
+<code>mode()</code> functions.
+</ol>
+<hr />
+<b>Plotting data</b>
+<ol>
+<li>
+Make a small test dataset of sequential x-values and y-values where y = x + random noise:
+<pre>
+x <- seq(0, 10, by=0.1)
+y <- x + rnorm(length(x), mean=0, sd=0.1)
+</pre>
+<li>
+Plot x vs y, and draw a line through points:
+<pre>
+plot(x,y,xlim=c(0,10), ylim=c(-2,12),pch=18, col='red')
+lines(x,x,col='blue')
+</pre>
+<li>
+Add another set of data to it with similar properties and plot it with different colors:
+<pre>
+z <- x + rnorm(length(x), mean=0, sd=0.5)
+points(x,z,pch=18, col='green')
+</pre>
+<li>
+Generate 1000 normally distributed datapoints and plot their histogram:
+<pre>
+rn <- rnorm(1000, mean=2.0, sd=0.5)
+hist(rn)
+</pre>
+Try a boxplot of the same data.  What are the values of each of the horizontal lines in the boxplot? (e.g. the center, top, and bottom of the box? the "wiskers" between the dashed vertical lines and the circles?)
+</ol>
+<hr />
+<b>Reading in data</b>
+<ol>
+<li>
+Transfer the file: <code>interactive.hpc.virginia.edu:/apps/teaching/bioinfo4230/data/rna-seq/GSE_FPKM.tab</code> to your laptop.
+<p>
+<li>
+Read in the file to a <tt>data.frame</tt> using:
+<pre>rna&lt;-read.table(url("http://fasta.bioch.virginia.edu/biol4230/labs/data/GSE_FPKM.tab"),sep="\t", header=T,row.names=NULL)</pre>
+(<tt>row.names=NULL</tt> is required to fix the "duplicate row names" problem)
+<p>
+<li>
+Summarize the data file using <tt>str</tt> and/or <tt>summary</tt>.  How many columns are there?  How many have expression data?  How many rows are there?
+<p>
+<li>
+Make a logical vector that specifies the rows (genes) that have more than 10 counts (FPKM) in MCF.7_Rep1, Rep2, and Rep3. 
+<pre>
+MCF7.gt10 <- rna1$MCF.7_Rep1 > 10 &amp; rna1$MCF.7_Rep2 > 10 &amp; rna1$MCF.7_Rep3 > 10
+</pre>
+What are the distributions of counts for all the expression data?  (<tt>summary(rna[MCF7.gt10,])</tt>; note that the logical vector is of genes (rows), so it must come before the comma [,]<br />
+How many genes are selected with this criteria? (<tt>dim(rna[MCF7.gt10,])</tt>)
+<p>
+<li>
+Make two new arrays,  <tt>MCF7.ave</tt> and <tt>MCF7.sd[]</tt>, which have the average of the three replicates and the variance of the three replicates for the rows with &gt;10 counts in each replicate. To do this, you MUST use the <tt>apply()</tt> function across the rows:
+<pre>
+MCF7.ave <- apply(GSE_FPKM[MCF7.gt10,2:4],1,mean)
+</pre>
+Here, the <tt>1</tt> tells <tt>apply</tt> to apply the <tt>mean()</tt> function across each row.  You must do the same thing for <tt>var()</tt>
+<p>
+<li>
+Plot the <tt>log2()</tt> of the variance (y-axes) against the <tt>log10()</tt> of the average.
+</ol>
+<hr />
+<b>Homework</b>
+<p>
+Put the <tt>answers</tt> and 'R' scripts in a new directory: <tt>~/biol4230/hwk7/</tt>.
+<ol>
+<li>
+In a file called <tt>answers</tt>, copy and paste examples of your
+lab-work from questions Matrix:3; data.frames:6, 8.  Answer the
+question in Plotting: 4.  
+<p>
+<li>
+Answer the questions in "Reading in data" (3, 4) and copy and paste a part of the MCF7.ave and MCF.var arrays in <tt>answers</tt>.
+<hr>
+Provide a file with the set of 'R' commands (and comments) necessary
+to answer questions 3 and 4.  The file should also include the
+commands necessary to read the data, and select the subset of genes
+used for each step.
+<li>
+<p>
+Identify the 5 most highly expressed genes (on average) for each of the three experimental replicates in GSE_FPKM (<tt>MCF.7</tt>, <tt>GM12892</tt>, and <tt>H1.hESC</tt>.
+<p>
+<li>
+Present the last plot (log(var) vs log(ave)) for the GSE_FPKM.dat data for the four replicate <tt>H1.hESC</tt>) experiments, limiting to genes that have at least 1 FPKM in each of the replicate experiments.  Upload the plot to the collab assignment page.
+</ol>
+<p>Due Wednesday, April 4 at 5 PM.
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

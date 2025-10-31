@@ -1,0 +1,70 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Similarity Searching homework (hwk2)
+</title>
+</head>
+<body bgcolor=white  onload='update_modtime()'>
+<h2>
+Biol4230 - Similarity Searching homework - DUE Monday, Jan. 29, 5:00 PM
+</h2>
+<p>
+<hr />
+<ol>
+<li>
+Write the answers to questions (3) and (4) from Friday's <a href="../blast_demo.html">lab blast demo</a> in a file called <tt>hwk2/lab.answers</tt>.
+<p>
+<li>
+Do a search of the SwissProt database using <tt>blastp</tt> using <tt>NP_001171499</tt> (honeybee_gst.aa) saving the output in "tabular" format (<tt>-outfmt 6</tt>)
+<p>
+<li>
+Repeat step 1, using the ssearch36 program specifying the BLOSUM62 matrix (-s BP62).  (you can produce tabular output using the –m 8 option):
+<pre>
+ssearch36 –s BP62 –m 8 honeybee_gst.aa s > output.file
+</pre>
+<p>
+<li>
+For both the blastp and ssearch results, make a copy of each results file and remove all the lines with E() > 0.001
+<p>
+<li>
+Write a bash script to isolate the library (subject) accession
+information for each of the lines in the edited file, and save the
+accession in a new file
+<p>
+<li>
+For each accession, split it into its component parts (hit 'man cut' to see how to change the delimiter).
+Write a script to save the accessions (P12345.3) to a file, and isolate only the accessions without the version information.
+<p>
+<li>
+Compare the list of SwissProt accessions with E() < 0.001 from BLASTP and SSEARCH. Which program finds more homologs?  For the program that finds fewer homologs, what are the E()-values of those hits in the list of hits from the other program?
+<p>
+<li>
+Edit the copies of the original blastp and ssearch output files file to save the lines with 0.1 < E()-values < 2.0
+<p>
+<li>
+For the accessions 0.1 < E() < 2.0, run the script from steps 4,5 to isolate the SwissProt accessions.
+Then use the protein accessions to get the sequences from UniProt.
+<p>
+<li>
+Write a script to take the accessions from with 0.1 < E() < 2.0 from the blastp search and re-search Swissprot for each of those accessions, saving the new search results in files named after the accession numbers.
+<p>
+<li>
+Write a description of your work in the file "hwk2.notes", labeling the scripts that you wrote, and save the description, scripts, and results files in biol4230/hwk2.
+</ol>
+<p>
+<hr>
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+<p>
+<hr>
+</body>
+</html>

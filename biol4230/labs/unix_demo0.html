@@ -1,0 +1,162 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<title>Unix from the command line</title>
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+</head>
+<body bgcolor=white onload='update_modtime()'>
+<h2>Command line unix (Linux) (19-Jan-2018)</h2>
+<hr />
+<p>
+This will be your homework for Monday, Jan 22.  My goal is to be
+certain that (1) you can log into a Unix machine, (2) run some simple
+commads to create files and directories, (3) to edit a file using
+emacs (but you can use a different editor), (4) transfer a file from
+your laptop to Unix, and (5) use the 'curl' command to transfer files
+from a web site to a unix file.
+<p>
+<ol>
+<li>Get an ITS unix account
+<li>
+On your computer, login to your account on <tt>interactive.hpc.virginia.edu</tt> or <tt>interactive.hpc.virginia.edu</tt> (use whichever one works; both computers access the same account directories).
+<ul>
+<li>
+Windows: download/install SecureCRT  <a href="http://www.its.virginia.edu/central" target=soft>ITS Software Central</a>
+<li>
+Mac: open terminal
+<p>
+<pre>slogin unix-id@interactive.hpc.virginia.edu</pre>
+<pre>slogin unix-id@interactive.hpc.virginia.edu</pre>
+</ul>
+<p>
+Outside UVA, you MUST use <tt>Cisco Anyconnect</tt>
+<p>
+<li>
+Look at your <tt>$PATH</tt> variable (used for finding programs)
+<pre>
+echo $PATH
+</pre>
+<ul>
+<li>
+display <tt>$PATH</tt>
+<pre>echo $PATH</pre>
+<li>
+send the output of the <tt>echo $PATH</tt> to a file:<br />
+<pre>echo $PATH > path.file</pre>
+</ul>
+<p>
+<li>
+list the contents of the file<br />
+<pre>
+cat path.file
+more path.file
+less path.file  # type "q" to return to the shell prompt
+</pre>
+<p>
+<li>
+Make a copy of the file<br />
+<pre>cp path.file path.copy</pre>
+<p>
+<li>
+Make a sub-directory (folder) called "<tt>biol4230</tt>"<br />
+<pre>
+mkdir biol4230
+</pre>
+Move into that directory with <tt>cd biol4230</tt><br />
+Make a new subdirectory in <tt>biol4230</tt> called <tt>hwk1</tt>
+<p>
+To make certain that I can read files in your <tt>biol4230</tt> directory:
+<pre>
+chmod go+rx ~  # <- tilde (shift-backtic, under ESC on my keyboard)
+chmod go+rx ~/biol4230
+chmod go+rx ~/biol4230/hwk1
+</pre>
+<p>
+<li>
+Move the <tt>path.copy</tt> file into the <tt>biol4230/hwk1</tt> folder
+<p>
+<li>List the contents of the <tt>biol4230/hwk1</tt> folder
+<pre>
+cd ~/biol4230/hwk1
+ls
+ls -l
+</pre>
+What is the extra information in the second listing?
+<p>
+<li>
+Save the contents (directory listing) of the data folder to a file
+using the same strategy you used to create <tt>path.file</tt>.
+<p>
+<li>
+<p>
+Use the emacs text editor to edit the directory listing file.  Make several copies of some of the lines in the file, and save it.
+<p>
+Check the contents of the <tt>biol4230/hwk1</tt> directory.
+<li>
+Transfer file of accessions from your laptop to <tt>interactive.hpc.virginia.edu</tt>.
+<ol type='a'>
+<li>
+At the NCBI web site, look up:  <tt>glutathione S-transferase AND human[orgn] AND srcdb_refseq[prop]</tt> in the protein database.
+<li>
+Use the <tt>Send to</tt> link on the search result page to send to a <tt>file</tt> the accessions.
+<li>
+use <tt>scp</tt> (Mac) or <tt>SecureFX</tt> (Windows) to copy the file of accessions to <tt>interactive.hpc</tt> or <tt>interactive.hpc</tt>.
+</ol>
+<p>
+<li>
+Search for glutathione S-transferase in the SwissProt database by using <tt>srcdb_swiss_prot</tt> in place of <tt>srcdb_refseq</tt>, and then download a file of accessions.  Transfer this file to <tt>interactive.hpc</tt>.
+<p>
+<li>
+Use the <tt>curl</tt> command (on <tt>interactive.hpc</tt>) to download a sequence from uniprot:
+<pre>
+curl http://www.uniprot.org/uniprot/P09488.fasta
+</pre>
+<ol type='a'>
+<li>
+Check to see if the sequence has appeared in your directory.
+<li>
+Look at the sequence (file).  Is it in FASTA format?
+</ol>
+<p>
+<li>
+Put all the scripts and results files in a directory on <tt>interactive.hpc</tt> (or <tt>interactive.hpc</tt>) called "<tt>biol4230/hwk1</tt>" and be certain that I can read it.
+<pre>
+cd                # go to home directory
+chmod go+rx .     # make it readable by others
+chmod go+rx biol4230/  # make biol4230 readable
+chmod go+rx biol4230/hwk1  # and hwk1
+<!-- touch test_file -->
+cd biol4230/hwk1
+chmod go+r * # make all files in the directory readable by others (me) 
+</pre>
+<!-- Before the end of class, check that I can read the "<tt>biol4230/hwk1/test_file</tt>". -->
+<p>
+<li>
+When your homework is done, I should see:
+<ol type='a'>
+<li>Your <tt>biol4230/hwk1/path.file</tt>
+<li>a directory listing with several duplicated lines in it (from part 10, emacs)
+</ol>
+In addition, from the <a href="../lects/biol4230_1_unix.pdf"> lecture handout</a>, I should see:
+<p>(0) A file called hwk1.notes, which lists the names of each of the files listed below and gives the answer to part (10).
+<p>(1-3) A fasta format file for <tt>GSTM1_HUMAN/NP_000552</tt> from NCBI
+<p>(4a) file with a list of accessions for human refseq glutathione transferases
+<p>(4c) list of accessions for human SwissProt glutathione transferases from Uniprot
+<p>(5) file with a list of <tt>NP_</tt> human refseq accessions: <tt>gst_refseq.NP_only</tt>
+<p>(6) the GST fasta file transferred with <tt>get_ncbi_acc.sh</tt>
+<p>(7) a file of NCBI Swissprot accessions for GSTs
+<p>(8) a file with version numbers removed from file (7)
+<p>(9) a summary of the differences between the Uniprot and SwissProt GST accessions
+<p>(10) the name of a different (between NCBI and Uniprot) SwissProt protein, and a possible explanation for the inclusion/exclusion from the NCBI/UniProt query (in hwk1.notes)
+<p>
+<hr>
+<a href="../index.cgi">Biol4230 Schedule</a>
+<p id="last_mod"></p>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>
+Biol4230 - Bioconductor, EdgeR, and Gene Expression
+</title>
+<link href="default.css" type="text/css" rel="stylesheet">
+<meta http-equiv="refresh" content="30">
+</head>
+<body bgcolor=white>
+<h2>Bioconductor, EdgeR, and Gene Expression</h2>
+<p>
+<i>Summary</i> - Install Bioconductor, import data, run EdgeR using two different modes
+<p>
+  These exercises will follow the protocols described in <a ref="http://www.nature.com/nprot/journal/v8/n9/pdf/nprot.2013.099.pdf" target=pdf>Anders, S. et al. Count-based differential expression analysis of RNA sequencing data using R and Bioconductor. Nature protocols 8, 1765-1786 (2013)</a> to analyze the GSE Ensembl data described in Thursday's handout.
+<p>
+We will skip over the mapping of fragments to the genome, and focus on
+normalization, quality control, and identification of differentially
+expressed genes with <tt>edgeR</tt>.  This starts at step <b>14</b> of
+the protocol on p. 1777.
+source("https://bioconductor.org/biocLite.R")
+<p>
+To run these excercises, you will need to have <a href="http://bioconductor.org" target='bioc'>Bioconductor</a> installed on your laptop computer:
+<pre>
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite()   # installs a lot of stuff
+biocLite("BiocUpgrade")  # ignore error messages - you may be up-to-date
+biocLite(c("edgeR","DESeq"))
+library(edgeR)
+</pre>
+<p>
+To do these exercises, we will start with files similar to those from last week:
+<ol>
+<li>
+Read in the file to a <tt>data.frame</tt> using:
+<pre>GSE_HTS<-read.table("https://fasta.bioch.virginia.edu/biol4230/labs/data/GSE_HTS.txt",sep="\t", header=T,row.names=1)
+GSE_groups=c(rep('GM128',3),rep("H1",4),rep("MCF7",3))
+</pre>
+<p>
+<li>
+Summarize the <tt>GSE_HTS</tt> data.frame using <tt>str(GSE_HTS)</tt> and <tt>summary(GSE_HTS)</tt>.  How many columns are there?  How many rows are there?  Do you see the same differences in maximum abundance that I presented in class?
+<p>
+<li>
+Make a logical vector that specifies the rows (genes) that have more than 9 counts in the two samples with 3 replicates, and more than 12 counts in the sample with four replicates.
+<pre>
+keep_cnts<-rowSums(GSE_HTS[,1:3]) > 9 & rowSums(GSE_HTS[,4:7]) > 12 & rowSums(GSE_HTS[,8:10]) > 9
+</pre>
+How many samples are saved?  (Compare <tt>length(keep_cnts)</tt> to <tt>length(keep_cnts[keep_cnts])</tt>.  Why are the numbers different?
+<p>
+<li>
+<tt>EdgeR</tt> works best when genes with less than 1 read per million in <it>n</it> of the samples, where <it>n</it> is the size of the smallest group of replicates.
+<pre>
+GSE_cpms <- cpm(GSE_HTS)
+keep_cnts <- keep_cnts  & rowSums(GSE_cpms > 1) >= 3
+GSE_HTS1 <- GSE_HTS[keep_cnts,]
+</pre>
+Do a summary on <tt>GSE_HTS</tt> and <tt>GSE_HTS1</tt>.  How has the first quartile changed?  Has the maximum changed?  The minimum? How many rows are in GSE_HTS?  In GSE_HTS1?
+<p>
+Plot a <tt>boxplot</tt> of <tt>log10(GSE_HTS1)</tt> adding a small number for zeros (<tt>boxplot(log10(GSE_HTS[keep_cnts,]+0.1))</tt>.  How many samples have a gene with zero counts?  Does this agree with <tt>summary(GSE_HTS[keep_cnts,])</tt>? Do the medians, quartiles, and maxima match what you saw in the  <tt>summary()</tt>.  What is the dynamic range between the median and the maximum numbers of read counts?  The difference between the first and third quartiles?
+<p>
+<li>
+To use the <tt>edgeR</tt> functions, we must put our data into an <tt>edgeR</tt> <tt>DGEList</tt> data structure.
+<pre>
+GSE_dge1<-DGEList(counts=GSE_HTS1,lib.size=colSums(GSE_HTS1),group=GSE_groups)
+</pre>
+Take a look at the contents of <tt>GSE_dge1</tt> using <tt>str(GSE_dge1)</tt> (you could also try <tt>summary</tt>, but it fails).  What do you see in the data structure in addition to the data?
+<p>
+You can look at the individual parts of the <tt>GSE_dge1</tt> list using [[]] indexing, e.g.:
+<pre>
+summary(GSE_dge1[[1]])
+summary(GSE_dge1[[2]])
+</pre>
+<tt>[[]]</tt> allows you to look at an individual part of a list.
+<p>
+Or, you can find the names of the different parts of <tt>GSE_dge1</tt> with <tt>attributes(GSE_dge1)</tt>.  Once you know the names, you can get the contents using <tt>$name</tt>, e.g.
+<pre>
+summary(GSE_dge1$counts)
+</pre>
+<p>
+Do a <tt>boxplot(log10(GSE_dge1$counts+0.1))</tt>.
+<p>
+<li>
+So that we can compare the datasets, we first need to normalize the data from the different samples:
+<pre>
+GSE_dge1<- calcNormFactors(GSE_dge1)
+str(GSE_dge1)
+</pre>
+Look at the <tt>GSE_dge1</tt> structure with <tt>str()</tt>.  What happened?
+<p>
+<li>
+The <tt>edgeR</tt> <tt>plotMDS()</tt> function plots samples on a
+two-dimensional scatterplot so that distances on the plot approximate
+the typical log2 fold changes between the samples (like a PCA, but
+with only two dimensions).  Make a <tt>plotMDS</tt> plot of <tt>GSE_dge1</tt>.
+<pre>
+plotMDS(GSE_dge1,col=c("green","red","blue")[factor(GSE_groups)])
+</pre>
+Are the replicates similar?  Do the different cell lines differ?
+<p>
+To look for statistically significant differences in expression, we must first have estimates of the amount of non-biological variation for genes expressed at different levels.  This can be calculated using the <tt>estimateCommonDisp()</tt> and <tt>esimateTagwiseDisp()</tt> functions.  Run these functions, and look to see how the <tt>GSE_dge1</tt> structure has changed.  Then plot the relationship between expression and variance using <tt>plotMeanVar()</tt>.  What does the solid black line with slope=1 show in the <tt>plotMeanVar</tt> plot.
+<pre>
+GSE_dge1<-estimateCommonDisp(GSE_dge1)
+str(GSE_dge1)
+GSE_dge1<-estimateTagwiseDisp(GSE_dge1)
+plotMeanVar(GSE_dge1,show.tagwise.vars=T,NBline=T)
+</pre>
+The <tt>NB</tt> line shows the variance predicted by the "Negative Binomial" distribution.  Does the variance in the samples match the NB model?  How does the predicted NB variance differ from the solid black line?
+<p>
+Take another look at the contents of <tt>DGE_gse1</tt> with <tt>attributes()</tt> and <tt>str()</tt>.  Do a: <tt>boxplot(log10(GSE_dge1$pseudo.counts+0.1))</tt>.  How does the earlier boxplot and this boxplot differ?
+<li>
+Now that we have normalized the counts, and looked at the properties of the variance, we can compare gene expression under two different conditions, and look for the most significant differences.
+<pre>
+GSE_dge1_GH<-exactTest(GSE_dge1,pair=c("GM128","H1"))   # do the statistical tests
+GSE_tt_GH<-topTags(GSE_dge1_GH,n=nrow(GSE_dge1))          # sort by the most significant differences
+head(GSE_tt_GH$table,20)                                  # show the top 10 most significant
+</pre>
+How many of the 20 most significant changes are larger in H1 than GM128?  How abundant (CPM) are the most significant changes?
+<p>
+Confirm that the most significant changes actually have substantial changes in counts:
+<pre>
+GSE_HTS1[row.names(head(GSE_tt_GH$table,20)),c(1:3,4:7)]
+</pre>
+<p>
+<li>
+Extract the names of the differentially expressed genes with FDR < 0.05?  How many are there  In that set, how many do you think are false positives? How many genes have FDR < 0.001?  Plot the fold-change vs abundance for FDR < 0.05 and FDR < 0.001.
+<pre>
+GSE_rn_05<-row.names(GSE_tt_GH[GSE_tt_GH$table$FDR<0.05,])
+GSE_rn_001<-row.names(GSE_tt_GH[GSE_tt_GH$table$FDR<0.001,])
+plotSmear(GSE_dge1,de.tags=GSE_rn_05)
+plotSmear(GSE_dge1,de.tags=GSE_rn_001)
+</pre>
+<p>
+<li>
+Finally, do some volcano plots to show the relationship between FDR and abundance.
+<pre>
+plot(GSE_tt_GH$table[,1], -log10(GSE_tt_GH$table[,4]),xlab="logFC",ylab="-log10(FDR)")
+points(GSE_tt_GH$table[GSE_rn_05,1],-log10(GSE_tt_GH$table[GSE_rn_05,4]),pch=20,col='red')
+points(GSE_tt_GH$table[GSE_rn_001,1],-log10(GSE_tt_GH$table[GSE_rn_001,4]),pch=20,col='green')
+</pre>
+What is the 'x'-axis in these plots?
+</ol>
+<hr />
+The following code plots (copied from <a
+href="http://research.stowers-institute.org/efg/R/Math/VennDiagram.htm"
+target=venn>research.stowers-institute.org/efg/R/Math/VennDiagram.htm</a>)
+a 2-way Venn diagram from two lists of gene names
+(e.g. a list from <tt>row.names(GSE_tt_GH[GSE_tt_GH$table$FDR < 0.01,])</tt> and <tt>row.names(GSE_tt_MH[GSE_tt_MH$table$FDR < 0.01,])</tt>, where <tt>GST_tt_MH</tt> are the top tags from the MCF7/H1 comparison).
+<pre>
+require(limma)
+source("https://fasta.bioch.virginia.edu/biol4230/labs/venn_diagram.R")
+</pre>
+This function is called by:
+<pre>Venn2(row_names_cond1, row_names_cond2, names=c("Cond1","Cond2"))</pre>
+For example: <tt>Venn2(GSE_rn_05, GSE_rn_001, names=c("FDR<0.05", "FDR<0.001"))</tt>
+What should this Venn diagram look like?
+<p>
+In the homework below, use this function to compare the statitically
+significant gene list for GM128 vs H1 to the list from GM128 vs MCF7.
+<hr />
+<h3>Homework</h3>
+<p>Due Monday, April 9, at 5 pm.
+<ol>
+<li>
+In a file called <tt>hwk8/answers.txt</tt>, answer the questions in parts 4, 7, and 8 above.
+<p>
+<li>
+Do the same differential expression analysis, but with GM128 vs MCF7.
+List the 20 most significant differentially expressed genes in that
+set, with logFC and FDR.
+<p>
+<li>
+Use the <tt>Venn2</tt> function above to compare the statistically significant changes in GM128 vs H1 to GM128 vs MCF7. Draw the diagrams using two different FDR thresholds.  Upload the venn diagrams to Collab.
+<p>
+Are there significant differences that go up in one comparison but down in the other?
+</ol>
+<hr />
+<a href="../index.cgi">Course home page</a>
+<hr />
+</body>
+</html>

@@ -1,0 +1,137 @@
+<html>
+<head>
+<!-- <meta http-equiv="Refresh" content="300"> -->
+<link href="default.css" type="text/css" rel="stylesheet">
+<!-- updated June, 2013 for Honey bee searches -->
+<script language='javascript' type='text/javascript'>
+function update_modtime() {
+  var x = new Date(document.lastModified);
+  document.getElementById("last_mod").innerHTML="Last modified: "+x;
+}
+</script>
+<title>
+Biol4230 - Mid-term project
+</title>
+</head>
+<body bgcolor=white>
+<h2>
+Biol4230 Mid-term project - due 5:00 PM, Monday, April 2 (revised)
+</h2>
+<p>
+The format of the Mid-term project presentation is shown here: <a href="./mid_term_proj_format.html">Mid-term submission format</a>
+<p>
+The goal of the project is to have you use many of the methods that were introduced in the first half of the course, in particular similarity searching, automated scripting of sequence downloads, multiple sequence alignment, and evolutionary tree reconstruction.
+Overall, the project is to start with a possibly protein sequence, identify 20 - 30 homologs, including homologs from rat and mouse (for a human query), but also homologs that share less than 30% sequence identity, and then build evolutionary trees using both protein and DNA sequences.
+<p>
+Specifically:
+<ol>
+<p>
+<li>
+Identify a human protein family for searching and tree building. Do NOT use class-mu glutathione transferases.  You should use a protein family that has a relatively constant length.  Some of the families you might consider are:
+<table align='center'>
+<tr><td>MAP Kinase:</td><td>sp|P45985|MP2K4_HUMAN</td></tr>
+<tr><td>Lactoglutathione lyase:</td><td>sp|Q04760|LGUL_HUMAN</td></tr>
+<tr><td>Trypsin-like serine Proteases:</td><td>sp|P07477|TRY1_HUMAN</td></tr>
+<tr><td>Subtilisin-like serine proteases:</td><td>sp|Q8NBP7|PCSK9_HUMAN (isolate Peptidase_S8 domain)</td></tr>
+<tr><td>glucose transporter: </td><td>sp|P11166|GTR1_HUMAN</td></tr>
+<tr><td>DS protein phosphatase: </td><td>sp|P28562|DUS1_HUMAN</td></tr>
+<tr><td>cytochrome P450: </td><td>sp|P04798|CP1A1_HUMAN</td></tr>
+<tr><td>proline isomerase: </td><td>sp|Q9NWM8|FKB14_HUMAN</td></tr>
+</table>
+If you wish to use your own protein family, the protein should be between 100 - 500 amino-acids, should contain a single domain (or multiple domains that are usually found together), and have distant homologs (<30% identity with E()<1e-6).
+<p>
+Find a set of 20 - 30 clear homologs (E < 1E-6), some of which share less than 30% identity, preferably with homologs from human, mouse, and rat (as well as more distant organisms).
+<p>
+<li>
+Build a multiple sequence alignment of the proteins (or homologous domains) using muscle.  Look at the multiple sequence alignment to ensure that there are not large numbers of gaps across the alignment (there will be some gaps in the distant homologs, but hopefully they will be clustered).
+<p>
+<li>
+Download the set of mRNA (cDNA) sequences that code for your proteins.
+This is easiesr if you work with RefSeq proteins, because every RefSeq
+protein (NP_) has a RefSeq mRNA sequence (NM_) that can be translated
+into the protein.  Uniprot proteins do not always have cDNAs.
+<p>
+I have created a script that will map refseq protein accessions (and some Uniprot accessions) to the corresponding refseq NM_ mRNA accession. Try running:
+<a target='np_nm' href="https://fastademo.bioch.virginia.edu/fasta_www2/NP_to_NM.cgi?acc=NP_000552,P09488">https://fastademo.bioch.virginia.edu/fasta_www2/NP_to_NM.cgi?acc=NP_000552,P09488</a>
+and you should see:
+<pre>
+NP_000552 NP_000552  NM_000561 
+P09488    NP_000552  NM_000561 
+</pre>
+You can also run this script as:
+<pre>
+~wrp/biol4230/proj1/NP_to_NM.py 
+
+$ ~wrp/biol4230/proj1/NP_to_NM.py NP_000552 P09488 
+NP_000552 NP_000552 NM_000561 
+P09488 NP_000552 NM_000561 
+</pre>
+For more information, see this page: <a href="np_nm_mapping.html">np_nm_mapping.html</a>.
+<p>
+In addition, I have created the script:
+<pre>
+~wrp/biol4230/proj1/rename_fastaseq.py
+</pre>
+That can be used to rename a set of sequences in a FASTA file.  You can use this script to make certain that both your protein and DNA sequences have the same set of names (required for <tt>tranalign</tt>).  More information is available <a href="./rename_fastaseq.html">here</a>.
+<p>
+<li>
+Use the muscle protein alignment to direct a mRNA (cDNA) DNA alignment using tranalign.
+<p>
+<li>
+Build distance and parsimony  trees for both your protein and DNA alignments, and a DNA maximum likelihood tree.
+<p>
+<li>
+Use the consense program to evaluate the consistency of the five trees: protein distance, DNA distance, protein parsimony, DNA parsimony, and DNA maximum likelihood.
+<p>
+<li>
+Bootstrap 1: Use seqboot to generate a 100 sequence bootstrap dataset for the protein sequences, and then evaluate the robustness of the <tt>protdist/fitch</tt> tree using the boostrap approach.
+<li>
+Bootstrap 2: Use seqboot to generate a 100 sequence bootstrap dataset for the DNA sequences, and then evaluate the robustness of the <tt>dnaml</tt> tree using the boostrap approach.
+<p>
+<li>
+Compare the three different consensus trees that you made.  Tree 1: consensus of 5 phylogenetic methods (distance/parsimony prot/DNA + dnaml).  Tree 2: 100 bootstraps of protein sequences/protdist/fitch. Tree 3: 100 bootstraps of DNA sequences/dnamlk.
+<li>
+<b>The final tree:</b> Take the consensus of consensus tree (from step
+9 above), and use it as an <tt>-intree</tt> file to direct the
+production of a final tree, either using ffitch with protein
+distances, or dnaml with a DNA multiple alignment.  Also, compare how
+well the consensus tree-driven fit to the data compares with the
+unconstrained (no input tree) fit to the data (which you did earlier).
+</ol>
+<hr />
+(stay tuned for updates). If you are a graduate student, then you must do some additional work.
+<ol>
+<p>
+<li>
+    Identify a set of your sequences that share 60-90% identity (throw
+    away the distant homologs).
+<p>
+<li>
+Run the <tt>codeml</tt> program on the aligned DNA codons of your
+reduced dataset, and compare M0 (one uniform rate), to M1 and M2, and
+M7, M8, to test to see whether some of the sites in your dataset
+support either positive or negative selection.  For more information,
+look at the pamlDOC.pdf document on the Collab/Resources site, and
+take a look at the <tt>gstm_codeml.ctl</tt> file, as well
+as <tt>ajm_gstm.phy</tt> and <tt>ajm_gstm.tree</tt> in the same
+folder.  The <tt>gstm_codeml.ctl</tt> file shows how to test for 5
+models, M0, M1, M2, M7, and M8, in one run.  The log-likelihoods, and
+proportions in each of the omega-rate categories can be seen in the
+output file, as well as any sites under strong positive selection (if
+they exist).
+<li>
+  Report the probabilities (frequencies) and omega's for each model
+  (M0,1,2,7,8) as well as the log-likelihoods for the different
+  models.  Using the discussion in the pamlDOC.pdf document on page
+  29ff, determine the number of free parameters and use the Likelihood
+  Ratio test to see if the different models have significant
+  differences in likelihood.
+</ol>
+<hr />
+IMPORTANT:
+You should write a script that does every step of the analysis.  I should be able to copy that script to an empty directory, run the script (and possibly an associated accession list) and reproduce your results.  You do NOT have to script the initial BLAST/SSEARCH search, but, given a list of protein accessions, the script should reproduce your results.
+<p>
+<font size=-1>Last modified:&nbsp;<!--#echo var="LAST_MODIFIED" -->
+<p>
+</body>
+</html>
