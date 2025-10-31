@@ -1,6 +1,8 @@
 
-##William R. Pearson##
+#William R. Pearson#
+
 *Professor of Biochemistry, Emeritus*
+
 University of Virginia
 
 ![Orchid image](https://orcid.org/sites/default/files/images/orcid_16x16.png)[orcid.org/0000-0002-0727-3680](https://orcid.org/0000-0002-0727-3680" target="orcid.widget)
@@ -8,6 +10,7 @@ University of Virginia
 ---
   
 [The FASTA sequence comparison package](https://github.com/wrpearson/fasta36/)
+
 [The FASTA WWW search page](https://fasta.bioch.virginia.edu/fasta_www2/)
 
 The [FASTA](https://fasta.bioch.virginia.edu/")
